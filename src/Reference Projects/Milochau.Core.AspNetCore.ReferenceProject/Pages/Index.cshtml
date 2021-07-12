@@ -1,0 +1,141 @@
+﻿@page
+@model Milochau.Core.AspNetCore.ReferenceProject.Pages.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Test page</h1>
+
+<h2>Test configuration features</h2>
+
+<h3>Configuration from Azure App Configuration</h3>
+<p>Note: configure Core:AppSettings:Endpoint first, target an Azure App Configuration resource with the following keys</p>
+
+<table>
+    <caption>Configuration values</caption>
+    <thead>
+        <tr>
+            <th scope="col">Key(s) in Azure App Configuration</th>
+            <th scope="col">Key in Application</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Shared:Test:PublicValueOnlyShared</td>
+            <td>Test:PublicValueOnlyShared</td>
+            <td>@Model.TestOptions.PublicValueOnlyShared</td>
+        </tr>
+        <tr>
+            <td>Core:ReferenceProject:Test:PublicValueOnlyApplication</td>
+            <td>Test:PublicValueOnlyApplication</td>
+            <td>@Model.TestOptions.PublicValueOnlyApplication</td>
+        </tr>
+        <tr>
+            <td>Shared:Test:PublicValueOnlySharedAndApplication and Core:ReferenceProject:Test:PublicValueOnlySharedAndApplication</td>
+            <td>Test:PublicValueOnlySharedAndApplication</td>
+            <td>@Model.TestOptions.PublicValueOnlySharedAndApplication</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Configuration from Azure Key Vault</h3>
+<p>Note: configure Core:KeyVault:Vault first, target an Azure KeyVault resource with the following keys</p>
+
+<table>
+    <caption>Configuration values</caption>
+    <thead>
+        <tr>
+            <th scope="col">Key in Azure Key Vault</th>
+            <th scope="col">Key in Application</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Test--SecretValue</td>
+            <td>Test:SecretValue</td>
+            <td>@Model.TestOptions.SecretValue</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>CoreHostOptions from IOptions</h3>
+<p>Note: configure CoreHostOptions in appsettings.json first</p>
+
+<table>
+    <caption>CoreHostOptions values</caption>
+    <thead>
+        <tr>
+            <th scope="col">Key</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Core:Application:ApplicationName</th>
+            <td>@Model.CoreHostOptions.Application.ApplicationName</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:Application:EnvironmentName</th>
+            <td>@Model.CoreHostOptions.Application.EnvironmentName</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:Application:HostName</th>
+            <td>@Model.CoreHostOptions.Application.HostName</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:AppConfig:Endpoint</th>
+            <td>@Model.CoreHostOptions.AppConfig.Endpoint</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:AppConfig:ConnectionString</th>
+            <td>@Model.CoreHostOptions.AppConfig.ConnectionString</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:AppConfig:RefreshExpirationInMinutes</th>
+            <td>@Model.CoreHostOptions.AppConfig.RefreshExpirationInMinutes</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:AppConfig:SentinelKey</th>
+            <td>@Model.CoreHostOptions.AppConfig.SentinelKey</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:KeyVault:Vault</th>
+            <td>@Model.CoreHostOptions.KeyVault.Vault</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>CoreServicesOptions from IOptions</h3>
+<p>Note: configure CoreServicesOptions in appsettings.json first</p>
+
+<table>
+    <caption>CoreServicesOptions values</caption>
+    <thead>
+        <tr>
+            <th scope="col">Key</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Core:Services:Telemetry.Enabled</th>
+            <td>@Model.CoreServicesOptions.Telemetry.Enabled</td>
+        </tr>
+        <tr>
+            <th scope="row">Core:Services:Telemetry:DisableAdaptiveSampling</th>
+            <td>@Model.CoreServicesOptions.Telemetry.DisableAdaptiveSampling</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Feature flags</h3>
+<p>Note: configure Feature Flags from Azure App Configuration</p>
+<p>ReferenceProjectTest activation: @Model.ReferenceProjectTest</p>
+
+<style>
+    table td, table th {
+        border: 1px solid;
+    }
+</style>
