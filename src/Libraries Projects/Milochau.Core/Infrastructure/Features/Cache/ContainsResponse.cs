@@ -1,0 +1,14 @@
+﻿using System.Collections.Generic;
+
+namespace Milochau.Core.Infrastructure.Features.Cache
+{
+    /// <summary>Response for cache contains endpoint</summary>
+    public class ContainsResponse
+    {
+        /// <summary>Tested keys</summary>
+        public ICollection<string> Keys { get; set; }
+
+        /// <summary>Contains any of the <see cref="Keys"/></summary>
+        public bool Contains { get; set; }
+    }
+}
