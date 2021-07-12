@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+env:
+  PROJECTS_BUILD: './src/Milochau.Core.sln'
+  PROJECTS_TESTS: './src/Milochau.Core.sln'
+  PROJECTS_SDK: './src/Milochau.Core.Sdk.sln'
+  DOTNET_VERSION: 5.0.x
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x # Explicitly reference .NET Core 3.1 for Functions compatibility
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.PROJECTS_BUILD }}
+      - name: Build application
+        run: dotnet build ${{ env.PROJECTS_BUILD }} --configuration Release --no-restore
+      - name: Test
+        run: dotnet test ${{ env.PROJECTS_TESTS }} --configuration Release --no-restore --no-build
+      - name: Pack SDK
+        run: dotnet pack ${{ env.PROJECTS_SDK }} --configuration Release --no-restore --no-build
