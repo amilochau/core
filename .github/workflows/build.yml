@@ -36,4 +36,9 @@ jobs:
       - name: Test
         run: dotnet test ${{ env.PROJECTS_TESTS }} --configuration Release --no-restore --no-build
       - name: Pack SDK
-        run: dotnet pack ${{ env.PROJECTS_SDK }} --configuration Release --no-restore --no-build
+        run: dotnet pack ${{ env.PROJECTS_SDK }} --configuration Release --no-restore --no-build --output ./build
+      - name: Upload SDK as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sdk
+          path: ./build
