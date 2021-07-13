@@ -17,11 +17,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          source-url: ${{ env.NUGET_URL }}
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy libraries
         uses: milochaucom/github-actions/release/nuget@v0.1.0-beta1
         with:
           projectsToBuild: ${{ env.PROJECTS_BUILD }}
           projectsToPublish: ${{ env.PROJECTS_SDK }}
           versionFile: ${{ env.VERSION_FILE }}
-          nugetUrl: ${{ env.NUGET_URL }}
-          dotnetVersion: ${{ env.DOTNET_VERSION }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
