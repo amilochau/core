@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This file lists all the public features of `Milochau.Core.*` libraries.
+This file lists all the changes in `Milochau.Core.*` libraries.
 
 ## Version 7.2.1
 
