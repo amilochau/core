@@ -4,6 +4,12 @@
 
 This file lists all the public features of `Milochau.Core.*` libraries.
 
+## Version 7.2.1
+
+Minor changes:
+
+- NuGet packages are now exported to GitHub Packages instead of Azure Artifacts
+
 ## Version 7.2.0
 
 New features:
