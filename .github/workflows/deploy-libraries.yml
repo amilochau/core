@@ -25,7 +25,7 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy libraries
-        uses: milochaucom/github-actions/release/nuget@v0.1.0-beta1
+        uses: milochaucom/github-actions/release/nuget@v1
         with:
           projectsToBuild: ${{ env.PROJECTS_BUILD }}
           projectsToPublish: ${{ env.PROJECTS_SDK }}
