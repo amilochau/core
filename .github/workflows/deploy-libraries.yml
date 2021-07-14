@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECTS_BUILD: './src/Milochau.Core.sln'
+  PROJECTS_BUILD: './src/Milochau.Core.Sdk.sln'
   PROJECTS_SDK: './src/Milochau.Core.Sdk.sln'
   VERSION_FILE: './src/Directory.Build.props'
   NUGET_URL: 'https://nuget.pkg.github.com/milochaucom/index.json'
