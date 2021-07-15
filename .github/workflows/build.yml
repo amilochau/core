@@ -28,7 +28,7 @@ jobs:
         with:
           dotnet-version: 3.1.x # Explicitly reference .NET Core 3.1 for Functions compatibility
       - name: Build and test projects
-        uses: milochaucom/github-actions/build/netcore@v1
+        uses: amilochau/github-actions/build/netcore@v1
         with:
           projectsToBuild: ${{ env.PROJECTS_BUILD }}
           projectsToTest: ${{ env.PROJECTS_TESTS }}
