@@ -1,5 +1,8 @@
 # Readme - core
 
+[![Build](https://github.com/amilochau/core/actions/workflows/build.yml/badge.svg)](https://github.com/amilochau/core/actions/workflows/build.yml)
+[![Deploy libraries](https://github.com/amilochau/core/actions/workflows/deploy-libraries.yml/badge.svg)](https://github.com/amilochau/core/actions/workflows/deploy-libraries.yml)
+
 ## Introduction
 
 `core` is a collection of libraries used as an enterprise framework, to improve applications and services with a large set of commun features.
@@ -52,31 +55,20 @@ public static class Program
 ```
 
 ```csharp
-public class Startup
+public class Startup : CoreApplicationStartup
 {
-    private readonly IConfiguration configuration;
+    public Startup(IConfiguration configuration) : base(configuration) { }
 
-    public Startup(IConfiguration configuration)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        this.configuration = configuration;
-    }
+        base.ConfigureServices(services); // <== Here you configure Milochau.Core features
 
-    public void ConfigureServices(IServiceCollection services)
-    {
         // Configure more services: Razor Pages...
-
-        // Configure Milochau.Core features
-        services.AddCoreFeatures(configuration);
-
-        // Initialize application
-        var applicationStartupFactory = new ApplicationStartupFactory(services, configuration);
-        applicationStartupFactory.RegisterDependencies(); // You can also use a dedicated ApplicationInitializer class, as in the ASP.NET Core 2.2 sample
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        // Use Milochau.Core features
-        app.UseCoreFeatures();
+        base.Configure(app, env); // <== Here you configure application to use Milochau.Core features
         
         // Configure more middlewares here: authentication, etc...
 
@@ -87,23 +79,6 @@ public class Startup
             endpoints.MapCoreHealthEndpoints();
             endpoints.MapCoreSystemEndpoints();
         });
-    }
-}
-```
-
-```csharp
-public class ApplicationStartupFactory : CoreStartupFactory
-{
-    public ApplicationStartupFactory(IServiceCollection services, IConfiguration configuration)
-        : base(services, configuration) { }
-
-    /// <summary>Fill service collection</summary>
-    public override void RegisterDependencies()
-    {
-        // Register core services
-        base.RegisterDependencies(); // <== You MUST register base dependencies to enable Milochau.Core features
-
-        // Register your own services then...
     }
 }
 ```
