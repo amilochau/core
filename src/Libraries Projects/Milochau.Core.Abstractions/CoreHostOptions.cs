@@ -1,17 +1,24 @@
 ﻿using Azure.Identity;
 
-namespace Milochau.Core.Models
+namespace Milochau.Core.Abstractions
 {
     /// <summary>Core host options</summary>
     public class CoreHostOptions
     {
-        /// <summary>Default section in Configuration to retrieved <see cref="CoreHostOptions"/></summary>
+        /// <summary>Default section in Configuration to retrieved</summary>
         public const string DefaultConfigurationSection = "Core:Host";
 
-        internal const string DefaultSentinelKey = "Sentinel:Key";
-        internal const int DefaultAppConfigRefreshExpirationInMinutes = 120;
-        internal const string DefaultAppConfigKey = "Shared";
-        internal const string DefaultAppConfigNamespaceSeparator = "/";
+        /// <summary>Default App Configuration sentinel key</summary>
+        public const string DefaultSentinelKey = "Sentinel:Key";
+
+        /// <summary>Default App Configuration duration between refreshes</summary>
+        public const int DefaultAppConfigRefreshExpirationInMinutes = 120;
+
+        /// <summary>Default namespace for shared configuration in App Configuration</summary>
+        public const string DefaultAppConfigKey = "Shared";
+
+        /// <summary>Default separator in App Configuration keys to identity namespace</summary>
+        public const string DefaultAppConfigNamespaceSeparator = "/";
 
         /// <summary>Application options</summary>
         public virtual ApplicationOptions Application { get; set; } = new ApplicationOptions();

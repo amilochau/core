@@ -1,4 +1,4 @@
-﻿using Milochau.Core.Models;
+﻿using Milochau.Core.Abstractions;
 using Azure.Identity;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using System;

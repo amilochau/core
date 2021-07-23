@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Milochau.Core.Models;
+using Milochau.Core.Abstractions;
 using System;
 
 namespace Milochau.Core.Infrastructure.Features.Health

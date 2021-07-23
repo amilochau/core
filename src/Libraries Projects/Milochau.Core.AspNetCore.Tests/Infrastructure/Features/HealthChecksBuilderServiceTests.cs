@@ -1,5 +1,5 @@
 ﻿using Milochau.Core.AspNetCore.Models;
-using Milochau.Core.Models;
+using Milochau.Core.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;

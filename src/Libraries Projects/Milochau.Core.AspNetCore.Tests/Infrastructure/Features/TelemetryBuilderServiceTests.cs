@@ -1,5 +1,5 @@
-﻿using Milochau.Core.AspNetCore.Models;
-using Milochau.Core.Models;
+﻿using Milochau.Core.Abstractions;
+using Milochau.Core.AspNetCore.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.AspNetCore.Infrastructure.Features;

@@ -1,5 +1,4 @@
 ﻿using Milochau.Core.Abstractions;
-using Milochau.Core.Models;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;

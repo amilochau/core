@@ -3,7 +3,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using Milochau.Core.Models;
 using Milochau.Core.Abstractions;
 
 namespace Milochau.Core.Functions.ReferenceProject

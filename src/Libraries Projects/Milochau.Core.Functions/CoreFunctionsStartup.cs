@@ -5,7 +5,6 @@ using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
 using Milochau.Core.Infrastructure.Hosting;
 using Milochau.Core.Infrastructure.Features.Configuration;
-using Milochau.Core.Models;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Cache;
 using Milochau.Core.Infrastructure.Features.Health;

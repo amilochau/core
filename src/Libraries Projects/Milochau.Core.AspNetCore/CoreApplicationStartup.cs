@@ -9,7 +9,6 @@ using Milochau.Core.AspNetCore.Infrastructure.Extensions;
 using Milochau.Core.Infrastructure.Features.Cache;
 using Milochau.Core.Infrastructure.Features.Configuration;
 using Milochau.Core.Infrastructure.Hosting;
-using Milochau.Core.Models;
 
 namespace Milochau.Core.AspNetCore
 {

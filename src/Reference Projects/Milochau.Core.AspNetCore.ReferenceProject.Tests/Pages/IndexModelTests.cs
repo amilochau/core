@@ -1,6 +1,6 @@
-﻿using Milochau.Core.AspNetCore.ReferenceProject.Models;
+﻿using Milochau.Core.Abstractions;
+using Milochau.Core.AspNetCore.ReferenceProject.Models;
 using Milochau.Core.AspNetCore.ReferenceProject.Pages;
-using Milochau.Core.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

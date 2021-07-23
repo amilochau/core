@@ -1,5 +1,5 @@
-﻿using Milochau.Core.Infrastructure.Hosting;
-using Milochau.Core.Models;
+﻿using Milochau.Core.Abstractions;
+using Milochau.Core.Infrastructure.Hosting;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.AspNetCore.Models;
 using System;
-using Milochau.Core.Models;
+using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Hosting;
 using Milochau.Core.AspNetCore.Infrastructure.Features;
 

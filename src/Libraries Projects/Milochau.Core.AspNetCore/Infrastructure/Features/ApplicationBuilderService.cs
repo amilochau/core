@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using Milochau.Core.Abstractions;
 using Milochau.Core.AspNetCore.Infrastructure.Middlewares;
 using Milochau.Core.AspNetCore.Models;
-using Milochau.Core.Models;
 using System.Linq;
 
 namespace Milochau.Core.AspNetCore.Infrastructure.Features

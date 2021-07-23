@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Milochau.Core.Abstractions;
 using Milochau.Core.AspNetCore.Infrastructure.Features;
-using Milochau.Core.Models;
 using Milochau.Core.AspNetCore.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using System.Text;
 using System;
-using Milochau.Core.Abstractions;
 
 namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
 {

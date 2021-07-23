@@ -1,4 +1,4 @@
-﻿using Milochau.Core.Models;
+﻿using Milochau.Core.Abstractions;
 using Microsoft.Extensions.Configuration;
 using System;
 

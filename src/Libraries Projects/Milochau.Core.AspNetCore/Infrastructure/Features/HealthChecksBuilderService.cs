@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
+using Milochau.Core.Abstractions;
 using Milochau.Core.AspNetCore.Models;
-using Milochau.Core.Models;
 using Microsoft.AspNetCore.Routing;
 using Milochau.Core.Infrastructure.Features.Health;
 
