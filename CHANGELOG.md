@@ -4,6 +4,6 @@
 [//]: # (Bug fixes)
 [//]: # (Minor changes)
 
-## Minor changes
+## Breaking changes
 
-- NuGet packages are now exported to nuget.org
+- Key Vault can no more be configured with TenantId, ClientId and ClientSecret; you should now use Managed Identity
