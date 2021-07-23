@@ -44,18 +44,6 @@ namespace Milochau.Core.Models
     {
         /// <summary>Vault URI</summary>
         public string Vault { get; set; }
-
-        /// <summary>Tenant ID</summary>
-        /// <remarks><see cref="ClientSecret"/> and <see cref="ClientId"/> must be set to authenticate with <see cref="TenantId"/></remarks>
-        public string TenantId { get; set; }
-
-        /// <summary>Client ID</summary>
-        /// <remarks><see cref="TenantId"/> and <see cref="ClientSecret"/> must be set to authenticate with <see cref="ClientId"/></remarks>
-        public string ClientId { get; set; }
-
-        /// <summary>Client secret</summary>
-        /// <remarks><see cref="TenantId"/> and <see cref="ClientId"/> must be set to authenticate with <see cref="ClientId"/></remarks>
-        public string ClientSecret { get; set; }
     }
 
     /// <summary>Azure App configuration options</summary>

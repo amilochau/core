@@ -12,9 +12,6 @@ namespace Milochau.Core.Infrastructure.Hosting
         private const string environmentNameKey = "ENVIRONMENT";
         private const string hostNameKey = "HOST";
         private const string keyVaultVaultKey = "KEYVAULT_VAULT";
-        private const string keyVaultTenantIdKey = "KEYVAULT_TENANTID";
-        private const string keyVaultClientIdKey = "KEYVAULT_CLIENTID";
-        private const string keyVaultClientSecretKey = "KEYVAULT_CLIENTSECRET";
         private const string appConfigEndpointKey = "APPCONFIG_ENDPOINT";
         private const string appConfigConnectionStringKey = "APPCONFIG_CONNECTIONSTRING";
 
@@ -40,9 +37,6 @@ namespace Milochau.Core.Infrastructure.Hosting
             hostOptions.Application.HostName = hostOptions.Application.HostName ?? configuration[$"{hostingPrefix}{hostNameKey}"] ?? configuration[hostNameKey];
 
             hostOptions.KeyVault.Vault = hostOptions.KeyVault.Vault ?? configuration[$"{hostingPrefix}{keyVaultVaultKey}"] ?? configuration[keyVaultVaultKey];
-            hostOptions.KeyVault.TenantId = hostOptions.KeyVault.TenantId ?? configuration[$"{hostingPrefix}{keyVaultTenantIdKey}"] ?? configuration[keyVaultTenantIdKey];
-            hostOptions.KeyVault.ClientId = hostOptions.KeyVault.ClientId ?? configuration[$"{hostingPrefix}{keyVaultClientIdKey}"] ?? configuration[keyVaultClientIdKey];
-            hostOptions.KeyVault.ClientSecret = hostOptions.KeyVault.ClientSecret ?? configuration[$"{hostingPrefix}{keyVaultClientSecretKey}"] ?? configuration[keyVaultClientSecretKey];
 
             hostOptions.AppConfig.Endpoint = hostOptions.AppConfig.Endpoint ?? configuration[$"{hostingPrefix}{appConfigEndpointKey}"] ?? configuration[appConfigEndpointKey];
             hostOptions.AppConfig.ConnectionString = hostOptions.AppConfig.ConnectionString ?? configuration[$"{hostingPrefix}{appConfigConnectionStringKey}"] ?? configuration[appConfigConnectionStringKey];

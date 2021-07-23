@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Azure.Identity;
+﻿using Azure.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Milochau.Core.Models;
@@ -28,16 +27,7 @@ namespace Milochau.Core.Infrastructure.Features.Health
             // Add Azure Key Vault health check
             if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
             {
-                TokenCredential credential;
-                if (!string.IsNullOrEmpty(hostOptions.KeyVault.TenantId) && !string.IsNullOrEmpty(hostOptions.KeyVault.ClientId) && !string.IsNullOrEmpty(hostOptions.KeyVault.ClientSecret))
-                {
-                    credential = new ClientSecretCredential(hostOptions.KeyVault.TenantId, hostOptions.KeyVault.ClientId, hostOptions.KeyVault.ClientSecret);
-                }
-                else
-                {
-                    credential = new DefaultAzureCredential(hostOptions.Credential);
-                }
-
+                var credential = new DefaultAzureCredential(hostOptions.Credential);
                 healthChecksBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential, null, azureKeyVaultName);
             }
 

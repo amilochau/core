@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Azure.Identity;
+﻿using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
 
@@ -35,16 +34,7 @@ namespace Milochau.Core.Infrastructure.Hosting
             // Configure Azure Key Vault
             if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
             {
-                TokenCredential credential;
-                if (!string.IsNullOrEmpty(hostOptions.KeyVault.TenantId) && !string.IsNullOrEmpty(hostOptions.KeyVault.ClientId) && !string.IsNullOrEmpty(hostOptions.KeyVault.ClientSecret))
-                {
-                    credential = new ClientSecretCredential(hostOptions.KeyVault.TenantId, hostOptions.KeyVault.ClientId, hostOptions.KeyVault.ClientSecret);
-                }
-                else
-                {
-                    credential = new DefaultAzureCredential(hostOptions.Credential);
-                }
-
+                var credential  = new DefaultAzureCredential(hostOptions.Credential);
                 internalConfigurationBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential);
             }
 
