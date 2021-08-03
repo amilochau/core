@@ -57,10 +57,6 @@ namespace Milochau.Core.Functions
                     ConfigurationRefresher = appConfigOptions.GetRefresher();
                 });
             }
-            else
-            {
-                throw new NotSupportedException("You need to set up an Azure App Configuration to use IConfigurationRefresher");
-            }
 
             // Add new configuration sources at the beginning of the application configuration builder
             foreach (var configurationSource in internalConfigurationBuilder.Sources)

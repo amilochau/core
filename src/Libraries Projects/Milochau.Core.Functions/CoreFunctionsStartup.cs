@@ -8,6 +8,8 @@ using Milochau.Core.Infrastructure.Features.Configuration;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Cache;
 using Milochau.Core.Infrastructure.Features.Health;
+using System.IO;
+using System.Reflection;
 
 namespace Milochau.Core.Functions
 {
@@ -42,7 +44,11 @@ namespace Milochau.Core.Functions
         {
             var hostOptions = CoreOptionsFactory.GetCoreHostOptions(configuration);
 
-            services.AddSingleton(StartupConfiguration.ConfigurationRefresher);
+            if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
+            {
+                services.AddSingleton(StartupConfiguration.ConfigurationRefresher);
+            }
+
             services.AddSingleton<IApplicationMemoryCache, ApplicationMemoryCache>();
             services.AddOptions<CoreHostOptions>().Configure<IConfiguration>(CoreOptionsFactory.SetupCoreHostOptions);
             services.AddSingleton<IApplicationHostEnvironment>(sp =>
