@@ -18,6 +18,10 @@ namespace Milochau.Core.Functions
         /// <param name="builder"></param>
         public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
         {
+            // On Azure, we need to get where the app is.
+            var basePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..");
+            builder.ConfigurationBuilder.SetBasePath(basePath);
+
             var hostingContextConfiguration = builder.ConfigurationBuilder.Build();
 
             StartupConfiguration.RegisterConfiguration(hostingContextConfiguration, builder.ConfigurationBuilder);
