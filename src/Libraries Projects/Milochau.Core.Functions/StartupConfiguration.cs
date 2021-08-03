@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using System;
 using Milochau.Core.Infrastructure.Hosting;
-using Azure.Core;
 using Azure.Identity;
 
 namespace Milochau.Core.Functions

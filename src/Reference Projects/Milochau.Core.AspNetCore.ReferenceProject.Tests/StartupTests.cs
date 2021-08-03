@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +11,15 @@ namespace Milochau.Core.AspNetCore.ReferenceProject.Tests
     [TestClass]
     public class StartupTests
     {
+        private Mock<IWebHostEnvironment> env;
+
         private readonly ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            env = new Mock<IWebHostEnvironment>();
+        }
 
         [TestMethod]
         public void ConfigureServices_When_FeatureFlagsIsEnabled()
@@ -25,7 +35,7 @@ namespace Milochau.Core.AspNetCore.ReferenceProject.Tests
             var configuration = configurationBuilder.Build();
             serviceCollection.AddSingleton(configuration);
 
-            var startup = new Startup(configuration);
+            var startup = new Startup(configuration, env.Object);
 
             // When
             startup.ConfigureServices(serviceCollection);

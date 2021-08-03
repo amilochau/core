@@ -66,7 +66,7 @@ public class Startup : CoreApplicationStartup
         // Configure more services: Razor Pages...
     }
 
-    public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public override void Configure(IApplicationBuilder app)
     {
         base.Configure(app, env); // <== Here you configure application to use Milochau.Core features
         
