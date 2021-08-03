@@ -21,8 +21,8 @@ namespace Milochau.Core.AspNetCore.Tests.Extensions
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Core:Host:AppConfig:Endpoint", "https://" },
-                { "Core:Host:KeyVault.Vault", "https://" }
+                { "ASPNETCORE_APPCONFIG_ENDPOINT", "https://" },
+                { "ASPNETCORE_KEYVAULT_VAULT", "https://" }
             });
             var configuration = configurationBuilder.Build();
 

@@ -52,9 +52,9 @@ These configuration keys must be set up:
 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
-| `Core:Host:Application:ApplicationName` | Defines the application name, used to retrieve proper configuration from Azure App Configuration | `Monitoring:Health`, `Sofia` | Get from `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION` |
-| `Core:Host:Application:EnvironmentName` | Defines the environment name, used to retrieve proper configuration from Azure App Configuration | `Development`, `Production` | Get from `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT` |
-| `Core:Host:Application:HostName` | Defines the host name, used to retrieve proper configuration from Azure App Configuration | `dev2`, `prd` | Get from `DOTNET_HOST`, `ASPNETCORE_HOST` |
+| `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION` | Defines the application name, used to retrieve proper configuration from Azure App Configuration | `Monitoring:Health`, `Sofia` |
+| `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT` | Defines the environment name, used to retrieve proper configuration from Azure App Configuration | `Development`, `Production` | `Development` |
+| `DOTNET_HOST`, `ASPNETCORE_HOST` | Defines the host name, used to retrieve proper configuration from Azure App Configuration | `dev2`, `prd` | `local` |
 | `Core:Services:RequestLocalization:Enabled` | Enable request localization | `true` | `false` |
 | `Core:Services:RequestLocalization:DefaultCulture` | Default culture for request localization | `en-US` |
 | `Core:Services:RequestLocalization:SupportedCultures` | Supported (UI) cultures | `:0` to `en-US` |
@@ -69,7 +69,7 @@ Configuration can be automatically injected from Azure App Configuration on star
 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
-| `Core:Host:AppConfig:Endpoint` (x) | Azure App Configuration endpoint | `Endpoint=https://XXXX.azconfig.io ;Id=XXXX;Secret=XXXX` | Get from `DOTNET_APPCONFIG_ENDPOINT`, `ASPNETCORE_APPCONFIG_ENDPOINT` |
+| `DOTNET_APPCONFIG_ENDPOINT`, `ASPNETCORE_APPCONFIG_ENDPOINT` (x) | Azure App Configuration endpoint | `Endpoint=https://XXXX.azconfig.io ;Id=XXXX;Secret=XXXX` |
 | `Core:Host:AppConfig:SentinelKey` | Sentinel Key for Refresh with Azure App Configuration (the default namespace will be added as a prefix) | `Sentinel:Key` | `Sentinel:Key` |
 | `Core:Host:AppConfig:RefreshExpirationInMinutes` | Expiration Refresh with Azure App Configuration (minutes) | `5` | `30` |
 
@@ -81,7 +81,7 @@ Configuration can be automatically injected from Azure Key Vault on startup. To 
 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
-| `Core:Host:KeyVault:Vault` | URI of the Azure Key Vault to use | `https://XXXX.vault.azure.net` | Get from `DOTNET_KEYVAULT_VAULT`, `ASPNETCORE_KEYVAULT_VAULT` |
+| `DOTNET_KEYVAULT_VAULT`, `ASPNETCORE_KEYVAULT_VAULT` | URI of the Azure Key Vault to use | `https://XXXX.vault.azure.net` |
 
 ### Feature Flags
 
