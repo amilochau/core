@@ -19,7 +19,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         /// <param name="servicesOptions">Core services options, see <see cref="CoreServicesOptions"/></param>
         public static IServiceCollection AddCoreConfiguration(this IServiceCollection services, CoreHostOptions hostOptions, CoreServicesOptions servicesOptions)
         {
-            if (!string.IsNullOrEmpty(hostOptions.AppConfig.ConnectionString) || !string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
+            if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
             {
                 services.AddAzureAppConfiguration();
             }
@@ -33,7 +33,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         /// <param name="servicesOptions">Core services options, see <see cref="CoreServicesOptions"/></param>
         public static IApplicationBuilder UseCoreConfiguration(this IApplicationBuilder app, CoreHostOptions hostOptions, CoreServicesOptions servicesOptions)
         {
-            if (!string.IsNullOrEmpty(hostOptions.AppConfig.ConnectionString) || !string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
+            if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
             {
                 app.UseAzureAppConfiguration();
             }

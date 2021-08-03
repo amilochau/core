@@ -59,9 +59,6 @@ namespace Milochau.Core.Abstractions
         /// <summary>App Configuration Endpoint</summary>
         public string Endpoint { get; set; }
 
-        /// <summary>App Configuration Connection string</summary>
-        public string ConnectionString { get; set; }
-
         /// <summary>Namespace separator; default is <see cref="CoreHostOptions.DefaultAppConfigNamespaceSeparator"/></summary>
         public string NamespaceSeparator { get; set; } = CoreHostOptions.DefaultAppConfigNamespaceSeparator;
 

@@ -21,8 +21,8 @@ namespace Milochau.Core.AspNetCore.Tests.Extensions
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Core:Host:AppConfig:Endpoint", "https://" },
-                { "Core:Host:KeyVault.Vault", "https://" }
+                { "ASPNETCORE_APPCONFIG_ENDPOINT", "https://" },
+                { "ASPNETCORE_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
             });
             var configuration = configurationBuilder.Build();
 
@@ -37,7 +37,7 @@ namespace Milochau.Core.AspNetCore.Tests.Extensions
 
             Assert.IsNotNull(options.Value);
             Assert.IsNotNull(options.Value.Registrations);
-            Assert.AreEqual(1, options.Value.Registrations.Count);
+            Assert.AreEqual(2, options.Value.Registrations.Count);
             var firstRegistration = options.Value.Registrations.ElementAt(0);
             Assert.IsNotNull(firstRegistration);
             Assert.AreEqual(endpointCheckName, firstRegistration.Name);

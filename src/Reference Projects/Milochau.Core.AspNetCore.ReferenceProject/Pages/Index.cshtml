@@ -40,7 +40,7 @@
 </table>
 
 <h3>Configuration from Azure Key Vault</h3>
-<p>Note: configure Core:KeyVault:Vault first, target an Azure KeyVault resource with the following keys</p>
+<p>Note: configure Key Vault vault first, target an Azure KeyVault resource with the following keys</p>
 
 <table>
     <caption>Configuration values</caption>
@@ -87,10 +87,6 @@
         <tr>
             <th scope="row">Core:AppConfig:Endpoint</th>
             <td>@Model.CoreHostOptions.AppConfig.Endpoint</td>
-        </tr>
-        <tr>
-            <th scope="row">Core:AppConfig:ConnectionString</th>
-            <td>@Model.CoreHostOptions.AppConfig.ConnectionString</td>
         </tr>
         <tr>
             <th scope="row">Core:AppConfig:RefreshExpirationInMinutes</th>

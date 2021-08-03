@@ -20,7 +20,7 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
 
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Core:AppConfig:Endpoint", "https://" }
+                { "ASPNETCORE_APPCONFIG_ENDPOINT", "https://" }
             });
 
             // When
@@ -39,7 +39,7 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
 
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Core:AppConfig:ConnectionString", "Endpoint=https://" }
+                { "ASPNETCORE_APPCONFIG_CONNECTIONSTRING", "Endpoint=https://" }
             });
 
             // When

@@ -22,11 +22,7 @@ namespace Milochau.Core.Infrastructure.Hosting
         /// <summary>Connect to Azure App Configuration</summary>
         public static void ConnectAzureAppConfiguration(AzureAppConfigurationOptions appConfigOptions, CoreHostOptions hostOptions)
         {
-            if (!string.IsNullOrEmpty(hostOptions.AppConfig.ConnectionString))
-            {
-                appConfigOptions.Connect(hostOptions.AppConfig.ConnectionString);
-            }
-            else if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
+            if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
             {
                 var credential = new DefaultAzureCredential(hostOptions.Credential);
                 appConfigOptions.Connect(new Uri(hostOptions.AppConfig.Endpoint), credential);

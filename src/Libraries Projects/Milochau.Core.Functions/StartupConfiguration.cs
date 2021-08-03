@@ -7,6 +7,16 @@ using Azure.Identity;
 namespace Milochau.Core.Functions
 {
     /// <summary>Startup configuration</summary>
+    /// <remarks>
+    /// These configuration providers will be used:
+    /// <list type="bullet">
+    ///    <item>Azure App Configuration</item>
+    ///    <item>Azure Key Vault</item>
+    ///    <item>JSON file appsettings.json</item>
+    ///    <item>JSON file appsettings.{environment}.json</item>
+    ///    <item>JSON file appsettings.{host}.json</item>
+    /// </list>
+    /// </remarks>
     public static class StartupConfiguration
     {
         /// <summary>Configuration refresher</summary>
@@ -22,11 +32,14 @@ namespace Milochau.Core.Functions
             // Create specific configuration builder for new configuration sources: the first one will override the next ones
             var internalConfigurationBuilder = new ConfigurationBuilder();
 
-            // Configure appsettings.local.json
-            if (string.Equals(hostOptions.Application.HostName, ApplicationHostEnvironment.LocalHostName, StringComparison.OrdinalIgnoreCase))
-            {
-                internalConfigurationBuilder.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: false);
-            }
+            // Configure appsettings.{host}.json
+            internalConfigurationBuilder.AddJsonFile($"appsettings.{hostOptions.Application.HostName}.json", optional: true, reloadOnChange: false);
+
+            // Configure appsettings.{environment}.json
+            internalConfigurationBuilder.AddJsonFile($"appsettings.{hostOptions.Application.EnvironmentName}.json", optional: true, reloadOnChange: false);
+
+            // Configure appsettings.json
+            internalConfigurationBuilder.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: false);
 
             // Configure Azure Key Vault
             if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
@@ -36,17 +49,13 @@ namespace Milochau.Core.Functions
             }
 
             // Configure Azure App Configuration
-            if (!string.IsNullOrEmpty(hostOptions.AppConfig.ConnectionString) || !string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
+            if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
             {
                 internalConfigurationBuilder.AddAzureAppConfiguration(appConfigOptions =>
                 {
                     AppConfigurationRegistration.ConfigureAzureAppConfiguration(appConfigOptions, hostOptions);
                     ConfigurationRefresher = appConfigOptions.GetRefresher();
                 });
-            }
-            else
-            {
-                throw new NotSupportedException("You need to set up an Azure App Configuration to use IConfigurationRefresher");
             }
 
             // Add new configuration sources at the beginning of the application configuration builder
