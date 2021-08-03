@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Milochau.Core.Infrastructure.Hosting;
-using System;
 
 namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
 {
@@ -18,15 +17,13 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
             return hostBuilder
                 .ConfigureHostConfiguration(configurationBuilder =>
                 {
-                    var hostName = CoreOptionsFactory.GetCurrentHostFromEnvironment();
+                    var environmentName = CoreOptionsFactory.GetCurrentEnvironmentFromEnvironmentVariables();
+                    var hostName = CoreOptionsFactory.GetCurrentHostFromEnvironmentVariables();
 
                     configurationBuilder
-                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-                    if (string.Equals(hostName, ApplicationHostEnvironment.LocalHostName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        configurationBuilder.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: false);
-                    }
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: false)
+                        .AddJsonFile($"appsettings.{hostName}.json", optional: true, reloadOnChange: false);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

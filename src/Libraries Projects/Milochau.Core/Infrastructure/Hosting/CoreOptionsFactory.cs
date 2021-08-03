@@ -44,11 +44,13 @@ namespace Milochau.Core.Infrastructure.Hosting
             hostOptions.Application.EnvironmentName = hostOptions.Application.EnvironmentName
                 ?? configuration[$"{GenericHostConfigurationPrefix}{environmentNameKey}"]
                 ?? configuration[$"{WebHostConfigurationPrefix}{environmentNameKey}"]
-                ?? configuration[environmentNameKey];
+                ?? configuration[environmentNameKey]
+                ?? ApplicationHostEnvironment.DevelopmentEnvironmentName;
             hostOptions.Application.HostName = hostOptions.Application.HostName
                 ?? configuration[$"{GenericHostConfigurationPrefix}{hostNameKey}"]
                 ?? configuration[$"{WebHostConfigurationPrefix}{hostNameKey}"]
-                ?? configuration[hostNameKey];
+                ?? configuration[hostNameKey]
+                ?? ApplicationHostEnvironment.LocalHostName;
 
             hostOptions.KeyVault.Vault = hostOptions.KeyVault.Vault
                 ?? configuration[$"{GenericHostConfigurationPrefix}{keyVaultVaultKey}"]
@@ -65,13 +67,19 @@ namespace Milochau.Core.Infrastructure.Hosting
                 ?? configuration[appConfigConnectionStringKey];
         }
 
-        /// <summary>Configuration key prefix for hosting configuration</summary>
-        [Obsolete("Use new GenericHostConfigurationPrefix and WebHostConfigurationPrefix instead")]
-        public static string HostingPrefix => WebHostConfigurationPrefix;
+        /// <summary>Gets current environment name from environment variables</summary>
+        /// <remarks>This method only gets environment name from environment variables. It shall only be used in application initialization.</remarks>
+        public static string GetCurrentEnvironmentFromEnvironmentVariables()
+        {
+            return Environment.GetEnvironmentVariable($"{GenericHostConfigurationPrefix}{environmentNameKey}")
+                ?? Environment.GetEnvironmentVariable($"{WebHostConfigurationPrefix}{environmentNameKey}")
+                ?? Environment.GetEnvironmentVariable(environmentNameKey)
+                ?? ApplicationHostEnvironment.DevelopmentEnvironmentName;
+        }
 
-        /// <summary>Gets current host from environment</summary>
-        /// <remarks>This method only gets host from environment variables. It shall only be used in application initialization.</remarks>
-        public static string GetCurrentHostFromEnvironment()
+        /// <summary>Gets current host name from environment</summary>
+        /// <remarks>This method only gets host name from environment variables. It shall only be used in application initialization.</remarks>
+        public static string GetCurrentHostFromEnvironmentVariables()
         {
             return Environment.GetEnvironmentVariable($"{GenericHostConfigurationPrefix}{hostNameKey}")
                 ?? Environment.GetEnvironmentVariable($"{WebHostConfigurationPrefix}{hostNameKey}")

@@ -6,6 +6,9 @@ namespace Milochau.Core.Infrastructure.Hosting
     /// <summary>Application host environment</summary>
     public class ApplicationHostEnvironment : IApplicationHostEnvironment
     {
+        /// <summary>Development environment name</summary>
+        public const string DevelopmentEnvironmentName = "Development";
+
         /// <summary>Production environment name</summary>
         public const string ProductionEnvironmentName = "Production";
 
