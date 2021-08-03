@@ -61,10 +61,6 @@ namespace Milochau.Core.Infrastructure.Hosting
                 ?? configuration[$"{GenericHostConfigurationPrefix}{appConfigEndpointKey}"]
                 ?? configuration[$"{WebHostConfigurationPrefix}{appConfigEndpointKey}"]
                 ?? configuration[appConfigEndpointKey];
-            hostOptions.AppConfig.ConnectionString = hostOptions.AppConfig.ConnectionString
-                ?? configuration[$"{GenericHostConfigurationPrefix}{appConfigConnectionStringKey}"]
-                ?? configuration[$"{WebHostConfigurationPrefix}{appConfigConnectionStringKey}"]
-                ?? configuration[appConfigConnectionStringKey];
         }
 
         /// <summary>Gets current environment name from environment variables</summary>

@@ -70,7 +70,6 @@ Configuration can be automatically injected from Azure App Configuration on star
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
 | `Core:Host:AppConfig:Endpoint` (x) | Azure App Configuration endpoint | `Endpoint=https://XXXX.azconfig.io ;Id=XXXX;Secret=XXXX` | Get from `DOTNET_APPCONFIG_ENDPOINT`, `ASPNETCORE_APPCONFIG_ENDPOINT` |
-| `Core:Host:AppConfig:ConnectionString` (x) | Azure App Configuration connection string | `https://XXXX.azconfig.io` | Get from `DOTNET_APPCONFIG_CONNECTIONSTRING`, `ASPNETCORE_APPCONFIG_CONNECTIONSTRING` |
 | `Core:Host:AppConfig:SentinelKey` | Sentinel Key for Refresh with Azure App Configuration (the default namespace will be added as a prefix) | `Sentinel:Key` | `Sentinel:Key` |
 | `Core:Host:AppConfig:RefreshExpirationInMinutes` | Expiration Refresh with Azure App Configuration (minutes) | `5` | `30` |
 

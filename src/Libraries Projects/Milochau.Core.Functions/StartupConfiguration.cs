@@ -41,7 +41,7 @@ namespace Milochau.Core.Functions
             }
 
             // Configure Azure App Configuration
-            if (!string.IsNullOrEmpty(hostOptions.AppConfig.ConnectionString) || !string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
+            if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
             {
                 internalConfigurationBuilder.AddAzureAppConfiguration(appConfigOptions =>
                 {
