@@ -14,6 +14,7 @@
 - Host configuration is now read with `DOTNET_` prefix, before trying with `ASPNETCORE_` prefix
 - Allow Functions applications without Azure App Configuration
 - Add configuration file to test Functions reference file locally
+- Remove indirect references to EntityFramework Core
 
 ## Bug fixes
 

@@ -8,7 +8,6 @@ using System.Linq;
 using Milochau.Core.AspNetCore.Infrastructure.Features;
 using Milochau.Core.AspNetCore.Tests.TestHelpers;
 using System.Net;
-using HealthChecks.UI.Core;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Milochau.Core.Infrastructure.Converters;
@@ -99,8 +98,8 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             options.Converters.Add(new TimeSpanConverter());
             options.Converters.Add(new JsonStringEnumConverter());
-            var content = JsonSerializer.Deserialize<UIHealthReport>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(UIHealthStatus.Healthy, content.Status);
+            var content = JsonSerializer.Deserialize<DetailedHealthReport>(await response.Content.ReadAsStringAsync(), options);
+            Assert.AreEqual(DetailedHealthStatus.Healthy, content.Status);
             Assert.AreEqual(1, content.Entries.Count);
             Assert.AreEqual("Endpoint", content.Entries.First().Key);
         }
@@ -121,7 +120,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             options.Converters.Add(new TimeSpanConverter());
             options.Converters.Add(new JsonStringEnumConverter());
-            var content = JsonSerializer.Deserialize<UIHealthReport>(await response.Content.ReadAsStringAsync(), options); Assert.AreEqual(UIHealthStatus.Healthy, content.Status);
+            var content = JsonSerializer.Deserialize<DetailedHealthReport>(await response.Content.ReadAsStringAsync(), options); Assert.AreEqual(DetailedHealthStatus.Healthy, content.Status);
             Assert.AreEqual(1, content.Entries.Count);
             Assert.AreEqual("Endpoint", content.Entries.First().Key);
         }
