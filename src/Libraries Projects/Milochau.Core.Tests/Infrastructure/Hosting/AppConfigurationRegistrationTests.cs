@@ -18,14 +18,12 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
         {
             // Given
             const string appConfigEndpoint = "https://XXXX.azconfig.io";
-            const string appConfigConnectionString = "";
             var appConfigOptions = new AzureAppConfigurationOptions();
             var coreHostOptions = new CoreHostOptions
             {
                 AppConfig = new AppConfigurationOptions
                 {
-                    Endpoint = appConfigEndpoint,
-                    ConnectionString = appConfigConnectionString
+                    Endpoint = appConfigEndpoint
                 }
             };
 
@@ -40,14 +38,12 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
         {
             // Given
             const string appConfigEndpoint = "";
-            const string appConfigConnectionString = "Endpoint=https://XXXX.azconfig.io";
             var appConfigOptions = new AzureAppConfigurationOptions();
             var coreHostOptions = new CoreHostOptions
             {
                 AppConfig = new AppConfigurationOptions
                 {
-                    Endpoint = appConfigEndpoint,
-                    ConnectionString = appConfigConnectionString
+                    Endpoint = appConfigEndpoint
                 }
             };
 

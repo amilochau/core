@@ -26,7 +26,7 @@ namespace Milochau.Core.Functions.Tests
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
                 { "ASPNETCORE_APPCONFIG_ENDPOINT", "https://" },
-                { "ASPNETCORE_KEYVAULT_VAULT", "https://" }
+                { "ASPNETCORE_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
             });
 
             var configuration = configurationBuilder.Build();

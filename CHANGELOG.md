@@ -7,7 +7,14 @@
 ## Breaking changes
 
 - `CoreApplicationStartup.Configure` method now uses only one parameter (`IApplicationBuilder`); you can inject the `IWebHostEnvironment` from constructor if needed
+- Azure App Configuration can no more be configured with ConnectionString; you should now use Managed Identity
 
 ## New features
 
 - Host configuration is now read with `DOTNET_` prefix, before trying with `ASPNETCORE_` prefix
+- Allow Functions applications without Azure App Configuration
+- Add configuration file to test Functions reference file locally
+
+## Bug fixes
+
+- appsettings.json file is not read

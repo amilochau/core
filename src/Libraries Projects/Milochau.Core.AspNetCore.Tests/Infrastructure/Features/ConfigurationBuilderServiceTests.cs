@@ -34,7 +34,6 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             // Given
             var applicationBuilder = BaseFeatureBuilderServiceTest.CreateApplicationBuilder(services);
             coreHostOptions.AppConfig.Endpoint = "";
-            coreHostOptions.AppConfig.ConnectionString = "";
 
             // When
             ConfigurationBuilderService.UseCoreConfiguration(applicationBuilder, coreHostOptions, coreServicesOptions);
@@ -51,7 +50,6 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             services.AddScoped(_ => Mock.Of<IConfigurationRefresherProvider>());
             var applicationBuilder = BaseFeatureBuilderServiceTest.CreateApplicationBuilder(services);
             coreHostOptions.AppConfig.Endpoint = "http://";
-            coreHostOptions.AppConfig.ConnectionString = "";
 
             // When
             ConfigurationBuilderService.UseCoreConfiguration(applicationBuilder, coreHostOptions, coreServicesOptions);
