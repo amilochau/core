@@ -6,5 +6,8 @@
 
 ## Breaking changes
 
-- Key Vault can no more be configured with TenantId, ClientId and ClientSecret; you should now use Managed Identity
-- `CoreHostOptions` has been moved, the old namespace `Milochau.Core.Models` is converted to `Milochau.Core.Abstractions` - and now part of the Milochau.Core.Abstractions library
+- `CoreApplicationStartup.Configure` method now uses only one parameter (`IApplicationBuilder`); you can inject the `IWebHostEnvironment` from constructor if needed
+
+## New features
+
+- Host configuration is now read with `DOTNET_` prefix, before trying with `ASPNETCORE_` prefix

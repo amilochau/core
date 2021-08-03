@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
@@ -22,7 +21,7 @@ namespace Milochau.Core.AspNetCore
         protected readonly CoreHostOptions hostOptions;
 
         /// <summary>Constructor</summary>
-        public CoreApplicationStartup(IConfiguration configuration)
+        protected CoreApplicationStartup(IConfiguration configuration)
         {
             this.configuration = configuration;
             hostOptions = CoreOptionsFactory.GetCoreHostOptions(configuration);
@@ -39,7 +38,7 @@ namespace Milochau.Core.AspNetCore
         }
 
         /// <summary>Configure application</summary>
-        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void Configure(IApplicationBuilder app)
         {
             // Use Milochau.Core features
             app.UseCoreFeatures();

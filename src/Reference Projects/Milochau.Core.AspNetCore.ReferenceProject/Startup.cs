@@ -4,35 +4,36 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Milochau.Core.AspNetCore.Infrastructure.Extensions;
-using Milochau.Core.AspNetCore.ReferenceProject.Models;
 
 namespace Milochau.Core.AspNetCore.ReferenceProject
 {
     public class Startup : CoreApplicationStartup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment env;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
             : base(configuration)
         {
+            this.env = env;
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
 
-            RegisterOptions(services);
-            RegisterServices(services);
-            RegisterDataAccess(services);
-
             services.AddRazorPages();
 
             // Swagger
             services.AddControllers();
             services.AddSwaggerGen();
+
+            // Initialize application
+            DependenciesRegistrar.Register(services, configuration);
         }
 
-        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public override void Configure(IApplicationBuilder app)
         {
-            base.Configure(app, env);
+            base.Configure(app);
 
             if (env.IsDevelopment())
             {
@@ -55,21 +56,6 @@ namespace Milochau.Core.AspNetCore.ReferenceProject
                 endpoints.MapCoreSystemEndpoints();
                 endpoints.MapRazorPages();
             });
-        }
-
-        private void RegisterOptions(IServiceCollection services)
-        {
-            services.Configure<TestOptions>(configuration.GetSection("Test"));
-        }
-
-        private void RegisterServices(IServiceCollection services)
-        {
-            // Register services here
-        }
-
-        private void RegisterDataAccess(IServiceCollection services)
-        {
-            // Register data access here
         }
     }
 }

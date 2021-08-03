@@ -33,9 +33,8 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
                         })
                         .Configure((context, app) =>
                         {
-                            var env = context.HostingEnvironment;
                             var startup = new TestStartup(context.Configuration);
-                            startup.Configure(app, env);
+                            startup.Configure(app);
 
                             app.UseRouting();
 
@@ -76,9 +75,8 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
                         })
                         .Configure((context, app) =>
                         {
-                            var env = context.HostingEnvironment;
                             var startup = new TestStartup(context.Configuration);
-                            startup.Configure(app, env);
+                            startup.Configure(app);
 
                             app.UseRouting();
                             app.UseAuthentication();

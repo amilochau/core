@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.AspNetCore.Infrastructure.Extensions;
@@ -18,9 +17,9 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
             base.ConfigureServices(services);
         }
 
-        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public override void Configure(IApplicationBuilder app)
         {
-            base.Configure(app, env);
+            base.Configure(app);
 
             app.UseRouting();
 

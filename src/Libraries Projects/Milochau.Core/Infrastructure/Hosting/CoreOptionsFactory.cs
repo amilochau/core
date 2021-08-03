@@ -7,7 +7,12 @@ namespace Milochau.Core.Infrastructure.Hosting
     /// <summary>Methods to create core options with fallback values</summary>
     public static class CoreOptionsFactory
     {
-        private const string hostingPrefix = "ASPNETCORE_";
+        /// <summary>Configuration prefix for generic host</summary>
+        public const string GenericHostConfigurationPrefix = "DOTNET_";
+
+        /// <summary>Configuration prefix for web host</summary>
+        public const string WebHostConfigurationPrefix = "ASPNETCORE_";
+
         private const string applicationNameKey = "APPLICATION";
         private const string environmentNameKey = "ENVIRONMENT";
         private const string hostNameKey = "HOST";
@@ -32,24 +37,46 @@ namespace Milochau.Core.Infrastructure.Hosting
         {
             configuration.Bind(CoreHostOptions.DefaultConfigurationSection, hostOptions);
 
-            hostOptions.Application.ApplicationName = hostOptions.Application.ApplicationName ?? configuration[$"{hostingPrefix}{applicationNameKey}"] ?? configuration[applicationNameKey];
-            hostOptions.Application.EnvironmentName = hostOptions.Application.EnvironmentName ?? configuration[$"{hostingPrefix}{environmentNameKey}"] ?? configuration[environmentNameKey];
-            hostOptions.Application.HostName = hostOptions.Application.HostName ?? configuration[$"{hostingPrefix}{hostNameKey}"] ?? configuration[hostNameKey];
+            hostOptions.Application.ApplicationName = hostOptions.Application.ApplicationName
+                ?? configuration[$"{GenericHostConfigurationPrefix}{applicationNameKey}"]
+                ?? configuration[$"{WebHostConfigurationPrefix}{applicationNameKey}"]
+                ?? configuration[applicationNameKey];
+            hostOptions.Application.EnvironmentName = hostOptions.Application.EnvironmentName
+                ?? configuration[$"{GenericHostConfigurationPrefix}{environmentNameKey}"]
+                ?? configuration[$"{WebHostConfigurationPrefix}{environmentNameKey}"]
+                ?? configuration[environmentNameKey];
+            hostOptions.Application.HostName = hostOptions.Application.HostName
+                ?? configuration[$"{GenericHostConfigurationPrefix}{hostNameKey}"]
+                ?? configuration[$"{WebHostConfigurationPrefix}{hostNameKey}"]
+                ?? configuration[hostNameKey];
 
-            hostOptions.KeyVault.Vault = hostOptions.KeyVault.Vault ?? configuration[$"{hostingPrefix}{keyVaultVaultKey}"] ?? configuration[keyVaultVaultKey];
+            hostOptions.KeyVault.Vault = hostOptions.KeyVault.Vault
+                ?? configuration[$"{GenericHostConfigurationPrefix}{keyVaultVaultKey}"]
+                ?? configuration[$"{WebHostConfigurationPrefix}{keyVaultVaultKey}"]
+                ?? configuration[keyVaultVaultKey];
 
-            hostOptions.AppConfig.Endpoint = hostOptions.AppConfig.Endpoint ?? configuration[$"{hostingPrefix}{appConfigEndpointKey}"] ?? configuration[appConfigEndpointKey];
-            hostOptions.AppConfig.ConnectionString = hostOptions.AppConfig.ConnectionString ?? configuration[$"{hostingPrefix}{appConfigConnectionStringKey}"] ?? configuration[appConfigConnectionStringKey];
+            hostOptions.AppConfig.Endpoint = hostOptions.AppConfig.Endpoint
+                ?? configuration[$"{GenericHostConfigurationPrefix}{appConfigEndpointKey}"]
+                ?? configuration[$"{WebHostConfigurationPrefix}{appConfigEndpointKey}"]
+                ?? configuration[appConfigEndpointKey];
+            hostOptions.AppConfig.ConnectionString = hostOptions.AppConfig.ConnectionString
+                ?? configuration[$"{GenericHostConfigurationPrefix}{appConfigConnectionStringKey}"]
+                ?? configuration[$"{WebHostConfigurationPrefix}{appConfigConnectionStringKey}"]
+                ?? configuration[appConfigConnectionStringKey];
         }
 
         /// <summary>Configuration key prefix for hosting configuration</summary>
-        public static string HostingPrefix => hostingPrefix;
+        [Obsolete("Use new GenericHostConfigurationPrefix and WebHostConfigurationPrefix instead")]
+        public static string HostingPrefix => WebHostConfigurationPrefix;
 
         /// <summary>Gets current host from environment</summary>
         /// <remarks>This method only gets host from environment variables. It shall only be used in application initialization.</remarks>
         public static string GetCurrentHostFromEnvironment()
         {
-            return Environment.GetEnvironmentVariable($"{hostingPrefix}{hostNameKey}") ?? Environment.GetEnvironmentVariable(hostNameKey) ?? ApplicationHostEnvironment.LocalHostName;
+            return Environment.GetEnvironmentVariable($"{GenericHostConfigurationPrefix}{hostNameKey}")
+                ?? Environment.GetEnvironmentVariable($"{WebHostConfigurationPrefix}{hostNameKey}")
+                ?? Environment.GetEnvironmentVariable(hostNameKey)
+                ?? ApplicationHostEnvironment.LocalHostName;
         }
     }
 }
