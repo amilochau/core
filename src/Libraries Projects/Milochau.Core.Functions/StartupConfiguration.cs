@@ -12,6 +12,8 @@ namespace Milochau.Core.Functions
     /// <list type="bullet">
     ///    <item>Azure App Configuration</item>
     ///    <item>Azure Key Vault</item>
+    ///    <item>JSON file appsettings.json</item>
+    ///    <item>JSON file appsettings.{environment}.json</item>
     ///    <item>JSON file appsettings.{host}.json</item>
     /// </list>
     /// </remarks>
@@ -32,6 +34,12 @@ namespace Milochau.Core.Functions
 
             // Configure appsettings.{host}.json
             internalConfigurationBuilder.AddJsonFile($"appsettings.{hostOptions.Application.HostName}.json", optional: true, reloadOnChange: false);
+
+            // Configure appsettings.{environment}.json
+            internalConfigurationBuilder.AddJsonFile($"appsettings.{hostOptions.Application.EnvironmentName}.json", optional: true, reloadOnChange: false);
+
+            // Configure appsettings.json
+            internalConfigurationBuilder.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: false);
 
             // Configure Azure Key Vault
             if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
