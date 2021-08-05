@@ -33,7 +33,7 @@ The table below help you see if a feature is included in a dedicated package. No
 | Registers local cache implementation                          | X | X | X |
 | Provides local cache management endpoints                     | X | X | |
 | **Application Information**
-| Provides Assembly Information endpoints                       | X | | | Azure Functions can't expose assembly information |
+| Provides Assembly Information endpoints                       | X | X | |
 | **API Documentation**
 | Provides OpenAPI endpoints                                    | | | | |
 
@@ -53,6 +53,7 @@ These configuration keys must be set up:
 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
+| `DOTNET_ORGANIZATION`, `ASPNETCORE_ORGANIZATION` | Defines the organization name |
 | `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION` | Defines the application name, used to retrieve proper configuration from Azure App Configuration | `Monitoring:Health`, `Sofia` |
 | `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT` | Defines the environment name, used to retrieve proper configuration from Azure App Configuration | `Development`, `Production` | `Development` |
 | `DOTNET_HOST`, `ASPNETCORE_HOST` | Defines the host name, used to retrieve proper configuration from Azure App Configuration | `dev2`, `prd` | `local` |

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.AspNetCore.Infrastructure.Extensions;
+using Milochau.Core.Infrastructure.Hosting;
 
 namespace Milochau.Core.AspNetCore
 {
@@ -33,6 +34,8 @@ namespace Milochau.Core.AspNetCore
         /// <summary>Configure application</summary>
         public virtual void Configure(IApplicationBuilder app)
         {
+            StartupLogging.LogApplicationInformation(app.ApplicationServices);
+
             // Use Milochau.Core features
             app.UseCoreFeatures();
         }

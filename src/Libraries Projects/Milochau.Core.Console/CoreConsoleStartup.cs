@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Milochau.Core.Infrastructure.Hosting;
 using System;
 
 namespace Milochau.Core.Console
@@ -17,6 +18,7 @@ namespace Milochau.Core.Console
         /// <summary>Configure application</summary>
         public virtual void Configure(IServiceProvider serviceProvider)
         {
+            StartupLogging.LogApplicationInformation(serviceProvider);
         }
     }
 }

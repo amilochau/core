@@ -17,6 +17,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
 
         private SystemApplicationMiddleware middleware;
 
+        private const string organizationName = "organizationName";
         private const string applicationName = "applicationName";
         private const string hostName = "hostName";
         private const string environmentName = "environmentName";
@@ -54,6 +55,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
         {
             // Given
             var httpContext = BaseMiddlewareTests.CreateHttpContext(Keys.GetMethod, "/api/system/application/environment");
+            applicationHostEnvironment.SetupGet(x => x.OrganizationName).Returns(organizationName);
             applicationHostEnvironment.SetupGet(x => x.ApplicationName).Returns(applicationName);
             applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
             applicationHostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);

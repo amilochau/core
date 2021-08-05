@@ -44,6 +44,7 @@ Here are all the endpoints exposed for Functions applications.
 
 | Category | Name | Default endpoint | Comment |
 | -------- | ---- | ---------------- | ------- |
+| Application | Assembly | `GET /api/system/application/assembly` | That exposes information on the entry assembly of the application |
 | Application | Environment | `GET /api/system/application/environment` | That exposes information on the environment of the application |
 | Cache | LocalCount | `GET /api/system/cache/local/count` | That returns the count of items in the application local cache |
 | Cache | LocalContains | `GET /api/system/cache/local/contains?key=xxx` | That returns the existance of a list of items in the application local cache |
