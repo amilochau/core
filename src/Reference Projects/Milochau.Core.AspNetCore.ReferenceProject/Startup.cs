@@ -27,7 +27,7 @@ namespace Milochau.Core.AspNetCore.ReferenceProject
             services.AddControllers();
             services.AddSwaggerGen();
 
-            // Initialize application
+            // Register dependencies
             DependenciesRegistrar.Register(services, configuration);
         }
 

@@ -8,39 +8,40 @@ This document lists functionalities offered by `Milochau.Core.*` enterprise libr
 
 The table below help you see if a feature is included in a dedicated package. Note that some features are not available yet.
 
-| Feature                                                       | `*.AspNetCore` | `*.Functions` | Notes |
-| -------                                                       | -------------- | ------------- | ----- |
+| Feature                                                       | `*.AspNetCore` | `*.Functions` | `*.Console` | Notes |
+| -------                                                       | -------------- | ------------- | ----------- | ----- |
 | **Configuration**
-| Connects to Azure App Configuration                           | X | X | Connection can be done with connection string or Managed Identity |
-| Connects to Azure Key Vault                                   | X | X | Connection can be done with client secret or Managed Identity |
-| Connects to `apssettings.local.json`                          | X | X |
-| Connects to `secrets.json`                                    | X | |
-| Refreshes configuration after X minutes                       | X | X |
-| Uses Feature flags & Feature filters                          | X | X |
-| Provides configuration providers endpoints                    | X | X |
-| Provides configuration refresh endpoints                      | | |
-| Provides Feature flags state endpoints                        | X | X |
+| Connects to Azure App Configuration                           | X | X | X | Connection can be done with connection string or Managed Identity |
+| Connects to Azure Key Vault                                   | X | X | X | Connection can be done with client secret or Managed Identity |
+| Connects to `apssettings.{host}.json`                         | X | X | X |
+| Connects to `secrets.json`                                    | X | | |
+| Refreshes configuration after X minutes                       | X | X | X |
+| Uses Feature flags & Feature filters                          | X | X | X |
+| Provides configuration providers endpoints                    | X | X | |
+| Provides configuration refresh endpoints                      | | | |
+| Provides Feature flags state endpoints                        | X | X | |
 | **Health checks**
-| Registers health checks                                       | X | X |
-| Adds default `Endpoint` check                                 | X | X |
-| Adds Azure Key Vault check                                    | X | X |
-| Provides all health checks endpoints                          | X | X |
-| Provides light health checks endpoints                        | X | X |
+| Registers health checks                                       | X | X | |
+| Adds default `Endpoint` check                                 | X | X | |
+| Adds Azure Key Vault check                                    | X | X | |
+| Provides all health checks endpoints                          | X | X | |
+| Provides light health checks endpoints                        | X | X | |
 | **Monitoring**
-| Registers Application Insights                                | X | |
-| Manage Application Insights sampling options                  | X | |
+| Registers Application Insights                                | X | | |
+| Manage Application Insights sampling options                  | X | | |
 | **Cache**
-| Registers local cache implementation                          | X | X |
-| Provides local cache management endpoints                     | X | X |
+| Registers local cache implementation                          | X | X | X |
+| Provides local cache management endpoints                     | X | X | |
 | **Application Information**
-| Provides Assembly Information endpoints                       | X | | Azure Functions can't expose assembly information |
+| Provides Assembly Information endpoints                       | X | | | Azure Functions can't expose assembly information |
 | **API Documentation**
-| Provides OpenAPI endpoints                                    | | | |
+| Provides OpenAPI endpoints                                    | | | | |
 
 The following abstractions are available from the `Milochau.Core.Abstractions` libraries. You can safely reference this package from any application tier.
 
 | Abstraction | Description |
 | ----------- | ----------- |
+| `IOptions<CoreHostOptions>` | Core host options, containing application name, environment name, etc |
 | `IApplicationHostEnvironment` | Provides application description, as described in the section below |
 | `IApplicationMemoryCache` | Provides simple local cache service |
 

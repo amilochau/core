@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using Milochau.Core.Infrastructure.Hosting;
 
 namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
 {
@@ -10,11 +9,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
         public static IWebHostBuilder ConfigureCoreWebHostBuilder(this IWebHostBuilder webBuilder)
         {
             return webBuilder
-                .ConfigureKestrel(c => c.AddServerHeader = false)
-                .ConfigureAppConfiguration((webHostBuilderContext, configurationBuilder) =>
-                {
-                    ConfigurationRegistration.AddApplicationConfiguration(webHostBuilderContext.Configuration, configurationBuilder);
-                });
+                .ConfigureKestrel(c => c.AddServerHeader = false);
         }
     }
 }

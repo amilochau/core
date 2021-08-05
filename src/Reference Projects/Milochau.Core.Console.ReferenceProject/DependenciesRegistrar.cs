@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Milochau.Core.AspNetCore.ReferenceProject.Models;
+using Milochau.Core.Console.ReferenceProject.Models;
 
-namespace Milochau.Core.AspNetCore.ReferenceProject
+namespace Milochau.Core.Console.ReferenceProject
 {
     /// <summary>Dependencies registrar</summary>
     public static class DependenciesRegistrar

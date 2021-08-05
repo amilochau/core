@@ -13,11 +13,11 @@ namespace Milochau.Core.Infrastructure.Converters
     {
         /// <summary>JSON options for Health checks serialization</summary>
         /// <remarks>You should use it in a static Lazy, in order to improve performances (JSON serializer options creation is expensive)</remarks>
-        public static Lazy<JsonSerializerOptions> JsonOptions = new Lazy<JsonSerializerOptions>(() => CreateJsonOptions());
+        public static Lazy<JsonSerializerOptions> JsonOptions { get; } = new Lazy<JsonSerializerOptions>(() => CreateJsonOptions());
 
         private static JsonSerializerOptions CreateJsonOptions()
         {
-            return new JsonSerializerOptions()
+            return new JsonSerializerOptions
             {
                 AllowTrailingCommas = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
