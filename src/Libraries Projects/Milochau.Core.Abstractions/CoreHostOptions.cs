@@ -36,6 +36,9 @@ namespace Milochau.Core.Abstractions
     /// <summary>Application options</summary>
     public class ApplicationOptions
     {
+        /// <summary>Organization name</summary>
+        public string OrganizationName { get; set; }
+
         /// <summary>Application name</summary>
         public string ApplicationName { get; set; }
 

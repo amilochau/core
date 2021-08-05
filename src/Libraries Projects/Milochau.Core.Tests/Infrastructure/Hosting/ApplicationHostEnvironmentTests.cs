@@ -8,6 +8,7 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
     {
         private ApplicationHostEnvironment MilochauHostingEnvironment;
 
+        private const string OrganizationName = "organizationName";
         private const string ApplicationName = "applicationName";
         private const string EnvironmentName = "Production";
         private const string HostName = "prd";
@@ -15,12 +16,13 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
         [TestInitialize]
         public void Initialize()
         {
-            MilochauHostingEnvironment = new ApplicationHostEnvironment(ApplicationName, EnvironmentName, HostName);
+            MilochauHostingEnvironment = new ApplicationHostEnvironment(OrganizationName, ApplicationName, EnvironmentName, HostName);
         }
 
         [TestMethod("MilochauHostingEnvironment - Properties")]
         public void MilochauHostingEnvironment_Should_CreateMilochauHostingEnvironment_When_Called()
         {
+            Assert.AreEqual(OrganizationName, MilochauHostingEnvironment.OrganizationName);
             Assert.AreEqual(ApplicationName, MilochauHostingEnvironment.ApplicationName);
             Assert.AreEqual(EnvironmentName, MilochauHostingEnvironment.EnvironmentName);
             Assert.AreEqual(HostName, MilochauHostingEnvironment.HostName);
