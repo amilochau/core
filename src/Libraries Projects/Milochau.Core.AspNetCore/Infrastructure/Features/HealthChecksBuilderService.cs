@@ -18,7 +18,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
     internal static class HealthChecksBuilderService
     {
         private const string defaultContentType = "application/json";
-        private static byte[] emptyResponse = new byte[] { (byte)'{', (byte)'}' };
+        private static readonly byte[] emptyResponse = new[] { (byte)'{', (byte)'}' };
 
         /// <summary>Adds the features activated from configuration</summary>
         /// <param name="services">Service collection</param>

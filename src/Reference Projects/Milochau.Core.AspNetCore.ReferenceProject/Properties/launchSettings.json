@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Milochau.Core.AspNetCore.ReferenceProject": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_APPLICATION": "core-test-aspnetcore",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOST": "local"
+      },
+      "applicationUrl": "https://localhost:5001"
+    }
+  }
+}

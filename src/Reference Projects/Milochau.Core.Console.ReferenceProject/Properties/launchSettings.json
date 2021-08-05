@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Milochau.Core.Console.ReferenceProject": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_APPLICATION": "core-test-console",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOST": "local"
+      }
+    }
+  }
+}

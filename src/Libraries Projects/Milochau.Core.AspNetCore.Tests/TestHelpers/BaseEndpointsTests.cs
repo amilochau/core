@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Milochau.Core.AspNetCore.Infrastructure.Extensions;
+using Milochau.Core.Infrastructure.Extensions;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
         public static async Task<HttpClient> CreateHttpClientFromCoreAsync(IConfiguration configuration)
         {
             var host = new HostBuilder()
+                .ConfigureCoreConfiguration()
                 .ConfigureWebHost(webHostBuilder =>
                 {
                     if (configuration != null)
@@ -55,6 +57,7 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
         public static async Task<HttpClient> CreateHttpClientFromCoreWithAuthenticationAsync()
         {
             var host = new HostBuilder()
+                .ConfigureCoreConfiguration()
                 .ConfigureWebHost(webHostBuilder =>
                 {
                     webHostBuilder

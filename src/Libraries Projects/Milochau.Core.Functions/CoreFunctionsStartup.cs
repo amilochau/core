@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace Milochau.Core.Functions
 {
-    /// <summary>Base class for Azure Function applications</summary>
+    /// <summary>Base startup class for Azure Function applications</summary>
     public abstract class CoreFunctionsStartup : FunctionsStartup
     {
         /// <summary>Configures Azure App Configuration</summary>

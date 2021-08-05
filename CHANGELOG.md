@@ -15,6 +15,7 @@
 - Allow Functions applications without Azure App Configuration
 - Add configuration file to test Functions reference file locally
 - Remove indirect references to EntityFramework Core
+- Creates a new Milochau.Core.Console library, to expose all Milochau.Core features to console applications (**BETA**)
 
 ## Bug fixes
 

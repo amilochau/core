@@ -22,7 +22,7 @@ Please follow the development good practices, then follow the integration proces
 
 ## Framework installation
 
-`Milochau.Core.*` libraries can be used in any ASP.NET Core / Azure Functions project (ASP.NET Core 5.0+ / Azure Functions in .NET Core 3.1+). To use it, you must install the library specific to your technology as a NuGet package, then add framework references in main project files.
+`Milochau.Core.*` libraries can be used in any ASP.NET Core 5.0+ / Azure Functions (.NET Core 3.1+) / Console applications (.NET 5.0+) project. To use it, you must install the library specific to your technology as a NuGet package, then add framework references in main project files.
 
 ---
 
@@ -104,6 +104,8 @@ public class Startup : CoreFunctionsStartup
 {
     protected override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
+        base.ConfigureServices(services);
+
         // Register options, services, data access...
     }
 }
@@ -115,4 +117,54 @@ In order to add system endpoints (see the details features to learn more), you m
   <PropertyGroup>
     <FunctionsInDependencies>true</FunctionsInDependencies>
   </PropertyGroup>
+```
+
+---
+
+### Console applications (.NET 5.0)
+
+*Console applications* are small scripting applications that use the most recent versions of Microsoft frameworks for .NET applications. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
+
+- `Milochau.Core.Console.ReferenceProject` is an application written with .NET 5.0 framework
+
+| ⚠ `Milochau.Core.Console` is still in development. Even if the first stable version is release, it may contain bugs. Please report them as issues :)
+
+Console applications must install the `Milochau.Core.Console` package:
+
+```ps
+Install-Package Milochau.Core.Console
+```
+
+You can then initialize your application with the following classes.
+
+```csharp
+public static class Program
+{
+    public static async Task Main(string[] args)
+    {
+        await Host.CreateDefaultBuilder(args)
+            .ConfigureCoreHostBuilder<Startup, EntryPoint>()
+            .RunConsoleAsync();
+    }
+}
+
+public class Startup : CoreConsoleStartup
+{
+    public override void ConfigureServices(IServiceCollection services)
+    {
+        base.ConfigureServices(services);
+
+        // Register options, services, data access...
+    }
+}
+
+public class EntryPoint : CoreConsoleEntryPoint
+{
+    public override Task<int> RunAsync(CancellationToken cancellationToken)
+    {
+        // Do what you want to execute...
+
+        return Task.FromResult(0);
+    }
+}
 ```
