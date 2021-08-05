@@ -33,7 +33,7 @@ The table below help you see if a feature is included in a dedicated package. No
 | Registers local cache implementation                          | X | X | X |
 | Provides local cache management endpoints                     | X | X | |
 | **Application Information**
-| Provides Assembly Information endpoints                       | X | | | Azure Functions can't expose assembly information |
+| Provides Assembly Information endpoints                       | X | X | |
 | **API Documentation**
 | Provides OpenAPI endpoints                                    | | | | |
 

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Milochau.Core.Infrastructure.Features.Application
 {
@@ -28,21 +29,39 @@ namespace Milochau.Core.Infrastructure.Features.Application
 
 
         /// <summary>Is Local</summary>
-        /// <remarks>Computed from <see cref="InformationalVersion"/></remarks>
         public bool IsLocal { get; set; }
 
         /// <summary>Build ID</summary>
-        /// <remarks>Computed from <see cref="InformationalVersion"/></remarks>
         public string BuildId { get; set; }
 
         /// <summary>Build Source Version</summary>
-        /// <remarks>Computed from <see cref="InformationalVersion"/></remarks>
         public string BuildSourceVersion { get; set; }
 
+        /// <summary>Default constructor</summary>
+        public AssemblyResponse()
+        {
+        }
+
+        /// <summary>Constructor</summary>
+        public AssemblyResponse(Assembly assembly)
+        {
+            Company = assembly.GetCustomAttribute<AssemblyCompanyAttribute>()?.Company;
+            Configuration = assembly.GetCustomAttribute<AssemblyConfigurationAttribute>()?.Configuration;
+            Copyright = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright;
+            Description = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description;
+            FileVersion = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
+            InformationalVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+            Product = assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
+
+            IsLocal = IsLocalRegex.IsMatch(InformationalVersion);
+            BuildId = BuildRegex.Match(InformationalVersion).Groups[1].Value;
+            BuildSourceVersion = BuildRegex.Match(InformationalVersion).Groups[2].Value;
+        }
+
         /// <summary>Regular expression to know if the <see cref="InformationalVersion"/> indicates a local build</summary>
-        public static readonly Regex IsLocalRegex = new Regex(@"\+local$");
+        private static readonly Regex IsLocalRegex = new Regex(@"\+local$");
 
         /// <summary>Regular expression to get build information from the <see cref="InformationalVersion"/></summary>
-        public static readonly Regex BuildRegex = new Regex(@"\+(?<buildId>\d+)\-(?<buildSourceVersion>.+)$");
+        private static readonly Regex BuildRegex = new Regex(@"\+(?<buildId>\d+)\-(?<buildSourceVersion>.+)$");
     }
 }
