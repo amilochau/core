@@ -7,9 +7,9 @@ using Milochau.Core.Infrastructure.Hosting;
 using Milochau.Core.Infrastructure.Features.Configuration;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Cache;
-using Milochau.Core.Infrastructure.Features.Health;
 using System.IO;
 using System.Reflection;
+using Milochau.Core.HealthChecks;
 
 namespace Milochau.Core.Functions
 {

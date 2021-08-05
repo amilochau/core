@@ -37,13 +37,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.AspNetCore.Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Functions.Tests", "Libraries Projects\Milochau.Core.Functions.Tests\Milochau.Core.Functions.Tests.csproj", "{ACE58109-1D59-4FF3-9F7F-F0266C3839CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.Console", "Libraries Projects\Milochau.Core.Console\Milochau.Core.Console.csproj", "{E557B3FD-9BC0-4352-91AC-666F641B45D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console", "Libraries Projects\Milochau.Core.Console\Milochau.Core.Console.csproj", "{E557B3FD-9BC0-4352-91AC-666F641B45D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.Console.ReferenceProject", "Reference Projects\Milochau.Core.Console.ReferenceProject\Milochau.Core.Console.ReferenceProject.csproj", "{11781948-2F63-457E-BB75-45C61035FC66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console.ReferenceProject", "Reference Projects\Milochau.Core.Console.ReferenceProject\Milochau.Core.Console.ReferenceProject.csproj", "{11781948-2F63-457E-BB75-45C61035FC66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.Console.Tests", "Libraries Projects\Milochau.Core.Console.Tests\Milochau.Core.Console.Tests.csproj", "{355EFBE9-71DD-432B-A543-7FFDFD905235}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console.Tests", "Libraries Projects\Milochau.Core.Console.Tests\Milochau.Core.Console.Tests.csproj", "{355EFBE9-71DD-432B-A543-7FFDFD905235}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.Console.ReferenceProject.Tests", "Reference Projects\Milochau.Core.Console.ReferenceProject.Tests\Milochau.Core.Console.ReferenceProject.Tests.csproj", "{786D2050-91EB-447F-A280-C38FF99BB58E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console.ReferenceProject.Tests", "Reference Projects\Milochau.Core.Console.ReferenceProject.Tests\Milochau.Core.Console.ReferenceProject.Tests.csproj", "{786D2050-91EB-447F-A280-C38FF99BB58E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.HealthChecks", "Libraries Projects\Milochau.Core.HealthChecks\Milochau.Core.HealthChecks.csproj", "{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,10 @@ Global
 		{786D2050-91EB-447F-A280-C38FF99BB58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{786D2050-91EB-447F-A280-C38FF99BB58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{786D2050-91EB-447F-A280-C38FF99BB58E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +134,7 @@ Global
 		{11781948-2F63-457E-BB75-45C61035FC66} = {2E096EB8-7464-42F8-B04C-617BF240F956}
 		{355EFBE9-71DD-432B-A543-7FFDFD905235} = {E859897A-5451-44C5-98A8-A86EEAD05DFD}
 		{786D2050-91EB-447F-A280-C38FF99BB58E} = {1B69D942-A40B-4C24-A502-E0E0197182DE}
+		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417} = {CB7C2181-2BFA-4105-9CAE-6520D08F9664}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE0AA8A9-B4DC-4C33-A403-D3B1C55B24DA}

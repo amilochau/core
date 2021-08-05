@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Milochau.Core.Infrastructure.Converters
+namespace Milochau.Core.HealthChecks.Models
 {
     /// <summary>Detailed health report entry</summary>
     public class DetailedHealthReportEntry

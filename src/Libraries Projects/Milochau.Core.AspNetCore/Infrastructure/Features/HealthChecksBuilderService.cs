@@ -4,13 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.Abstractions;
 using Milochau.Core.AspNetCore.Models;
 using Microsoft.AspNetCore.Routing;
-using Milochau.Core.Infrastructure.Features.Health;
+using Milochau.Core.HealthChecks;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Milochau.Core.Infrastructure.Converters;
+using Milochau.Core.HealthChecks.Models;
 
 namespace Milochau.Core.AspNetCore.Infrastructure.Features
 {

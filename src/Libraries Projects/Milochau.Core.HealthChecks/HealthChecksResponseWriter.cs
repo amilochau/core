@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Milochau.Core.Infrastructure.Converters;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Milochau.Core.Infrastructure.Converters
+namespace Milochau.Core.HealthChecks
 {
     /// <summary>Health checks response writer</summary>
     /// <remarks>
