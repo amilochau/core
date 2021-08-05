@@ -53,6 +53,7 @@ These configuration keys must be set up:
 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
+| `DOTNET_ORGANIZATION`, `ASPNETCORE_ORGANIZATION` | Defines the organization name |
 | `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION` | Defines the application name, used to retrieve proper configuration from Azure App Configuration | `Monitoring:Health`, `Sofia` |
 | `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT` | Defines the environment name, used to retrieve proper configuration from Azure App Configuration | `Development`, `Production` | `Development` |
 | `DOTNET_HOST`, `ASPNETCORE_HOST` | Defines the host name, used to retrieve proper configuration from Azure App Configuration | `dev2`, `prd` | `local` |
