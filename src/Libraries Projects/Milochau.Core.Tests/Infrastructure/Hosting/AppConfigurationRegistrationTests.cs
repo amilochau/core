@@ -9,6 +9,7 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
     [TestClass]
     public class AppConfigurationRegistrationTests
     {
+        private const string defaultOrganizationName = "Org";
         private const string defaultApplicationName = "App";
         private const string defaultEnvironmentName = "Production";
         private const string defaultAppConfigKey = "Shared";
@@ -62,6 +63,7 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
             {
                 Application = new ApplicationOptions
                 {
+                    OrganizationName = defaultOrganizationName,
                     ApplicationName = defaultApplicationName,
                     EnvironmentName = defaultEnvironmentName
                 }

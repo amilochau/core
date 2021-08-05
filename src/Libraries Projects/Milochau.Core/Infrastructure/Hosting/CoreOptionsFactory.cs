@@ -13,6 +13,7 @@ namespace Milochau.Core.Infrastructure.Hosting
         /// <summary>Configuration prefix for web host</summary>
         public const string WebHostConfigurationPrefix = "ASPNETCORE_";
 
+        private const string organizationNameKey = "ORGANIZATION";
         private const string applicationNameKey = "APPLICATION";
         private const string environmentNameKey = "ENVIRONMENT";
         private const string hostNameKey = "HOST";
@@ -36,6 +37,8 @@ namespace Milochau.Core.Infrastructure.Hosting
         {
             configuration.Bind(CoreHostOptions.DefaultConfigurationSection, hostOptions);
 
+            hostOptions.Application.OrganizationName = hostOptions.Application.OrganizationName
+                ?? GetValueFromConfiguration(configuration, organizationNameKey);
             hostOptions.Application.ApplicationName = hostOptions.Application.ApplicationName
                 ?? GetValueFromConfiguration(configuration, applicationNameKey);
             hostOptions.Application.EnvironmentName = hostOptions.Application.EnvironmentName

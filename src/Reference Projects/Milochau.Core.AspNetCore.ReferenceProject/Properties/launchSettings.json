@@ -1,14 +1,16 @@
 {
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "Milochau.Core.AspNetCore.ReferenceProject": {
+    "AspNetCore - Development": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001",
       "environmentVariables": {
+        "ASPNETCORE_ORGANIZATION": "org",
         "ASPNETCORE_APPLICATION": "core-test-aspnetcore",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOST": "local"
-      },
-      "applicationUrl": "https://localhost:5001"
+      }
     }
   }
 }

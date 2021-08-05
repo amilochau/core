@@ -16,32 +16,28 @@ namespace Milochau.Core.Infrastructure.Hosting
         public const string LocalHostName = "local";
 
         /// <summary>Constructor</summary>
+        /// <param name="organizationName">Organization name</param>
         /// <param name="applicationName">Application name</param>
         /// <param name="environmentName">Environment name</param>
         /// <param name="hostName">Host name</param>
-        public ApplicationHostEnvironment(string applicationName, string environmentName, string hostName)
+        public ApplicationHostEnvironment(string organizationName, string applicationName, string environmentName, string hostName)
         {
+            OrganizationName = organizationName;
             EnvironmentName = environmentName;
             ApplicationName = applicationName;
             HostName = hostName;
         }
 
-        /// <summary>
-        /// Gets or sets the name of the application. This property is automatically set by the host to the assembly containing
-        /// the application entry point.
-        /// </summary>
-        public string EnvironmentName { get; }
+        /// <summary>The name of the organization</summary>
+        public string OrganizationName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the environment. The host automatically sets this property to the value of the
-        /// of the "environment" key as specified in configuration.
-        /// </summary>
+        /// <summary>The name of the application</summary>
         public string ApplicationName { get; }
 
-        /// <summary>
-        /// Gets or sets the name of the host. The host automatically sets this property to the value of the
-        /// of the "host" key as specified in configuration.
-        /// </summary>
+        /// <summary>The name of the environment</summary>
+        public string EnvironmentName { get; }
+
+        /// <summary>The name of the host</summary>
         public string HostName { get; }
 
         /// <summary>Check if the current environment is Production</summary>
