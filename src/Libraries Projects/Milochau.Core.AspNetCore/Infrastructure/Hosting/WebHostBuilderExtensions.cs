@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 
-namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
+namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
 {
     /// <summary>Extensions for <see cref="IWebHostBuilder"/></summary>
     public static class WebHostBuilderExtensions

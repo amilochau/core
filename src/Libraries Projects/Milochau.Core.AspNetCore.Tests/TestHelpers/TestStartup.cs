@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Milochau.Core.AspNetCore.Infrastructure.Extensions;
+using Milochau.Core.AspNetCore.Infrastructure.Hosting;
 
 namespace Milochau.Core.AspNetCore.Tests.TestHelpers
 {

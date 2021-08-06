@@ -57,9 +57,6 @@ These configuration keys must be set up:
 | `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION` | Defines the application name, used to retrieve proper configuration from Azure App Configuration | `Monitoring:Health`, `Sofia` |
 | `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT` | Defines the environment name, used to retrieve proper configuration from Azure App Configuration | `Development`, `Production` | `Development` |
 | `DOTNET_HOST`, `ASPNETCORE_HOST` | Defines the host name, used to retrieve proper configuration from Azure App Configuration | `dev2`, `prd` | `local` |
-| `Core:Services:RequestLocalization:Enabled` | Enable request localization | `true` | `false` |
-| `Core:Services:RequestLocalization:DefaultCulture` | Default culture for request localization | `en-US` |
-| `Core:Services:RequestLocalization:SupportedCultures` | Supported (UI) cultures | `:0` to `en-US` |
 
 ## Configuration
 
@@ -107,6 +104,16 @@ To activate telemetry, please enable it from configuration, and set up an instru
 | `ApplicationInsights:InstrumentationKey` (x) | Application Insights instrumentation key | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | `null` (Feature is not set) |
 | `Core:Services:Telemetry:Enabled` | Enable Telemetry with Application Insights | `true` | `false` (Feature is disabled) |
 | `Core:Services:Telemetry:DisableAdaptiveSampling` | Disable Adaptive Sampling | `true` | `false` |
+
+## Localization
+
+Request localization let you define the culture that is used from your requests.
+
+| Key | Description | Example value | Default value |
+| --- | ----------- | ------------- | ------------- |
+| `Core:Services:RequestLocalization:Enabled` | Enable request localization | `true` | `false` |
+| `Core:Services:RequestLocalization:DefaultCulture` | Default culture for request localization | `en-US` |
+| `Core:Services:RequestLocalization:SupportedCultures` | Supported (UI) cultures | `:0` to `en-US` |
 
 ## Azure credential
 

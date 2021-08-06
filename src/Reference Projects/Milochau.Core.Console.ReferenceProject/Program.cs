@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
-using Milochau.Core.Console.Infrastructure.Extensions;
+using Milochau.Core.Console.Infrastructure.Hosting;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Console.ReferenceProject

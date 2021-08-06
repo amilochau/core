@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
+namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
 {
     /// <summary>
     /// Builds conventions that will be used for customization of MapAction <see cref="EndpointBuilder"/> instances.

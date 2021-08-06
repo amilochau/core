@@ -4,7 +4,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Milochau.Core.Abstractions;
 using System;
 
-namespace Milochau.Core.Infrastructure.Features.Health
+namespace Milochau.Core.HealthChecks
 {
     /// <summary>Health checks registration</summary>
     public static class HealthChecksRegistration

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Milochau.Core.AspNetCore.Infrastructure.Extensions;
+using Milochau.Core.AspNetCore.Infrastructure.Hosting;
 using Milochau.Core.AspNetCore.Tests.TestHelpers;
 
 namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Extensions

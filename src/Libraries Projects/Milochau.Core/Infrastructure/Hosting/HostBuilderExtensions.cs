@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Milochau.Core.Infrastructure.Hosting;
 
-namespace Milochau.Core.Infrastructure.Extensions
+namespace Milochau.Core.Infrastructure.Hosting
 {
     /// <summary>Extensions for <see cref="IHostBuilder"/></summary>
     public static class HostBuilderExtensions

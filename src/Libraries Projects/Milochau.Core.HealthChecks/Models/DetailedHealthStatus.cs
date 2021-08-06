@@ -1,4 +1,4 @@
-﻿namespace Milochau.Core.Infrastructure.Converters
+﻿namespace Milochau.Core.HealthChecks.Models
 {
     /// <summary>Detailed health status</summary>
     public enum DetailedHealthStatus

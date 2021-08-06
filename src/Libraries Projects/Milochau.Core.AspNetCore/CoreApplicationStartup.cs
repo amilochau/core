@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Milochau.Core.AspNetCore.Infrastructure.Extensions;
+using Microsoft.Extensions.Options;
+using Milochau.Core.AspNetCore.Infrastructure.Features;
+using Milochau.Core.AspNetCore.Models;
 using Milochau.Core.Infrastructure.Hosting;
 
 namespace Milochau.Core.AspNetCore
@@ -20,9 +22,16 @@ namespace Milochau.Core.AspNetCore
         {
             base.ConfigureServices(services);
 
-            // Configure Milochau.Core features
+            var servicesOptions = new CoreServicesOptions();
+            configuration.Bind(CoreServicesOptions.DefaultConfigurationSection, servicesOptions);
+
             services.AddRouting();
-            services.AddCoreFeatures(configuration);
+
+            services.AddOptions<CoreServicesOptions>().Configure(settings => configuration.Bind(CoreServicesOptions.DefaultConfigurationSection, settings));
+
+            services.AddCoreConfiguration(hostOptions, servicesOptions);
+            services.AddCoreHealthChecks(hostOptions, servicesOptions);
+            services.AddCoreTelemetry(hostOptions, servicesOptions);
         }
 
         /// <summary>Configure health checks</summary>
@@ -36,8 +45,11 @@ namespace Milochau.Core.AspNetCore
         {
             StartupLogging.LogApplicationInformation(app.ApplicationServices);
 
-            // Use Milochau.Core features
-            app.UseCoreFeatures();
+            var servicesOptions = app.ApplicationServices.GetService<IOptions<CoreServicesOptions>>().Value;
+
+            app.UseCoreApplication(hostOptions, servicesOptions);
+            app.UseCoreConfiguration(hostOptions, servicesOptions);
+            app.UseCoreTelemetry(hostOptions, servicesOptions);
         }
     }
 }

@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Milochau.Core.HealthChecks\Milochau.Core.HealthChecks.csproj" />
     <ProjectReference Include="..\Milochau.Core\Milochau.Core.csproj" />
   </ItemGroup>
 

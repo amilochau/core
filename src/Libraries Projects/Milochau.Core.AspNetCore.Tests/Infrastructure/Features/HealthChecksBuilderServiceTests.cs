@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Milochau.Core.Infrastructure.Converters;
 using System.Text.Json.Serialization;
+using Milochau.Core.HealthChecks.Models;
 
 namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
 {
