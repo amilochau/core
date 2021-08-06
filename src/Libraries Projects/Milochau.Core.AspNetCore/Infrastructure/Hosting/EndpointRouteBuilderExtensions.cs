@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Milochau.Core.AspNetCore.Infrastructure.Features;
 
-namespace Milochau.Core.AspNetCore.Infrastructure.Extensions
+namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
 {
     /// <summary>Extensions for <see cref="IEndpointRouteBuilder"/></summary>
     public static class EndpointRouteBuilderExtensions

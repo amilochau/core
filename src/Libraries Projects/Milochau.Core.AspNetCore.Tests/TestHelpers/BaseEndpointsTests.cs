@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Milochau.Core.AspNetCore.Infrastructure.Extensions;
-using Milochau.Core.Infrastructure.Extensions;
+using Milochau.Core.AspNetCore.Infrastructure.Hosting;
+using Milochau.Core.Infrastructure.Hosting;
 using System.Net.Http;
 using System.Threading.Tasks;
 

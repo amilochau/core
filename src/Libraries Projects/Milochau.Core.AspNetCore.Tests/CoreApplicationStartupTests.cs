@@ -3,21 +3,24 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Milochau.Core.Abstractions;
+using Milochau.Core.AspNetCore.Models;
+using Milochau.Core.AspNetCore.Tests.TestHelpers;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Milochau.Core.AspNetCore.Tests.Extensions
+namespace Milochau.Core.AspNetCore.Tests
 {
     [TestClass]
-    public class ServiceCollectionExtensionsTests
+    public class CoreApplicationStartupTests
     {
         private const string endpointCheckName = "Endpoint";
 
-        [TestMethod]
-        public void AddCoreFeatures_When_Called()
+        [TestMethod("ConfigureServices - All services registred")]
+        public void ConfigureServices_When_Called()
         {
             // Given
-            var serviceCollection = new ServiceCollection();
+            var services = new ServiceCollection();
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
@@ -25,14 +28,21 @@ namespace Milochau.Core.AspNetCore.Tests.Extensions
                 { "ASPNETCORE_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
             });
             var configuration = configurationBuilder.Build();
+            services.AddSingleton<IConfiguration>(configuration);
+
+            var startup = new TestStartup(configuration);
 
             // When
-            AspNetCore.Infrastructure.Extensions.ServiceCollectionExtensions.AddCoreFeatures(serviceCollection, configuration);
+            startup.ConfigureServices(services);
 
             // Then
-            Assert.IsTrue(serviceCollection.Any(x => x.ServiceType.Name == "HealthCheckService"));
+            var sp = services.BuildServiceProvider();
 
-            var sp = serviceCollection.BuildServiceProvider();
+            Assert.IsNotNull(sp.GetRequiredService<IOptions<CoreHostOptions>>());
+            Assert.IsNotNull(sp.GetRequiredService<IOptions<CoreServicesOptions>>());
+
+            Assert.IsTrue(services.Any(x => x.ServiceType.Name == "HealthCheckService"));
+
             var options = sp.GetService<IOptions<HealthCheckServiceOptions>>();
 
             Assert.IsNotNull(options.Value);

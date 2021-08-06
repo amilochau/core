@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Hosting;
-using Milochau.Core.AspNetCore.Infrastructure.Extensions;
+using Milochau.Core.AspNetCore.Infrastructure.Hosting;
 
 namespace Milochau.Core.AspNetCore.ReferenceProject
 {
