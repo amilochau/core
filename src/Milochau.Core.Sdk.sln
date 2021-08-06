@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Functions", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Abstractions", "Libraries Projects\Milochau.Core.Abstractions\Milochau.Core.Abstractions.csproj", "{80322008-9C0B-41A9-8E64-4542A761B453}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console", "Libraries Projects\Milochau.Core.Console\Milochau.Core.Console.csproj", "{8EF6B542-02BD-4073-B25B-D55424754C49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.HealthChecks", "Libraries Projects\Milochau.Core.HealthChecks\Milochau.Core.HealthChecks.csproj", "{C488F372-17E5-48C7-A7B5-22E1A78AF511}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{80322008-9C0B-41A9-8E64-4542A761B453}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80322008-9C0B-41A9-8E64-4542A761B453}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80322008-9C0B-41A9-8E64-4542A761B453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EF6B542-02BD-4073-B25B-D55424754C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EF6B542-02BD-4073-B25B-D55424754C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EF6B542-02BD-4073-B25B-D55424754C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EF6B542-02BD-4073-B25B-D55424754C49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C488F372-17E5-48C7-A7B5-22E1A78AF511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C488F372-17E5-48C7-A7B5-22E1A78AF511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C488F372-17E5-48C7-A7B5-22E1A78AF511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C488F372-17E5-48C7-A7B5-22E1A78AF511}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
