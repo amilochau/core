@@ -104,8 +104,6 @@ public class Startup : CoreFunctionsStartup
 {
     protected override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
-
         // Register options, services, data access...
     }
 }
