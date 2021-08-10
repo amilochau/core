@@ -30,14 +30,15 @@ namespace Milochau.Core.AspNetCore
             services.AddOptions<CoreServicesOptions>().Configure(settings => configuration.Bind(CoreServicesOptions.DefaultConfigurationSection, settings));
 
             services.AddCoreConfiguration(hostOptions, servicesOptions);
-            services.AddCoreHealthChecks(hostOptions, servicesOptions);
             services.AddCoreTelemetry(hostOptions, servicesOptions);
+
+            ConfigureHealthChecks(services);
         }
 
         /// <summary>Configure health checks</summary>
         protected virtual IHealthChecksBuilder ConfigureHealthChecks(IServiceCollection services)
         {
-            return services.AddHealthChecks();
+            return services.AddCoreHealthChecks(hostOptions);
         }
 
         /// <summary>Configure application</summary>
