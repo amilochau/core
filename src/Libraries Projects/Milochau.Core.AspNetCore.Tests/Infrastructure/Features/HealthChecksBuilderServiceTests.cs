@@ -1,5 +1,4 @@
-﻿using Milochau.Core.AspNetCore.Models;
-using Milochau.Core.Abstractions;
+﻿using Milochau.Core.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
@@ -22,7 +21,6 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
         private IServiceCollection services;
 
         private readonly CoreHostOptions coreHostOptions = new CoreHostOptions();
-        private readonly CoreServicesOptions coreServicesOptions = new CoreServicesOptions();
         private const string keyVaultServiceName = "Key Vault";
         private const string endpointCheckName = "Endpoint";
 
@@ -38,7 +36,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             // Given
 
             // When
-            HealthChecksBuilderService.AddCoreHealthChecks(services, coreHostOptions, coreServicesOptions);
+            HealthChecksBuilderService.AddCoreHealthChecks(services, coreHostOptions);
 
             // Then
             Assert.IsNotNull(services);
@@ -63,7 +61,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             coreHostOptions.KeyVault.Vault = vault;
 
             // When
-            HealthChecksBuilderService.AddCoreHealthChecks(services, coreHostOptions, coreServicesOptions);
+            HealthChecksBuilderService.AddCoreHealthChecks(services, coreHostOptions);
 
             // Then
             Assert.IsNotNull(services);

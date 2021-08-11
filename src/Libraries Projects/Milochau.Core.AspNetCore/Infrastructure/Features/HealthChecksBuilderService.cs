@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.Abstractions;
-using Milochau.Core.AspNetCore.Models;
 using Microsoft.AspNetCore.Routing;
 using Milochau.Core.HealthChecks;
 using System.IO;
@@ -23,11 +22,9 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         /// <summary>Adds the features activated from configuration</summary>
         /// <param name="services">Service collection</param>
         /// <param name="hostOptions">Core host options, see <see cref="CoreHostOptions"/></param>
-        /// <param name="servicesOptions">Core services options, see <see cref="CoreServicesOptions"/></param>
-        public static IServiceCollection AddCoreHealthChecks(this IServiceCollection services, CoreHostOptions hostOptions, CoreServicesOptions servicesOptions)
+        public static IHealthChecksBuilder AddCoreHealthChecks(this IServiceCollection services, CoreHostOptions hostOptions)
         {
-            HealthChecksRegistration.RegisterHealthChecks(services, hostOptions);
-            return services;
+            return HealthChecksRegistration.RegisterHealthChecks(services, hostOptions);
         }
 
         /// <summary>Adds default health checks endpoint</summary>

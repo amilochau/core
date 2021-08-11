@@ -6,4 +6,4 @@
 
 ## Bug fixes
 
-- Deploy Milochau.Core.Console and Milochau.Core.HealthChecks
+- Fix health checks registration in Milochau.Core.AspNetCore
