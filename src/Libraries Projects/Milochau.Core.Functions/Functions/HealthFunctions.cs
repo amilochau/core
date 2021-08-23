@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Milochau.Core.HealthChecks;
 using Milochau.Core.HealthChecks.Models;
@@ -23,7 +22,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get default application health</summary>
-        [FunctionName("Health-Default")]
+        [Function("Health-Default")]
         public async Task<IActionResult> HealthDefaultAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health")] HttpRequest request, CancellationToken cancellationToken)
         {
             var healthReport = await healthCheckService.CheckHealthAsync(cancellationToken);
@@ -31,7 +30,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get light application health</summary>
-        [FunctionName("Health-Light")]
+        [Function("Health-Light")]
         public async Task<IActionResult> HealthLightAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health/light")] HttpRequest request, CancellationToken cancellationToken)
         {
             var healthReport = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(HealthChecksRegistration.LightTag), cancellationToken);

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Cache;
 using System.Globalization;
@@ -26,7 +25,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Count local cache items</summary>
-        [FunctionName("System-Cache-LocalCount")]
+        [Function("System-Cache-LocalCount")]
         public IActionResult LocalCount([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/count")] HttpRequest request)
         {
             var response = new CountResponse
@@ -37,7 +36,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Test if local cache contains items</summary>
-        [FunctionName("System-Cache-LocalContains")]
+        [Function("System-Cache-LocalContains")]
         public IActionResult LocalContains([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/contains")] HttpRequest request)
         {
             if (!request.Query.TryGetValue(containsKeyQueryKey, out var keys))
@@ -55,7 +54,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Compact local cache</summary>
-        [FunctionName("System-Cache-LocalCompact")]
+        [Function("System-Cache-LocalCompact")]
         public IActionResult LocalCompact([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/compact")] HttpRequest request)
         {
             var response = new CompactResponse();
@@ -72,7 +71,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Remove an item from the local cache</summary>
-        [FunctionName("System-Cache-LocalRemove")]
+        [Function("System-Cache-LocalRemove")]
         public IActionResult LocalRemove([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/remove")] HttpRequest request)
         {
             if (!request.Query.TryGetValue(removeKeyQueryKey, out var keys))

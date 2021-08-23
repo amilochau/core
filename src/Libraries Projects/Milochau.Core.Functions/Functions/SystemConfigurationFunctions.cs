@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Configuration;
 using Microsoft.FeatureManagement;
 using Milochau.Core.Infrastructure.Features.Configuration;
@@ -25,7 +24,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get feature flags state</summary>
-        [FunctionName("System-Configuration-Flags")]
+        [Function("System-Configuration-Flags")]
         public async Task<IActionResult> FlagsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/flags")] HttpRequest request)
         {
             var response = new FlagsResponse();
@@ -39,7 +38,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get configuration providers</summary>
-        [FunctionName("System-Configuration-Providers")]
+        [Function("System-Configuration-Providers")]
         public IActionResult Providers([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/providers")] HttpRequest request)
         {
             var configurationRoot = configuration as ConfigurationRoot;

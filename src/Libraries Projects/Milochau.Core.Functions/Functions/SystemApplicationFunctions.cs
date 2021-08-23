@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Application;
 
@@ -19,7 +18,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get application environment</summary>
-        [FunctionName("System-Application-Environment")]
+        [Function("System-Application-Environment")]
         public IActionResult Environment([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/environment")] HttpRequest request)
         {
             var response = new EnvironmentResponse(applicationHostEnvironment);
@@ -27,7 +26,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get application asembly</summary>
-        [FunctionName("System-Application-Assembly")]
+        [Function("System-Application-Assembly")]
         public IActionResult Assembly([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/assembly")] HttpRequest request)
         {
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

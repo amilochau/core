@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Milochau.Core.Abstractions;
+using Microsoft.Azure.Functions.Worker;
 
 namespace Milochau.Core.Functions.ReferenceProject
 {
@@ -19,13 +18,13 @@ namespace Milochau.Core.Functions.ReferenceProject
             this.applicationHostEnvironment = applicationHostEnvironment;
         }
 
-        [FunctionName("CoreHostOptions")]
+        [Function("CoreHostOptions")]
         public IActionResult RunCoreHostOptions([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "CoreHostOptions")] HttpRequest req)
         {
             return new OkObjectResult(coreHostOptions);
         }
 
-        [FunctionName("ApplicationHostEnvironment")]
+        [Function("ApplicationHostEnvironment")]
         public IActionResult RunApplicationHostEnvironment([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ApplicationHostEnvironment")] HttpRequest req)
         {
             return new OkObjectResult(applicationHostEnvironment);
