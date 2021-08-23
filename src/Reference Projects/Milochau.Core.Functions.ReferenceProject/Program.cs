@@ -23,8 +23,7 @@ namespace Milochau.Core.Functions.ReferenceProject
 
                     var startup = serviceProvider.GetRequiredService<CoreFunctionsStartup>();
 
-                    startup.Configure(serviceProvider);
-                })
-                .ConfigureFunctionsWorkerDefaults();
+                    startup.Configure(serviceProvider, functionsWorkerApplicationBuilder);
+                });
     }
 }
