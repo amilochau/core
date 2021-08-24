@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Functions;
 using Milochau.Core.Infrastructure.Features.Application;
 using Moq;
+using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Tests.Functions
 {
@@ -28,7 +31,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         }
         
         [TestMethod("Application - Environment")]
-        public void Environment_Should_ReturnEnvironment_When_Called()
+        public async Task Environment_Should_ReturnEnvironment_When_CalledAsync()
         {
             // Given
             var httpContext = CreateHttpContext("get", "/api/system/application/environment");
@@ -37,12 +40,16 @@ namespace Milochau.Core.Functions.Tests.Functions
             applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
             applicationHostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);
 
+            var context = new Mock<FunctionContext>();
+
+            var httpRequestData = new Mock<HttpRequestData>(context.Object);
+
             // When
-            var result = functions.Environment(httpContext.Request);
+            var response = await functions.GetEnvironmentAsync(httpRequestData.Object);
 
             // Then
-            Assert.IsNotNull(result);
-            var response = GetResponseFromActionResult<EnvironmentResponse>(result, StatusCodes.Status200OK);
+            Assert.IsNotNull(response);
+            var response = GetResponseFromActionResult<EnvironmentResponse>(response, StatusCodes.Status200OK);
             Assert.IsNotNull(response);
             Assert.AreEqual(applicationName, response.ApplicationName);
             Assert.AreEqual(hostName, response.HostName);

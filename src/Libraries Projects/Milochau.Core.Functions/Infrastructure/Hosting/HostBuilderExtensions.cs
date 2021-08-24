@@ -21,6 +21,14 @@ namespace Milochau.Core.Console.Infrastructure.Hosting
                     var startup = CoreFunctionsStartup.Create<TStartup>(hostContext.Configuration);
                     startup.ConfigureServices(services);
                     services.AddSingleton<CoreFunctionsStartup>(startup);
+                })
+                .ConfigureFunctionsWorkerDefaults((hostBuilderContext, functionsWorkerApplicationBuilder) =>
+                {
+                    var serviceProvider = functionsWorkerApplicationBuilder.Services.BuildServiceProvider();
+
+                    var startup = serviceProvider.GetRequiredService<CoreFunctionsStartup>();
+
+                    startup.Configure(serviceProvider, functionsWorkerApplicationBuilder);
                 });
         }
     }

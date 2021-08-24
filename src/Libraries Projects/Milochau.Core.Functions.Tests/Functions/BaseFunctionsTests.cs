@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.IO;
@@ -21,15 +22,16 @@ namespace Milochau.Core.Functions.Tests.Functions
             return httpContext;
         }
 
-        protected TResponse GetResponseFromActionResult<TResponse>(IActionResult result, int expectedStatusCode)
+        protected TResponse GetResponseFromActionResult<TResponse>(HttpResponseData response, int expectedStatusCode)
         {
-            var jsonResult = (ObjectResult)result;
-            Assert.AreEqual(expectedStatusCode, jsonResult.StatusCode);
-            Assert.IsNotNull(jsonResult.Value);
+            Assert.AreEqual(expectedStatusCode, response.StatusCode);
+            Assert.IsNotNull(response.Body);
+            response.Body.Seek(0, SeekOrigin.Begin);
+            var reader = new StreamReader(response.Body);
 
-            var response = (TResponse)jsonResult.Value;
-            Assert.IsNotNull(response);
-            return response;
+            var responseBody = reader.ReadToEnd();
+            Assert.IsNotNull(responseBody);
+            return JsonConvert.DeserializeObject<TResponse>(responseBody);
         }
 
         protected TResponse GetResponseFromActionResultAsJson<TResponse>(IActionResult result, int expectedStatusCode)
