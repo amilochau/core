@@ -28,7 +28,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Count local cache items</summary>
         [Function("System-Cache-LocalCount")]
-        public async Task<HttpResponseData> GetLocalCount([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/count")] HttpRequestData request)
+        public async Task<HttpResponseData> GetLocalCountAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/count")] HttpRequestData request)
         {
             var countResponse = new CountResponse
             {
@@ -42,7 +42,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Test if local cache contains items</summary>
         [Function("System-Cache-LocalContains")]
-        public async Task<HttpResponseData> GetLocalContains([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/contains")] HttpRequestData request)
+        public async Task<HttpResponseData> GetLocalContainsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/contains")] HttpRequestData request)
         {
             var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(containsKeyQueryKey).Where(x => !string.IsNullOrEmpty(x));
             if (keys == null || !keys.Any())
@@ -66,7 +66,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Compact local cache</summary>
         [Function("System-Cache-LocalCompact")]
-        public async Task<HttpResponseData> CompactLocal([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/compact")] HttpRequestData request)
+        public async Task<HttpResponseData> CompactLocalAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/compact")] HttpRequestData request)
         {
             var compactResponse = new CompactResponse();
             var value = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(compactPercentageQueryKey).FirstOrDefault();
@@ -85,7 +85,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Remove an item from the local cache</summary>
         [Function("System-Cache-LocalRemove")]
-        public async Task<HttpResponseData> RemoveLocal([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/remove")] HttpRequestData request)
+        public async Task<HttpResponseData> RemoveLocalAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/remove")] HttpRequestData request)
         {
             var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(removeKeyQueryKey).Where(x => !string.IsNullOrEmpty(x)).ToList();
             if (keys == null || !keys.Any())

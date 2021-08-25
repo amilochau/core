@@ -25,7 +25,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Get feature flags state</summary>
         [Function("System-Configuration-Flags")]
-        public async Task<HttpResponseData> FlagsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/flags")] HttpRequestData request)
+        public async Task<HttpResponseData> GetFlagsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/flags")] HttpRequestData request)
         {
             var flagsResponse = new FlagsResponse();
             await foreach (var featureName in featureManager.GetFeatureNamesAsync())
@@ -41,7 +41,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Get configuration providers</summary>
         [Function("System-Configuration-Providers")]
-        public async Task<HttpResponseData> Providers([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/providers")] HttpRequestData request)
+        public async Task<HttpResponseData> GetProvidersAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/providers")] HttpRequestData request)
         {
             var configurationRoot = configuration as ConfigurationRoot;
             var providersResponse = new ProvidersResponse

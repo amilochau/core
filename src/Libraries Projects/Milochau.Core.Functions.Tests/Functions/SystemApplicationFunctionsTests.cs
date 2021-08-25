@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Functions;
 using Milochau.Core.Infrastructure.Features.Application;
 using Moq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Tests.Functions
@@ -34,22 +33,18 @@ namespace Milochau.Core.Functions.Tests.Functions
         public async Task Environment_Should_ReturnEnvironment_When_CalledAsync()
         {
             // Given
-            var httpContext = CreateHttpContext("get", "/api/system/application/environment");
+            var httpRequestData = CreateHttpRequestData("get", "/api/system/application/environment");
             applicationHostEnvironment.SetupGet(x => x.OrganizationName).Returns(organizationName);
             applicationHostEnvironment.SetupGet(x => x.ApplicationName).Returns(applicationName);
             applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
             applicationHostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);
 
-            var context = new Mock<FunctionContext>();
-
-            var httpRequestData = new Mock<HttpRequestData>(context.Object);
-
             // When
-            var response = await functions.GetEnvironmentAsync(httpRequestData.Object);
+            var httpResponseData = await functions.GetEnvironmentAsync(httpRequestData);
 
             // Then
-            Assert.IsNotNull(response);
-            var response = GetResponseFromActionResult<EnvironmentResponse>(response, StatusCodes.Status200OK);
+            Assert.IsNotNull(httpResponseData);
+            var response = GetResponseAsJson<EnvironmentResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.AreEqual(applicationName, response.ApplicationName);
             Assert.AreEqual(hostName, response.HostName);

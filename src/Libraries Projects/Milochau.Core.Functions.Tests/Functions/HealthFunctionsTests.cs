@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Functions.Functions;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,15 +31,15 @@ namespace Milochau.Core.Functions.Tests.Functions
             // Given
             var healthReport = new HealthReport(new Dictionary<string, HealthReportEntry>(), default);
 
-            var httpContext = CreateHttpContext("get", "/api/health");
+            var httpRequestData = CreateHttpRequestData("get", "/api/health");
             healthCheckService.Setup(x => x.CheckHealthAsync(It.IsAny<Func<HealthCheckRegistration, bool>>(), It.IsAny<CancellationToken>())).ReturnsAsync(healthReport);
 
             // When
-            var result = await functions.HealthDefaultAsync(httpContext.Request, CancellationToken.None);
+            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData);
 
             // Then
-            Assert.IsNotNull(result);
-            var response = GetResponseFromActionResultAsJson<HealthReport>(result, StatusCodes.Status200OK);
+            Assert.IsNotNull(httpResponseData);
+            var response = GetResponseAsJson<HealthReport>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.AreEqual(HealthStatus.Healthy, response.Status);
         }
@@ -53,15 +53,15 @@ namespace Milochau.Core.Functions.Tests.Functions
                 { "Unhealth check", new HealthReportEntry(HealthStatus.Unhealthy, "Unhealth check", default, default, default) }
             }, default);
 
-            var httpContext = CreateHttpContext("get", "/api/health");
+            var httpRequestData = CreateHttpRequestData("get", "/api/health");
             healthCheckService.Setup(x => x.CheckHealthAsync(It.IsAny<Func<HealthCheckRegistration, bool>>(), It.IsAny<CancellationToken>())).ReturnsAsync(healthReport);
 
             // When
-            var result = await functions.HealthDefaultAsync(httpContext.Request, CancellationToken.None);
+            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData);
 
             // Then
-            Assert.IsNotNull(result);
-            var response = GetResponseFromActionResultAsJson<HealthReport>(result, StatusCodes.Status503ServiceUnavailable);
+            Assert.IsNotNull(httpResponseData);
+            var response = GetResponseAsJson<HealthReport>(httpResponseData, HttpStatusCode.ServiceUnavailable);
             Assert.IsNotNull(response);
             Assert.AreEqual(HealthStatus.Unhealthy, response.Status);
         }
@@ -72,15 +72,15 @@ namespace Milochau.Core.Functions.Tests.Functions
             // Given
             var healthReport = new HealthReport(new Dictionary<string, HealthReportEntry>(), default);
 
-            var httpContext = CreateHttpContext("get", "/api/health/light");
+            var httpRequestData = CreateHttpRequestData("get", "/api/health/light");
             healthCheckService.Setup(x => x.CheckHealthAsync(It.IsAny<Func<HealthCheckRegistration, bool>>(), It.IsAny<CancellationToken>())).ReturnsAsync(healthReport);
 
             // When
-            var result = await functions.HealthLightAsync(httpContext.Request, CancellationToken.None);
+            var httpResponseData = await functions.GetHealthLightAsync(httpRequestData);
 
             // Then
-            Assert.IsNotNull(result);
-            var response = GetResponseFromActionResultAsJson<HealthReport>(result, StatusCodes.Status200OK);
+            Assert.IsNotNull(httpResponseData);
+            var response = GetResponseAsJson<HealthReport>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.AreEqual(HealthStatus.Healthy, response.Status);
         }

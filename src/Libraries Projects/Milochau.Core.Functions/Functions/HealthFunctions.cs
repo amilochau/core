@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.Functions.Worker;
+﻿using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Milochau.Core.HealthChecks;
@@ -37,7 +36,7 @@ namespace Milochau.Core.Functions.Functions
             return await ConvertHealthReportToActionResultAsync(request, healthReport);
         }
 
-        private async Task<HttpResponseData> ConvertHealthReportToActionResultAsync(HttpRequestData request, HealthReport healthReport)
+        private static async Task<HttpResponseData> ConvertHealthReportToActionResultAsync(HttpRequestData request, HealthReport healthReport)
         {
             var statusCode = healthReport.Status switch
             {
@@ -51,7 +50,8 @@ namespace Milochau.Core.Functions.Functions
             var jsonHealthReport = JsonSerializer.Serialize(detailedHealthReport, HealthChecksResponseWriter.JsonOptions.Value);
 
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(jsonHealthReport);
+            await response.WriteStringAsync(jsonHealthReport);
+            response.Headers.Add("Content-Type", "application/json; charset=utf-8");
             response.StatusCode = statusCode;
             return response;
         }

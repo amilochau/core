@@ -23,6 +23,8 @@ namespace Milochau.Core.Functions
         {
             base.ConfigureServices(services);
 
+            services.AddCoreConfiguration(hostOptions);
+
             ConfigureHealthChecks(services);
         }
 
