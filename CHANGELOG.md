@@ -8,6 +8,10 @@
 
 - `Milochau.Core.Functions` now references .NET 5.0 isolated process. You need to migrate your application to .NET 5.0 isolated process to benefic from the last features of Milochau.Core.* libraries
 
+## New features
+
+- Host configuration is now read with `AZURE_FUNCTIONS_` prefix, before trying with `DOTNET_` prefix
+
 ### Migration guide
 
 Change your `.csproj` file:

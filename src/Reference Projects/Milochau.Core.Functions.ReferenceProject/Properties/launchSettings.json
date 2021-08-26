@@ -4,10 +4,10 @@
     "Functions - Development": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ORGANIZATION": "org",
-        "ASPNETCORE_APPLICATION": "core-test-functions",
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOST": "local"
+        "AZURE_FUNCTIONS_ORGANIZATION": "org",
+        "AZURE_FUNCTIONS_APPLICATION": "core-test-functions",
+        "AZURE_FUNCTIONS_ENVIRONMENT": "Development",
+        "AZURE_FUNCTIONS_HOST": "local"
       }
     }
   }
