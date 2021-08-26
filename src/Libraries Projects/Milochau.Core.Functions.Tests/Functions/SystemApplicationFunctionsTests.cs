@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Functions;
 using Milochau.Core.Infrastructure.Features.Application;
@@ -30,7 +29,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         }
         
         [TestMethod("Application - Environment")]
-        public async Task Environment_Should_ReturnEnvironment_When_CalledAsync()
+        public async Task GetEnvironment_Should_ReturnEnvironment_When_CalledAsync()
         {
             // Given
             var httpRequestData = CreateHttpRequestData("get", "/api/system/application/environment");
@@ -46,6 +45,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             Assert.IsNotNull(httpResponseData);
             var response = GetResponseAsJson<EnvironmentResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
+            Assert.AreEqual(organizationName, response.OrganizationName);
             Assert.AreEqual(applicationName, response.ApplicationName);
             Assert.AreEqual(hostName, response.HostName);
             Assert.AreEqual(environmentName, response.EnvironmentName);

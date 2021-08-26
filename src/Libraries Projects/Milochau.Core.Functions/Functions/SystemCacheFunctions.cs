@@ -27,7 +27,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Count local cache items</summary>
-        [Function("System-Cache-LocalCount")]
+        [Function("system-cache-local-count")]
         public async Task<HttpResponseData> GetLocalCountAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/count")] HttpRequestData request)
         {
             var countResponse = new CountResponse
@@ -41,23 +41,18 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Test if local cache contains items</summary>
-        [Function("System-Cache-LocalContains")]
+        [Function("system-cache-local-contains")]
         public async Task<HttpResponseData> GetLocalContainsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/contains")] HttpRequestData request)
         {
-            var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(containsKeyQueryKey).Where(x => !string.IsNullOrEmpty(x));
-            if (keys == null || !keys.Any())
-            {
-                var errorResponse = request.CreateResponse(HttpStatusCode.NotFound);
-                await errorResponse.WriteStringAsync("Please provide a cache key to test.");
-                return errorResponse;
-            }
+            var containsResponse = new ContainsResponse();
 
-            var filteredKeys = keys.Where(x => !string.IsNullOrEmpty(x)).ToList();
-            var containsResponse = new ContainsResponse
+            var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(containsKeyQueryKey)?.Where(x => !string.IsNullOrEmpty(x));
+            if (keys != null && keys.Any())
             {
-                Keys = filteredKeys,
-                Contains = filteredKeys.Any(key => applicationMemoryCache.Contains(key))
-            };
+                var filteredKeys = keys.Where(x => !string.IsNullOrEmpty(x)).ToList();
+                containsResponse.Keys = filteredKeys;
+                containsResponse.Contains = filteredKeys.Any(key => applicationMemoryCache.Contains(key));
+            }
 
             var response = request.CreateResponse();
             await response.WriteAsJsonAsync(containsResponse);
@@ -65,11 +60,11 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Compact local cache</summary>
-        [Function("System-Cache-LocalCompact")]
+        [Function("system-cache-local-compact")]
         public async Task<HttpResponseData> CompactLocalAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/compact")] HttpRequestData request)
         {
             var compactResponse = new CompactResponse();
-            var value = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(compactPercentageQueryKey).FirstOrDefault();
+            var value = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(compactPercentageQueryKey)?.FirstOrDefault();
             if (value == null || !double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var percentage))
             {
                 percentage = compactPercentageDefaultValue;
@@ -84,21 +79,19 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Remove an item from the local cache</summary>
-        [Function("System-Cache-LocalRemove")]
+        [Function("system-cache-local-remove")]
         public async Task<HttpResponseData> RemoveLocalAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/remove")] HttpRequestData request)
         {
-            var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(removeKeyQueryKey).Where(x => !string.IsNullOrEmpty(x)).ToList();
-            if (keys == null || !keys.Any())
-            {
-                var errorResponse = request.CreateResponse(HttpStatusCode.NotFound);
-                await errorResponse.WriteStringAsync("Please provide a cache key to remove.");
-                return errorResponse;
-            }
+            var removeResponse = new RemoveResponse();
 
-            var removeResponse = new RemoveResponse { Keys = keys };
-            foreach (var key in keys)
+            var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(removeKeyQueryKey)?.Where(x => !string.IsNullOrEmpty(x))?.ToList();
+            if (keys != null && keys.Any())
             {
-                applicationMemoryCache.Remove(key);
+                removeResponse.Keys = keys;
+                foreach (var key in keys)
+                {
+                    applicationMemoryCache.Remove(key);
+                }
             }
 
             var response = request.CreateResponse();

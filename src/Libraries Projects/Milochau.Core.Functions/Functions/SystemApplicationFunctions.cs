@@ -19,7 +19,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get application environment</summary>
-        [Function("System-Application-Environment")]
+        [Function("system-application-environment")]
         public async Task<HttpResponseData> GetEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/environment")] HttpRequestData request)
         {
             var environmentResponse = new EnvironmentResponse(applicationHostEnvironment);
@@ -30,7 +30,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get application asembly</summary>
-        [Function("System-Application-Assembly")]
+        [Function("system-application-assembly")]
         public async Task<HttpResponseData> GetAssemblyAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/assembly")] HttpRequestData request)
         {
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

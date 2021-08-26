@@ -21,7 +21,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get default application health</summary>
-        [Function("Health-Default")]
+        [Function("health")]
         public async Task<HttpResponseData> GetHealthDefaultAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health")] HttpRequestData request)
         {
             var healthReport = await healthCheckService.CheckHealthAsync();
@@ -29,7 +29,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get light application health</summary>
-        [Function("Health-Light")]
+        [Function("health-light")]
         public async Task<HttpResponseData> GetHealthLightAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health/light")] HttpRequestData request)
         {
             var healthReport = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(HealthChecksRegistration.LightTag));

@@ -26,7 +26,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         }
 
         [TestMethod("Health-Default")]
-        public async Task Health_Should_ReturnHealthy_When_NoEntryAsync()
+        public async Task GetHealthDefault_Should_ReturnHealthy_When_NoEntryAsync()
         {
             // Given
             var healthReport = new HealthReport(new Dictionary<string, HealthReportEntry>(), default);
@@ -39,13 +39,11 @@ namespace Milochau.Core.Functions.Tests.Functions
 
             // Then
             Assert.IsNotNull(httpResponseData);
-            var response = GetResponseAsJson<HealthReport>(httpResponseData, HttpStatusCode.OK);
-            Assert.IsNotNull(response);
-            Assert.AreEqual(HealthStatus.Healthy, response.Status);
+            Assert.AreEqual(HttpStatusCode.OK, httpResponseData.StatusCode);
         }
 
         [TestMethod("Health-Default - unhealth with default checks")]
-        public async Task Health_Should_ReturnUnhealthy_When_CalledWithDefaultChecksAsync()
+        public async Task GetHealthDefault_Should_ReturnUnhealthy_When_CalledWithDefaultChecksAsync()
         {
             // Given
             var healthReport = new HealthReport(new Dictionary<string, HealthReportEntry>
@@ -61,13 +59,11 @@ namespace Milochau.Core.Functions.Tests.Functions
 
             // Then
             Assert.IsNotNull(httpResponseData);
-            var response = GetResponseAsJson<HealthReport>(httpResponseData, HttpStatusCode.ServiceUnavailable);
-            Assert.IsNotNull(response);
-            Assert.AreEqual(HealthStatus.Unhealthy, response.Status);
+            Assert.AreEqual(HttpStatusCode.ServiceUnavailable, httpResponseData.StatusCode);
         }
 
         [TestMethod("Health-Light - unhealth with filtered checks")]
-        public async Task Health_Should_ReturnUnhealthy_When_CalledWithFilteredChecksAsync()
+        public async Task GetHealthLight_Should_ReturnUnhealthy_When_CalledWithFilteredChecksAsync()
         {
             // Given
             var healthReport = new HealthReport(new Dictionary<string, HealthReportEntry>(), default);
@@ -80,9 +76,7 @@ namespace Milochau.Core.Functions.Tests.Functions
 
             // Then
             Assert.IsNotNull(httpResponseData);
-            var response = GetResponseAsJson<HealthReport>(httpResponseData, HttpStatusCode.OK);
-            Assert.IsNotNull(response);
-            Assert.AreEqual(HealthStatus.Healthy, response.Status);
+            Assert.AreEqual(HttpStatusCode.OK, httpResponseData.StatusCode);
         }
     }
 }

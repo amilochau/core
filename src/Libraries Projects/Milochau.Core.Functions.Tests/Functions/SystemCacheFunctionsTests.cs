@@ -26,7 +26,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         }
         
         [TestMethod("Cache - LocalCount")]
-        public async Task LocalCount_Should_ReturnCount_When_CalledAsync()
+        public async Task GetLocalCount_Should_ReturnCount_When_CalledAsync()
         {
             // Given
             var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/count");
@@ -73,8 +73,11 @@ namespace Milochau.Core.Functions.Tests.Functions
 
             // Then
             Assert.IsNotNull(httpResponseData);
-            var response = GetResponseAsText(httpResponseData, HttpStatusCode.NotFound);
-            Assert.AreEqual("Please provide a cache key to test.", response);
+            var response = GetResponseAsJson<ContainsResponse>(httpResponseData, HttpStatusCode.OK);
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(response.Keys);
+            Assert.AreEqual(0, response.Keys.Count);
+            Assert.IsFalse(response.Contains);
         }
 
         [TestMethod("Cache - LocalContains with empty keys")]
@@ -158,8 +161,10 @@ namespace Milochau.Core.Functions.Tests.Functions
 
             // Then
             Assert.IsNotNull(httpResponseData);
-            var response = GetResponseAsText(httpResponseData, HttpStatusCode.NotFound);
-            Assert.AreEqual("Please provide a cache key to remove.", response);
+            var response = GetResponseAsJson<RemoveResponse>(httpResponseData, HttpStatusCode.OK);
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(response.Keys);
+            Assert.AreEqual(0, response.Keys.Count);
         }
 
         [TestMethod("Cache - LocalRemove with empty keys")]

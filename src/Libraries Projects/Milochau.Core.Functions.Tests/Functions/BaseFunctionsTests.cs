@@ -1,26 +1,40 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Core.Serialization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Milochau.Core.Infrastructure.Converters;
 using Moq;
-using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Milochau.Core.Functions.Tests.Functions
 {
     public abstract class BaseFunctionsTests
     {
-        protected HttpRequestData CreateHttpRequestData(string method, string path)
+        protected static HttpRequestData CreateHttpRequestData(string method, string path)
             => CreateHttpRequestData(method, path, default);
 
-        protected HttpRequestData CreateHttpRequestData(string method, string path, QueryString query)
+        protected static HttpRequestData CreateHttpRequestData(string method, string path, QueryString query)
         {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddScoped<ILoggerFactory, LoggerFactory>();
+
+            var workerOptions = new Mock<IOptions<WorkerOptions>>();
+            var jsonSerializerOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            jsonSerializerOptions.Converters.Add(new TimeSpanConverter());
+            jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+
+            workerOptions.SetupGet(x => x.Value).Returns(new WorkerOptions
+            {
+                Serializer = new JsonObjectSerializer(jsonSerializerOptions)
+            });
+
+            serviceCollection.AddSingleton(workerOptions.Object);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var context = new Mock<FunctionContext>();
@@ -46,7 +60,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             return httpRequestData.Object;
         }
 
-        protected string GetResponseAsText(HttpResponseData httpResponseData, HttpStatusCode expectedStatusCode)
+        protected static string GetResponseAsText(HttpResponseData httpResponseData, HttpStatusCode expectedStatusCode)
         {
             Assert.AreEqual(expectedStatusCode, httpResponseData.StatusCode);
             Assert.IsNotNull(httpResponseData.Body);
@@ -56,7 +70,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             return reader.ReadToEnd();
         }
 
-        protected TResponse GetResponseAsJson<TResponse>(HttpResponseData httpResponseData, HttpStatusCode expectedStatusCode)
+        protected static TResponse GetResponseAsJson<TResponse>(HttpResponseData httpResponseData, HttpStatusCode expectedStatusCode)
         {
             Assert.AreEqual(expectedStatusCode, httpResponseData.StatusCode);
             Assert.IsNotNull(httpResponseData.Body);
@@ -65,7 +79,11 @@ namespace Milochau.Core.Functions.Tests.Functions
 
             var response = reader.ReadToEnd();
             Assert.IsNotNull(response);
-            return JsonConvert.DeserializeObject<TResponse>(response);
+
+            var jsonSerializerOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            jsonSerializerOptions.Converters.Add(new TimeSpanConverter());
+            jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            return JsonSerializer.Deserialize<TResponse>(response, jsonSerializerOptions);
         }
     }
 }
