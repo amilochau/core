@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Application;
+using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions
 {
@@ -19,20 +19,26 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get application environment</summary>
-        [FunctionName("System-Application-Environment")]
-        public IActionResult Environment([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/environment")] HttpRequest request)
+        [Function("system-application-environment")]
+        public async Task<HttpResponseData> GetEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/environment")] HttpRequestData request)
         {
-            var response = new EnvironmentResponse(applicationHostEnvironment);
-            return new OkObjectResult(response);
+            var environmentResponse = new EnvironmentResponse(applicationHostEnvironment);
+
+            var response = request.CreateResponse();
+            await response.WriteAsJsonAsync(environmentResponse);
+            return response;
         }
 
         /// <summary>Get application asembly</summary>
-        [FunctionName("System-Application-Assembly")]
-        public IActionResult Assembly([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/assembly")] HttpRequest request)
+        [Function("system-application-assembly")]
+        public async Task<HttpResponseData> GetAssemblyAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/application/assembly")] HttpRequestData request)
         {
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            var response = new AssemblyResponse(assembly);
-            return new OkObjectResult(response);
+            var assembly = System.Reflection.Assembly.GetEntryAssembly();
+            var assemblyResponse = new AssemblyResponse(assembly);
+
+            var response = request.CreateResponse();
+            await response.WriteAsJsonAsync(assemblyResponse);
+            return response;
         }
     }
 }

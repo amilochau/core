@@ -38,7 +38,7 @@ Here are all the endpoints exposed for Web applications.
 
 ---
 
-## Functions endpoints (Azure Functions 3 / .NET Core 3.1)
+## Functions endpoints (Azure Functions 3 / .NET 5.0 isolated process)
 
 Here are all the endpoints exposed for Functions applications.
 

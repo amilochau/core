@@ -1,7 +1,5 @@
 ﻿using Milochau.Core.Abstractions;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -17,7 +15,7 @@ namespace Milochau.Core.Functions.Tests
     public class CoreFunctionsStartupTests
     {
         [TestMethod]
-        public void Configure_Should_RegisterAllServices_When_Called()
+        public void ConfigureServices_Should_RegisterAllServices_When_Called()
         {
             // Arrange
             var serviceCollection = new ServiceCollection();
@@ -25,25 +23,18 @@ namespace Milochau.Core.Functions.Tests
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "ASPNETCORE_APPCONFIG_ENDPOINT", "https://" },
-                { "ASPNETCORE_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
+                { "AZURE_FUNCTIONS_APPCONFIG_ENDPOINT", "https://" },
+                { "AZURE_FUNCTIONS_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
             });
 
             var configuration = configurationBuilder.Build();
             serviceCollection.AddSingleton<IConfiguration>(configuration);
             serviceCollection.AddSingleton(Mock.Of<IHostEnvironment>());
-            StartupConfiguration.ConfigurationRefresher = Mock.Of<IConfigurationRefresher>();
 
-            var functionsConfigurationBuilder = new Mock<IFunctionsConfigurationBuilder>();
-            var functionsHostBuilder = new Mock<IFunctionsHostBuilder>();
-
-            functionsConfigurationBuilder.SetupGet(x => x.ConfigurationBuilder).Returns(configurationBuilder);
-
-            var startup = new Startup(serviceCollection, configuration);
+            var startup = CoreFunctionsStartup.Create<Startup>(configuration);
 
             // Act
-            startup.ConfigureAppConfiguration(functionsConfigurationBuilder.Object);
-            startup.Configure(functionsHostBuilder.Object);
+            startup.ConfigureServices(serviceCollection);
 
             // Assert
             var serviceProvider = serviceCollection.BuildServiceProvider();
@@ -56,23 +47,6 @@ namespace Milochau.Core.Functions.Tests
 
         public class Startup : CoreFunctionsStartup
         {
-            private readonly IServiceCollection services;
-            private readonly IConfiguration configuration;
-
-            public Startup(IServiceCollection services, IConfiguration configuration)
-            {
-                this.services = services;
-                this.configuration = configuration;
-            }
-
-            public override void Configure(IFunctionsHostBuilder builder)
-            {
-                RegisterInfrastructure(services, configuration);
-            }
-
-            protected override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
-            {
-            }
         }
     }
 }

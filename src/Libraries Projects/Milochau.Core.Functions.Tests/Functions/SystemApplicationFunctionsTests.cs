@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Functions;
 using Milochau.Core.Infrastructure.Features.Application;
 using Moq;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Tests.Functions
 {
@@ -28,22 +29,23 @@ namespace Milochau.Core.Functions.Tests.Functions
         }
         
         [TestMethod("Application - Environment")]
-        public void Environment_Should_ReturnEnvironment_When_Called()
+        public async Task GetEnvironment_Should_ReturnEnvironment_When_CalledAsync()
         {
             // Given
-            var httpContext = CreateHttpContext("get", "/api/system/application/environment");
+            var httpRequestData = CreateHttpRequestData("get", "/api/system/application/environment");
             applicationHostEnvironment.SetupGet(x => x.OrganizationName).Returns(organizationName);
             applicationHostEnvironment.SetupGet(x => x.ApplicationName).Returns(applicationName);
             applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
             applicationHostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);
 
             // When
-            var result = functions.Environment(httpContext.Request);
+            var httpResponseData = await functions.GetEnvironmentAsync(httpRequestData);
 
             // Then
-            Assert.IsNotNull(result);
-            var response = GetResponseFromActionResult<EnvironmentResponse>(result, StatusCodes.Status200OK);
+            Assert.IsNotNull(httpResponseData);
+            var response = GetResponseAsJson<EnvironmentResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
+            Assert.AreEqual(organizationName, response.OrganizationName);
             Assert.AreEqual(applicationName, response.ApplicationName);
             Assert.AreEqual(hostName, response.HostName);
             Assert.AreEqual(environmentName, response.EnvironmentName);

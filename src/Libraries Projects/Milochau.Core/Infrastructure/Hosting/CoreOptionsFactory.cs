@@ -13,6 +13,9 @@ namespace Milochau.Core.Infrastructure.Hosting
         /// <summary>Configuration prefix for web host</summary>
         public const string WebHostConfigurationPrefix = "ASPNETCORE_";
 
+        /// <summary>Configuration prefix for Functions</summary>
+        public const string FunctionsHostConfigurationPrefix = "AZURE_FUNCTIONS_";
+
         private const string organizationNameKey = "ORGANIZATION";
         private const string applicationNameKey = "APPLICATION";
         private const string environmentNameKey = "ENVIRONMENT";
@@ -74,6 +77,7 @@ namespace Milochau.Core.Infrastructure.Hosting
         private static string GetValueFromConfiguration(IConfiguration configuration, string suffix)
         {
             return configuration[$"{GenericHostConfigurationPrefix}{suffix}"]
+                ?? configuration[$"{FunctionsHostConfigurationPrefix}{suffix}"]
                 ?? configuration[$"{WebHostConfigurationPrefix}{suffix}"]
                 ?? configuration[suffix];
         }
@@ -81,6 +85,7 @@ namespace Milochau.Core.Infrastructure.Hosting
         private static string GetValueFromEnvironment(string suffix)
         {
             return Environment.GetEnvironmentVariable($"{GenericHostConfigurationPrefix}{suffix}")
+                ?? Environment.GetEnvironmentVariable($"{FunctionsHostConfigurationPrefix}{suffix}")
                 ?? Environment.GetEnvironmentVariable($"{WebHostConfigurationPrefix}{suffix}")
                 ?? Environment.GetEnvironmentVariable(suffix);
         }

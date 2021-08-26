@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Milochau.Core.Functions.ReferenceProject\Milochau.Core.Functions.ReferenceProject.csproj" />
+    <ProjectReference Include="..\..\Libraries Projects\Milochau.Core.Functions.Tests\Milochau.Core.Functions.Tests.csproj" />
+  </ItemGroup>
+
 </Project>

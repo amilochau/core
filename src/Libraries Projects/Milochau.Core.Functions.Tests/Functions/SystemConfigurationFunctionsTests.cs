@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.FeatureManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Functions.Functions;
@@ -7,6 +6,7 @@ using Milochau.Core.Infrastructure.Features.Configuration;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Tests.Functions
@@ -37,16 +37,16 @@ namespace Milochau.Core.Functions.Tests.Functions
         public async Task Flags_Should_ReturnFlags_When_CalledAsync()
         {
             // Given
-            var httpContext = CreateHttpContext("get", "/api/system/configuration/flags");
+            var httpRequestData = CreateHttpRequestData("get", "/api/system/configuration/flags");
             featureManager.Setup(x => x.GetFeatureNamesAsync()).Returns(GetTestFeaturesAsync());
             featureManager.Setup(x => x.IsEnabledAsync(featureName)).ReturnsAsync(true);
 
             // When
-            var result = await functions.FlagsAsync(httpContext.Request);
+            var httpResponseData = await functions.GetFlagsAsync(httpRequestData);
 
             // Then
-            Assert.IsNotNull(result);
-            var response = GetResponseFromActionResult<FlagsResponse>(result, StatusCodes.Status200OK);
+            Assert.IsNotNull(httpResponseData);
+            var response = GetResponseAsJson<FlagsResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.AreEqual(1, response.Features.Count);
             Assert.IsNotNull(response.Features.First());
@@ -54,17 +54,17 @@ namespace Milochau.Core.Functions.Tests.Functions
         }
 
         [TestMethod("Configuration - Providers")]
-        public void Providers_Should_ReturnProviders_When_Called()
+        public async Task Providers_Should_ReturnProviders_When_CalledAsync()
         {
             // Given
-            var httpContext = CreateHttpContext("get", "/api/system/configuration/providers");
+            var httpRequestData = CreateHttpRequestData("get", "/api/system/configuration/providers");
 
             // When
-            var result = functions.Providers(httpContext.Request);
+            var httpResponseData = await functions.GetProvidersAsync(httpRequestData);
 
             // Then
-            Assert.AreEqual(StatusCodes.Status200OK, httpContext.Response.StatusCode);
-            var response = GetResponseFromActionResult<ProvidersResponse>(result, StatusCodes.Status200OK);
+            Assert.IsNotNull(httpResponseData);
+            var response = GetResponseAsJson<ProvidersResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.AreEqual(1, response.Providers.Count());
             Assert.AreEqual("MemoryConfigurationProvider", response.Providers.First());

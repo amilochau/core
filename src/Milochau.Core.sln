@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console.ReferenceProject.Tests", "Reference Projects\Milochau.Core.Console.ReferenceProject.Tests\Milochau.Core.Console.ReferenceProject.Tests.csproj", "{786D2050-91EB-447F-A280-C38FF99BB58E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.HealthChecks", "Libraries Projects\Milochau.Core.HealthChecks\Milochau.Core.HealthChecks.csproj", "{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.HealthChecks", "Libraries Projects\Milochau.Core.HealthChecks\Milochau.Core.HealthChecks.csproj", "{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Functions.ReferenceProject.Tests", "Reference Projects\Milochau.Core.Functions.ReferenceProject.Tests\Milochau.Core.Functions.ReferenceProject.Tests.csproj", "{7BA13942-14C5-4B6E-B15D-983C4F32B878}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,10 @@ Global
 		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA13942-14C5-4B6E-B15D-983C4F32B878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA13942-14C5-4B6E-B15D-983C4F32B878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA13942-14C5-4B6E-B15D-983C4F32B878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA13942-14C5-4B6E-B15D-983C4F32B878}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,6 +141,7 @@ Global
 		{355EFBE9-71DD-432B-A543-7FFDFD905235} = {E859897A-5451-44C5-98A8-A86EEAD05DFD}
 		{786D2050-91EB-447F-A280-C38FF99BB58E} = {1B69D942-A40B-4C24-A502-E0E0197182DE}
 		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417} = {CB7C2181-2BFA-4105-9CAE-6520D08F9664}
+		{7BA13942-14C5-4B6E-B15D-983C4F32B878} = {1B69D942-A40B-4C24-A502-E0E0197182DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE0AA8A9-B4DC-4C33-A403-D3B1C55B24DA}
