@@ -6,6 +6,6 @@ namespace Milochau.Core.Infrastructure.Features.Cache
     public class RemoveResponse
     {
         /// <summary>Removed keys</summary>
-        public ICollection<string> Keys { get; set; }
+        public ICollection<string> Keys { get; set; } = new List<string>();
     }
 }

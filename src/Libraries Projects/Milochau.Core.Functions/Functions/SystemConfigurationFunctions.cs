@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.FeatureManagement;
 using Milochau.Core.Infrastructure.Features.Configuration;
@@ -25,30 +24,34 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Get feature flags state</summary>
-        [FunctionName("System-Configuration-Flags")]
-        public async Task<IActionResult> FlagsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/flags")] HttpRequest request)
+        [Function("system-configuration-flags")]
+        public async Task<HttpResponseData> GetFlagsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/flags")] HttpRequestData request)
         {
-            var response = new FlagsResponse();
+            var flagsResponse = new FlagsResponse();
             await foreach (var featureName in featureManager.GetFeatureNamesAsync())
             {
                 var enabled = await featureManager.IsEnabledAsync(featureName);
-                response.Features.Add(new FeatureDetails { Name = featureName, Enabled = enabled });
+                flagsResponse.Features.Add(new FeatureDetails { Name = featureName, Enabled = enabled });
             }
 
-            return new OkObjectResult(response);
+            var response = request.CreateResponse();
+            await response.WriteAsJsonAsync(flagsResponse);
+            return response;
         }
 
         /// <summary>Get configuration providers</summary>
-        [FunctionName("System-Configuration-Providers")]
-        public IActionResult Providers([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/providers")] HttpRequest request)
+        [Function("system-configuration-providers")]
+        public async Task<HttpResponseData> GetProvidersAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/providers")] HttpRequestData request)
         {
             var configurationRoot = configuration as ConfigurationRoot;
-            var response = new ProvidersResponse
+            var providersResponse = new ProvidersResponse
             {
                 Providers = configurationRoot.Providers.Select(x => x.ToString())
             };
 
-            return new OkObjectResult(response);
+            var response = request.CreateResponse();
+            await response.WriteAsJsonAsync(providersResponse);
+            return response;
         }
     }
 }

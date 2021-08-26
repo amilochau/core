@@ -22,7 +22,7 @@ Please follow the development good practices, then follow the integration proces
 
 ## Framework installation
 
-`Milochau.Core.*` libraries can be used in any ASP.NET Core 5.0+ / Azure Functions (.NET Core 3.1+) / Console applications (.NET 5.0+) project. To use it, you must install the library specific to your technology as a NuGet package, then add framework references in main project files.
+`Milochau.Core.*` libraries can be used in any ASP.NET Core 5.0 / Azure Functions (.NET 5.0 isolated process) / Console applications (.NET 5.0) project. To use it, you must install the library specific to your technology as a NuGet package, then add framework references in main project files.
 
 ---
 
@@ -85,11 +85,11 @@ public class Startup : CoreApplicationStartup
 
 ---
 
-### Functions applications (Azure Functions 3 / .NET Core 3.1)
+### Functions applications (Azure Functions 3 / .NET 5.0 isolated process)
 
 *Functions applications* are applications that use the most recent versions of Microsoft frameworks for Azure Functions applications. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
 
-- `Milochau.Core.Functions.ReferenceProject` is an application written with ASP.NET Core 3.1 framework
+- `Milochau.Core.Functions.ReferenceProject` is an application written with Azure Functions 3 / .NET 5.0 isolated process framework
 
 Functions applications must install the `Milochau.Core.Functions` package:
 
@@ -100,10 +100,27 @@ Install-Package Milochau.Core.Functions
 You can then initialize your application with the following classes.
 
 ```csharp
+public static class Program
+{
+    public static void Main()
+    {
+        CreateHostBuilder().Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder() =>
+        new HostBuilder()
+            .ConfigureCoreConfiguration()
+            .ConfigureCoreHostBuilder<Startup>();
+}
+```
+
+```csharp
 public class Startup : CoreFunctionsStartup
 {
-    protected override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    public override void ConfigureServices(IServiceCollection services)
     {
+        base.ConfigureServices(services);
+
         // Register options, services, data access...
     }
 }
