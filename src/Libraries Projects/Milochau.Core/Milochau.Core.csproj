@@ -9,12 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.1" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.17" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="4.5.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.17" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.FeatureManagement" Version="2.3.0" />
   </ItemGroup>
 
