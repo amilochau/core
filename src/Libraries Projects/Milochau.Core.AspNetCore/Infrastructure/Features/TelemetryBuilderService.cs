@@ -1,4 +1,5 @@
-﻿using Microsoft.ApplicationInsights.Extensibility;
+﻿using Azure.Identity;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.Abstractions;
@@ -22,6 +23,11 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
                 {
                     EnableAdaptiveSampling = !servicesOptions.Telemetry.DisableAdaptiveSampling
                 };
+                services.Configure<TelemetryConfiguration>(configuration =>
+                {
+                    var credential = new DefaultAzureCredential(hostOptions.Credential);
+                    configuration.SetAzureTokenCredential(credential);
+                });
                 services.AddApplicationInsightsTelemetry(aiOptions);
             }
 
