@@ -11,6 +11,7 @@
 ## New features
 
 - Host configuration is now read with `AZURE_FUNCTIONS_` prefix, before trying with `DOTNET_` prefix
+- `Milochau.Core.AspNetCore` now supports MI/RBAC to publish metrics to Application Insights
 
 ### Migration guide
 
