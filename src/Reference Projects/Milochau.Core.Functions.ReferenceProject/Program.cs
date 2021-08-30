@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Milochau.Core.Console.Infrastructure.Hosting;
+using Milochau.Core.Functions.Infrastructure.Hosting;
 using Milochau.Core.Infrastructure.Hosting;
 
 namespace Milochau.Core.Functions.ReferenceProject

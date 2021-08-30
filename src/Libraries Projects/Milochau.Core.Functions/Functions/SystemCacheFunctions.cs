@@ -5,7 +5,6 @@ using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Cache;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions
