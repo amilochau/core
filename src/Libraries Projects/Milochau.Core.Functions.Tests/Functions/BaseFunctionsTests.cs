@@ -1,5 +1,4 @@
 ﻿using Azure.Core.Serialization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +19,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         protected static HttpRequestData CreateHttpRequestData(string method, string path)
             => CreateHttpRequestData(method, path, default);
 
-        protected static HttpRequestData CreateHttpRequestData(string method, string path, QueryString query)
+        protected static HttpRequestData CreateHttpRequestData(string method, string path, string query)
         {
             var serviceCollection = new ServiceCollection();
 
@@ -45,7 +44,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var uriBuilder = new UriBuilder
             {
                 Path = path,
-                Query = query.Value
+                Query = query
             };
 
             httpRequestData.SetupGet(x => x.Method).Returns(method);

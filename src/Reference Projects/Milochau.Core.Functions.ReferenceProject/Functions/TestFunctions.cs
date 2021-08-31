@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Milochau.Core.Abstractions;
 using Microsoft.Azure.Functions.Worker;

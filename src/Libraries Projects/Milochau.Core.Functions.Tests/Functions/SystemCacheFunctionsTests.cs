@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Functions;
 using Milochau.Core.Infrastructure.Features.Cache;
@@ -47,7 +46,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         public async Task Invoke_Should_ReturnLocalContains_When_CalledAsync()
         {
             // Given
-            var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/contains", new QueryString("?key=test"));
+            var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/contains", "?key=test");
 
             // When
             var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData);
@@ -84,7 +83,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         public async Task Invoke_Should_ReturnLocalContains_When_CalledWithEmptyKeysAsync()
         {
             // Given
-            var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/contains", new QueryString("?key="));
+            var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/contains", "?key=");
 
             // When
             var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData);
@@ -102,7 +101,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         public async Task Invoke_Should_CompactLocal_When_CalledAsync()
         {
             // Given
-            var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/compact", new QueryString("?percentage=0.2"));
+            var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/compact", "?percentage=0.2");
 
             // When
             var httpResponseData = await functions.CompactLocalAsync(httpRequestData);
@@ -136,7 +135,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         public async Task Invoke_Should_RemoveLocal_When_CalledAsync()
         {
             // Given
-            var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/remove", new QueryString("?key=test"));
+            var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/remove", "?key=test");
 
             // When
             var httpResponseData = await functions.RemoveLocalAsync(httpRequestData);
@@ -171,7 +170,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         public async Task Invoke_Should_RemoveLocal_When_CalledWithEmptyKeysAsync()
         {
             // Given
-            var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/remove", new QueryString("?key="));
+            var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/remove", "?key=");
 
             // When
             var httpResponseData = await functions.RemoveLocalAsync(httpRequestData);
