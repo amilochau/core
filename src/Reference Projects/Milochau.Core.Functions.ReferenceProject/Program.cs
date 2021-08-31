@@ -1,19 +1,17 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Milochau.Core.Functions.Infrastructure.Hosting;
-using Milochau.Core.Infrastructure.Hosting;
 
 namespace Milochau.Core.Functions.ReferenceProject
 {
     public static class Program
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
-            CreateHostBuilder().Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder() =>
-            new HostBuilder()
-                .ConfigureCoreConfiguration()
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
                 .ConfigureCoreHostBuilder<Startup>();
     }
 }
