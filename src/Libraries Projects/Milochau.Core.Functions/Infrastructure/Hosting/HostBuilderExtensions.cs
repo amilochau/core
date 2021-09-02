@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Milochau.Core.Functions;
 using Milochau.Core.Infrastructure.Hosting;
 
-namespace Milochau.Core.Console.Infrastructure.Hosting
+namespace Milochau.Core.Functions.Infrastructure.Hosting
 {
     /// <summary>Extensions for <see cref="IHostBuilder"/></summary>
     public static class HostBuilderExtensions

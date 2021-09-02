@@ -10,7 +10,10 @@ namespace Milochau.Core.Functions
     /// <summary>Base startup class for Azure Function applications</summary>
     public abstract class CoreFunctionsStartup : CoreStartup
     {
-        internal static TStartup Create<TStartup>(IConfiguration configuration)
+        /// <summary>Create a new startup object</summary>
+        /// <typeparam name="TStartup">Startup class</typeparam>
+        /// <param name="configuration">Configuration</param>
+        public static TStartup Create<TStartup>(IConfiguration configuration)
             where TStartup : CoreFunctionsStartup, new()
         {
             var startup = new TStartup();

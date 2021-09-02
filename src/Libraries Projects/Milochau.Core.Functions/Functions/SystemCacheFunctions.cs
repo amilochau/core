@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.Functions.Worker;
+﻿using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Cache;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions

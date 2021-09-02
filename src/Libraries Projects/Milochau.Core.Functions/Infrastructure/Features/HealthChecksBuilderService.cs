@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.Abstractions;
 using Milochau.Core.HealthChecks;
 
 namespace Milochau.Core.Functions.Infrastructure.Features
 {
-    /// <summary>Extensions for <see cref="IApplicationBuilder"/> and <see cref="IServiceCollection"/>, specific to HealthChecks</summary>
+    /// <summary>Extensions for <see cref="IServiceCollection"/>, specific to HealthChecks</summary>
     internal static class HealthChecksBuilderService
     {
         /// <summary>Adds the features activated from configuration</summary>
