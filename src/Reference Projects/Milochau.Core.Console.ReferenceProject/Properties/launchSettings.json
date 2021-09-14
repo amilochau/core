@@ -4,10 +4,10 @@
     "Console - Development": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ORGANIZATION": "org",
-        "ASPNETCORE_APPLICATION": "core-test-console",
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOST": "local"
+        "DOTNET_ORGANIZATION": "org",
+        "DOTNET_APPLICATION": "core-test-console",
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOTNET_HOST": "local"
       }
     }
   }
