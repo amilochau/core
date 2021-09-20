@@ -142,8 +142,6 @@ In order to add system endpoints (see the details features to learn more), you m
 
 - `Milochau.Core.Console.ReferenceProject` is an application written with .NET 5.0 framework
 
-| ⚠ `Milochau.Core.Console` is still in development. Even if the first stable version is release, it may contain bugs. Please report them as issues :)
-
 Console applications must install the `Milochau.Core.Console` package:
 
 ```ps
