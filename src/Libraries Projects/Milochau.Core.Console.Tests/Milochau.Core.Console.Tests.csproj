@@ -16,4 +16,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Milochau.Core.Console\Milochau.Core.Console.csproj" />
+  </ItemGroup>
+
 </Project>
