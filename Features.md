@@ -57,6 +57,7 @@ These configuration keys must be set up:
 | `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION`, `AZURE_FUNCTIONS_APPLICATION` | Defines the application name, used to retrieve proper configuration from Azure App Configuration | `Monitoring:Health`, `Sofia` |
 | `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT`, `AZURE_FUNCTIONS_ENVIRONMENT` | Defines the environment name, used to retrieve proper configuration from Azure App Configuration | `Development`, `Production` | `Development` |
 | `DOTNET_HOST`, `ASPNETCORE_HOST`, `AZURE_FUNCTIONS_HOST` | Defines the host name, used to retrieve proper configuration from Azure App Configuration | `dev2`, `prd` | `local` |
+| `DOTNET_REGION`, `ASPNETCORE_REGION`, `AZURE_FUNCTIONS_REGION` | Defines the Azure region name | `ew1`, `en1` |
 
 ## Configuration
 
