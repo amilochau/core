@@ -20,12 +20,14 @@ namespace Milochau.Core.Infrastructure.Hosting
         /// <param name="applicationName">Application name</param>
         /// <param name="environmentName">Environment name</param>
         /// <param name="hostName">Host name</param>
-        public ApplicationHostEnvironment(string organizationName, string applicationName, string environmentName, string hostName)
+        /// <param name="regionName">Host name</param>
+        public ApplicationHostEnvironment(string organizationName, string applicationName, string environmentName, string hostName, string regionName)
         {
             OrganizationName = organizationName;
             EnvironmentName = environmentName;
             ApplicationName = applicationName;
             HostName = hostName;
+            RegionName = regionName;
         }
 
         /// <summary>The name of the organization</summary>
@@ -39,6 +41,9 @@ namespace Milochau.Core.Infrastructure.Hosting
 
         /// <summary>The name of the host</summary>
         public string HostName { get; }
+
+        /// <summary>The name of the region</summary>
+        public string RegionName { get; }
 
         /// <summary>Check if the current environment is Production</summary>
         public bool IsProduction()

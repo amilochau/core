@@ -19,8 +19,9 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
 
         private const string organizationName = "organizationName";
         private const string applicationName = "applicationName";
-        private const string hostName = "hostName";
         private const string environmentName = "environmentName";
+        private const string hostName = "hostName";
+        private const string regionName = "regionName";
 
         [TestInitialize]
         public void Initialize()
@@ -57,8 +58,9 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
             var httpContext = BaseMiddlewareTests.CreateHttpContext(Keys.GetMethod, "/api/system/application/environment");
             applicationHostEnvironment.SetupGet(x => x.OrganizationName).Returns(organizationName);
             applicationHostEnvironment.SetupGet(x => x.ApplicationName).Returns(applicationName);
-            applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
             applicationHostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);
+            applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
+            applicationHostEnvironment.SetupGet(x => x.RegionName).Returns(regionName);
 
             // When
             await middleware.InvokeAsync(httpContext);
@@ -68,8 +70,9 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
             var response = BaseMiddlewareTests.GetResponseFromHttpContext<EnvironmentResponse>(httpContext);
             Assert.IsNotNull(response);
             Assert.AreEqual(applicationName, response.ApplicationName);
-            Assert.AreEqual(hostName, response.HostName);
             Assert.AreEqual(environmentName, response.EnvironmentName);
+            Assert.AreEqual(hostName, response.HostName);
+            Assert.AreEqual(regionName, response.RegionName);
         }
     }
 }

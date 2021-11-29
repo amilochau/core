@@ -55,10 +55,10 @@ namespace Milochau.Core.Tests.Infrastructure.Features.ConfigurationProviders
             // Arrange
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Value", "Luca" }
+                { "Value", "emails" }
             });
             configuration = configurationBuilder.Build();
-            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("Luca");
+            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("emails");
 
             var context = new FeatureFilterEvaluationContext
             {
@@ -78,10 +78,10 @@ namespace Milochau.Core.Tests.Infrastructure.Features.ConfigurationProviders
             // Arrange
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Value", "LUCA" }
+                { "Value", "EMAILS" }
             });
             configuration = configurationBuilder.Build();
-            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("Luca");
+            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("EMAILS");
 
             var context = new FeatureFilterEvaluationContext
             {
@@ -101,10 +101,10 @@ namespace Milochau.Core.Tests.Infrastructure.Features.ConfigurationProviders
             // Arrange
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Value", "Luca ; Sofia" }
+                { "Value", "emails; content" }
             });
             configuration = configurationBuilder.Build();
-            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("Luca");
+            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("emails");
 
             var context = new FeatureFilterEvaluationContext
             {
@@ -124,10 +124,10 @@ namespace Milochau.Core.Tests.Infrastructure.Features.ConfigurationProviders
             // Arrange
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Value", "Luca ; Sofia" }
+                { "Value", "emails ; content" }
             });
             configuration = configurationBuilder.Build();
-            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("MonEspace");
+            hostingEnvironment.SetupGet(x => x.ApplicationName).Returns("cv");
 
             var context = new FeatureFilterEvaluationContext
             {

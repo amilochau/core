@@ -17,8 +17,9 @@ namespace Milochau.Core.Functions.Tests.Functions
 
         private const string organizationName = "organizationName";
         private const string applicationName = "applicationName";
-        private const string hostName = "hostName";
         private const string environmentName = "environmentName";
+        private const string hostName = "hostName";
+        private const string regionName = "regionName";
 
         [TestInitialize]
         public void Initialize()
@@ -35,8 +36,9 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("get", "/api/system/application/environment");
             applicationHostEnvironment.SetupGet(x => x.OrganizationName).Returns(organizationName);
             applicationHostEnvironment.SetupGet(x => x.ApplicationName).Returns(applicationName);
-            applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
             applicationHostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);
+            applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
+            applicationHostEnvironment.SetupGet(x => x.RegionName).Returns(regionName);
 
             // When
             var httpResponseData = await functions.GetEnvironmentAsync(httpRequestData);
@@ -47,8 +49,9 @@ namespace Milochau.Core.Functions.Tests.Functions
             Assert.IsNotNull(response);
             Assert.AreEqual(organizationName, response.OrganizationName);
             Assert.AreEqual(applicationName, response.ApplicationName);
-            Assert.AreEqual(hostName, response.HostName);
             Assert.AreEqual(environmentName, response.EnvironmentName);
+            Assert.AreEqual(hostName, response.HostName);
+            Assert.AreEqual(regionName, response.RegionName);
         }
     }
 }

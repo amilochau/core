@@ -47,6 +47,9 @@ namespace Milochau.Core.Abstractions
 
         /// <summary>Host name</summary>
         public string HostName { get; set; }
+
+        /// <summary>Region name</summary>
+        public string RegionName { get; set; }
     }
 
     /// <summary>Azure Key Vault options</summary>
