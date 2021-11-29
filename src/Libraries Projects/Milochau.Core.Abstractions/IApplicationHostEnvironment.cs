@@ -15,6 +15,9 @@
         /// <summary>Host name</summary>
         string HostName { get; }
 
+        /// <summary>Region name</summary>
+        string RegionName { get; }
+
         /// <summary>Check if the current environment is Production</summary>
         bool IsProduction();
     }

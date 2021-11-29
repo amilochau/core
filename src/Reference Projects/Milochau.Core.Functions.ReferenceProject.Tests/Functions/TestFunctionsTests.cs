@@ -22,8 +22,9 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
 
         private const string organizationName = "organizationName";
         private const string applicationName = "applicationName";
-        private const string hostName = "hostName";
         private const string environmentName = "environmentName";
+        private const string hostName = "hostName";
+        private const string regionName = "regionName";
 
         [TestInitialize]
         public void Initialize()
@@ -44,8 +45,9 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             var httpRequestData = CreateHttpRequestData("get", "/CoreHostOptions");
             optionsValue.Application.OrganizationName = organizationName;
             optionsValue.Application.ApplicationName = applicationName;
-            optionsValue.Application.HostName = hostName;
             optionsValue.Application.EnvironmentName = environmentName;
+            optionsValue.Application.HostName = hostName;
+            optionsValue.Application.RegionName = regionName;
 
             // When
             var result = await functions.GetCoreHostOptionsAsync(httpRequestData);
@@ -53,7 +55,7 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             // Then
             Assert.IsNotNull(result);
             var response = GetResponseAsText(result, HttpStatusCode.OK);
-            Assert.AreEqual("{\"application\":{\"organizationName\":\"organizationName\",\"applicationName\":\"applicationName\",\"environmentName\":\"environmentName\",\"hostName\":\"hostName\"},\"appConfig\":{\"endpoint\":null,\"namespaceSeparator\":\"/\",\"sentinelKey\":\"Sentinel:Key\",\"refreshExpirationInMinutes\":120},\"keyVault\":{\"vault\":null},\"credential\":{\"interactiveBrowserTenantId\":null,\"sharedTokenCacheTenantId\":null,\"visualStudioTenantId\":null,\"visualStudioCodeTenantId\":null,\"sharedTokenCacheUsername\":null,\"interactiveBrowserCredentialClientId\":null,\"managedIdentityClientId\":null,\"excludeEnvironmentCredential\":false,\"excludeManagedIdentityCredential\":false,\"excludeSharedTokenCacheCredential\":true,\"excludeInteractiveBrowserCredential\":true,\"excludeAzureCliCredential\":false,\"excludeVisualStudioCredential\":false,\"excludeVisualStudioCodeCredential\":false,\"excludeAzurePowerShellCredential\":false,\"authorityHost\":\"https://login.microsoftonline.com/\",\"transport\":{},\"diagnostics\":{\"isLoggingEnabled\":true,\"isDistributedTracingEnabled\":true,\"isTelemetryEnabled\":true,\"isLoggingContentEnabled\":false,\"loggedContentSizeLimit\":4096,\"loggedHeaderNames\":[\"x-ms-request-id\",\"x-ms-client-request-id\",\"x-ms-return-client-request-id\",\"traceparent\",\"MS-CV\",\"Accept\",\"Cache-Control\",\"Connection\",\"Content-Length\",\"Content-Type\",\"Date\",\"ETag\",\"Expires\",\"If-Match\",\"If-Modified-Since\",\"If-None-Match\",\"If-Unmodified-Since\",\"Last-Modified\",\"Pragma\",\"Request-Id\",\"Retry-After\",\"Server\",\"Transfer-Encoding\",\"User-Agent\"],\"loggedQueryParameters\":[],\"applicationId\":null},\"retry\":{\"maxRetries\":3,\"delay\":\"00:00:00.8000000\",\"maxDelay\":\"00:01:00\",\"mode\":\"Exponential\",\"networkTimeout\":\"00:01:40\"}}}", response);
+            Assert.AreEqual("{\"application\":{\"organizationName\":\"organizationName\",\"applicationName\":\"applicationName\",\"environmentName\":\"environmentName\",\"hostName\":\"hostName\",\"regionName\":\"regionName\"},\"appConfig\":{\"endpoint\":null,\"namespaceSeparator\":\"/\",\"sentinelKey\":\"Sentinel:Key\",\"refreshExpirationInMinutes\":120},\"keyVault\":{\"vault\":null},\"credential\":{\"interactiveBrowserTenantId\":null,\"sharedTokenCacheTenantId\":null,\"visualStudioTenantId\":null,\"visualStudioCodeTenantId\":null,\"sharedTokenCacheUsername\":null,\"interactiveBrowserCredentialClientId\":null,\"managedIdentityClientId\":null,\"excludeEnvironmentCredential\":false,\"excludeManagedIdentityCredential\":false,\"excludeSharedTokenCacheCredential\":true,\"excludeInteractiveBrowserCredential\":true,\"excludeAzureCliCredential\":false,\"excludeVisualStudioCredential\":false,\"excludeVisualStudioCodeCredential\":false,\"excludeAzurePowerShellCredential\":false,\"authorityHost\":\"https://login.microsoftonline.com/\",\"transport\":{},\"diagnostics\":{\"isLoggingEnabled\":true,\"isDistributedTracingEnabled\":true,\"isTelemetryEnabled\":true,\"isLoggingContentEnabled\":false,\"loggedContentSizeLimit\":4096,\"loggedHeaderNames\":[\"x-ms-request-id\",\"x-ms-client-request-id\",\"x-ms-return-client-request-id\",\"traceparent\",\"MS-CV\",\"Accept\",\"Cache-Control\",\"Connection\",\"Content-Length\",\"Content-Type\",\"Date\",\"ETag\",\"Expires\",\"If-Match\",\"If-Modified-Since\",\"If-None-Match\",\"If-Unmodified-Since\",\"Last-Modified\",\"Pragma\",\"Request-Id\",\"Retry-After\",\"Server\",\"Transfer-Encoding\",\"User-Agent\"],\"loggedQueryParameters\":[],\"applicationId\":null},\"retry\":{\"maxRetries\":3,\"delay\":\"00:00:00.8000000\",\"maxDelay\":\"00:01:00\",\"mode\":\"Exponential\",\"networkTimeout\":\"00:01:40\"}}}", response);
         }
 
         [TestMethod]
@@ -80,8 +82,9 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             var httpRequestData = CreateHttpRequestData("get", "/ApplicationHostEnvironment");
             applicationHostEnvironment.SetupGet(x => x.OrganizationName).Returns(organizationName);
             applicationHostEnvironment.SetupGet(x => x.ApplicationName).Returns(applicationName);
-            applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
             applicationHostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);
+            applicationHostEnvironment.SetupGet(x => x.HostName).Returns(hostName);
+            applicationHostEnvironment.SetupGet(x => x.RegionName).Returns(regionName);
 
             // When
             var result = await functions.GetApplicationHostEnvironmentAsync(httpRequestData);
@@ -92,8 +95,9 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             Assert.IsNotNull(response);
             Assert.AreEqual(organizationName, response.OrganizationName);
             Assert.AreEqual(applicationName, response.ApplicationName);
-            Assert.AreEqual(hostName, response.HostName);
             Assert.AreEqual(environmentName, response.EnvironmentName);
+            Assert.AreEqual(hostName, response.HostName);
+            Assert.AreEqual(regionName, response.RegionName);
         }
     }
 }

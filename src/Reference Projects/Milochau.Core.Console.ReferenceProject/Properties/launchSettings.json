@@ -7,7 +7,8 @@
         "DOTNET_ORGANIZATION": "org",
         "DOTNET_APPLICATION": "core-test-console",
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_HOST": "local"
+        "DOTNET_HOST": "local",
+        "DOTNET_REGION": "ew1"
       }
     }
   }

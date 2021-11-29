@@ -9,7 +9,8 @@
         "ASPNETCORE_ORGANIZATION": "org",
         "ASPNETCORE_APPLICATION": "core-test-aspnetcore",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOST": "local"
+        "ASPNETCORE_HOST": "local",
+        "ASPNETCORE_REGION": "ew1"
       }
     }
   }

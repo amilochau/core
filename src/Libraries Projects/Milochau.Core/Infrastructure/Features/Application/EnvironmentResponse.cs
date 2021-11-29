@@ -19,6 +19,9 @@ namespace Milochau.Core.Infrastructure.Features.Application
         /// <summary>Host name</summary>
         public string HostName { get; set; }
 
+        /// <summary>Region name</summary>
+        public string RegionName { get; set; }
+
 
         /// <summary>Machine name</summary>
         public string MachineName { get; set; } = Environment.MachineName;
@@ -59,8 +62,9 @@ namespace Milochau.Core.Infrastructure.Features.Application
         {
             OrganizationName = applicationHostEnvironment.OrganizationName;
             ApplicationName = applicationHostEnvironment.ApplicationName;
-            HostName = applicationHostEnvironment.HostName;
             EnvironmentName = applicationHostEnvironment.EnvironmentName;
+            HostName = applicationHostEnvironment.HostName;
+            RegionName = applicationHostEnvironment.RegionName;
         }
     }
 }

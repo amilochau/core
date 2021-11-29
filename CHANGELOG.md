@@ -4,6 +4,6 @@
 [//]: # (Bug fixes)
 [//]: # (Minor changes)
 
-## Minor changes
+## New features
 
-- Update dependencies
+- Expose the Azure region name in core host options

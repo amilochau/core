@@ -20,6 +20,7 @@ namespace Milochau.Core.Infrastructure.Hosting
         private const string applicationNameKey = "APPLICATION";
         private const string environmentNameKey = "ENVIRONMENT";
         private const string hostNameKey = "HOST";
+        private const string regionNameKey = "REGION";
         private const string keyVaultVaultKey = "KEYVAULT_VAULT";
         private const string appConfigEndpointKey = "APPCONFIG_ENDPOINT";
 
@@ -50,6 +51,8 @@ namespace Milochau.Core.Infrastructure.Hosting
             hostOptions.Application.HostName = hostOptions.Application.HostName
                 ?? GetValueFromConfiguration(configuration, hostNameKey)
                 ?? ApplicationHostEnvironment.LocalHostName;
+            hostOptions.Application.RegionName = hostOptions.Application.RegionName
+                ?? GetValueFromConfiguration(configuration, regionNameKey);
 
             hostOptions.KeyVault.Vault = hostOptions.KeyVault.Vault
                 ?? GetValueFromConfiguration(configuration, keyVaultVaultKey);

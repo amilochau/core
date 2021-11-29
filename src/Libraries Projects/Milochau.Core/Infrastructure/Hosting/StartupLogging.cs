@@ -26,6 +26,7 @@ namespace Milochau.Core.Infrastructure.Hosting
             stringBuilder.AppendLine($"   Application: {hostEnvironment.ApplicationName}");
             stringBuilder.AppendLine($"   Environment: {hostEnvironment.EnvironmentName}");
             stringBuilder.AppendLine($"   Host: {hostEnvironment.HostName}");
+            stringBuilder.AppendLine($"   Region: {hostEnvironment.RegionName}");
 
             var machineName = Environment.MachineName;
             var cpus = Environment.ProcessorCount;

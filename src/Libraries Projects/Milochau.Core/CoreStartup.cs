@@ -51,7 +51,11 @@ namespace Milochau.Core
             services.AddOptions<CoreHostOptions>().Configure<IConfiguration>(CoreOptionsFactory.SetupCoreHostOptions);
             services.AddSingleton<IApplicationHostEnvironment>(sp =>
             {
-                return new ApplicationHostEnvironment(hostOptions.Application.OrganizationName, hostOptions.Application.ApplicationName, hostOptions.Application.EnvironmentName, hostOptions.Application.HostName);
+                return new ApplicationHostEnvironment(hostOptions.Application.OrganizationName,
+                    hostOptions.Application.ApplicationName,
+                    hostOptions.Application.EnvironmentName,
+                    hostOptions.Application.HostName,
+                    hostOptions.Application.RegionName);
             });
         }
 
