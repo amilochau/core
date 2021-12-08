@@ -65,6 +65,7 @@ namespace Milochau.Core
         {
             return services.AddFeatureManagement()
                 .AddFeatureFilter<PercentageFilter>()
+                .AddFeatureFilter<TimeWindowFilter>()
                 .AddFeatureFilter<ApplicationFilter>()
                 .AddFeatureFilter<EnvironmentFilter>()
                 .AddFeatureFilter<HostFilter>();
