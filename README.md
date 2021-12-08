@@ -7,16 +7,9 @@
 
 `core` is a collection of libraries used as an enterprise framework, to improve applications and services with a large set of commun features.
 
-## Getting Started
+## What's new
 
-1. Installation process
-From your local computer, clone the repository.
-
-- dotnet restore
-- dotnet run
-
-2. Integration process
-Please follow the development good practices, then follow the integration process.
+You can find the new releases on the [GitHub releases page](https://github.com/amilochau/core/releases).
 
 ---
 
