@@ -23,6 +23,7 @@ The table below help you see if a feature is included in a dedicated package. No
 | **Health checks**
 | Registers health checks                                       | X | X | |
 | Adds default `Endpoint` check                                 | X | X | |
+| Adds Application Host Environment `Endpoint` check            | X | X | |
 | Adds Azure Key Vault check                                    | X | X | |
 | Provides all health checks endpoints                          | X | X | |
 | Provides light health checks endpoints                        | X | X | |
