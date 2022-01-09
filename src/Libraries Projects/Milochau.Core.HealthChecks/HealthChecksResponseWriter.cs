@@ -22,7 +22,7 @@ namespace Milochau.Core.HealthChecks
             {
                 AllowTrailingCommas = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                IgnoreNullValues = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 Converters =
                 {
                   new JsonStringEnumConverter(),

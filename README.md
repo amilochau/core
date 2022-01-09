@@ -5,7 +5,7 @@
 
 ## Introduction
 
-`core` is a collection of libraries used as an enterprise framework, to improve applications and services with a large set of commun features.
+`core` is a collection of libraries used as an enterprise framework, to improve applications and services with a large set of common features.
 
 ## What's new
 
@@ -15,15 +15,15 @@ You can find the new releases on the [GitHub releases page](https://github.com/a
 
 ## Framework installation
 
-`Milochau.Core.*` libraries can be used in any ASP.NET Core 5.0 / Azure Functions (.NET 5.0 isolated process) / Console applications (.NET 5.0) project. To use it, you must install the library specific to your technology as a NuGet package, then add framework references in main project files.
+`Milochau.Core.*` libraries can be used in any ASP.NET Core 6.0 / Azure Functions (.NET 6.0 isolated process) / Console applications (.NET 6.0) project. To use it, you must install the library specific to your technology as a NuGet package, then add framework references in main project files.
 
 ---
 
-### Up-to-date web applications (ASP.NET Core 5.0)
+### Up-to-date web applications (ASP.NET Core 6.0)
 
 *Up-to-date web applications* are new applications that use the most recent versions of Microsoft frameworks. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
 
-- `Milochau.Core.AspnetCore.ReferenceProject` is an application written with ASP.NET Core 5.0 framework
+- `Milochau.Core.AspNetCore.ReferenceProject` is an application written with ASP.NET Core 6.0 framework
 
 Up-to-date web applications must install the `Milochau.Core.AspNetCore` package:
 
@@ -78,11 +78,11 @@ public class Startup : CoreApplicationStartup
 
 ---
 
-### Functions applications (Azure Functions 3 / .NET 5.0 isolated process)
+### Functions applications (Azure Functions 4 / .NET 6.0 isolated process)
 
 *Functions applications* are applications that use the most recent versions of Microsoft frameworks for Azure Functions applications. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
 
-- `Milochau.Core.Functions.ReferenceProject` is an application written with Azure Functions 3 / .NET 5.0 isolated process framework
+- `Milochau.Core.Functions.ReferenceProject` is an application written with Azure Functions 4 / .NET 6.0 isolated process framework
 
 Functions applications must install the `Milochau.Core.Functions` package:
 
@@ -129,11 +129,11 @@ In order to add system endpoints (see the details features to learn more), you m
 
 ---
 
-### Console applications (.NET 5.0)
+### Console applications (.NET 6.0)
 
 *Console applications* are small scripting applications that use the most recent versions of Microsoft frameworks for .NET applications. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
 
-- `Milochau.Core.Console.ReferenceProject` is an application written with .NET 5.0 framework
+- `Milochau.Core.Console.ReferenceProject` is an application written with .NET 6.0 framework
 
 Console applications must install the `Milochau.Core.Console` package:
 
