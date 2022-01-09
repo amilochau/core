@@ -11,6 +11,8 @@
 
 You can find the new releases on the [GitHub releases page](https://github.com/amilochau/core/releases).
 
+The current version of `Milochau.Core.*` packages only work with .NET 6.0. If you want to use these packages with .NET 5.0 or .NET Framework 4.7.2+, you should use [a version before v11, such as the v10.0.1](https://github.com/amilochau/core/tree/v10.0.1).
+
 ---
 
 ## Framework installation
