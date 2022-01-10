@@ -39,7 +39,7 @@ namespace Milochau.Core.HealthChecks
             if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
             {
                 var credential = new DefaultAzureCredential(hostOptions.Credential);
-                healthChecksBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential, null, azureKeyVaultName);
+                healthChecksBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential, options => { }, azureKeyVaultName);
             }
 
             return healthChecksBuilder;

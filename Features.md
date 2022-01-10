@@ -13,7 +13,7 @@ The table below help you see if a feature is included in a dedicated package. No
 | **Configuration**
 | Connects to Azure App Configuration                           | X | X | X | Connection can be done with connection string or Managed Identity |
 | Connects to Azure Key Vault                                   | X | X | X | Connection can be done with client secret or Managed Identity |
-| Connects to `apssettings.{host}.json`                         | X | X | X |
+| Connects to `appsettings.{host}.json`                         | X | X | X |
 | Connects to `secrets.json`                                    | X | | |
 | Refreshes configuration after X minutes                       | X | X | X |
 | Uses Feature flags & Feature filters                          | X | X | X |
@@ -23,7 +23,7 @@ The table below help you see if a feature is included in a dedicated package. No
 | **Health checks**
 | Registers health checks                                       | X | X | |
 | Adds default `Endpoint` check                                 | X | X | |
-| Adds Application Host Environment `Endpoint` check            | X | X | |
+| Adds Application Host Environment check                       | X | X | |
 | Adds Azure Key Vault check                                    | X | X | |
 | Provides all health checks endpoints                          | X | X | |
 | Provides light health checks endpoints                        | X | X | |

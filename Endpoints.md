@@ -15,11 +15,11 @@ Endpoints proposed by `Milochau.Core` are groupped by categories.
 | Configuration | `/api/system/configuration` | That exposes information on the configuration providers |
 | Health checks | `/api/health` | That exposes information on the application health |
 
-Note that these default endpoints path prefixes can be configured for ASP.NET Core 5.0 applications, not for Azure Functions. In Azure Functions, these endpoints do not include the `/api` prefix, while this prefix is included by default in the Microsoft template.
+Note that these default endpoints path prefixes can be configured for ASP.NET Core 6.0 applications, not for Azure Functions. In Azure Functions, these endpoints do not include the `/api` prefix, while this prefix is included by default in the Microsoft template.
 
 ---
 
-## Web applications endpoints (ASP.NET Core 5.0)
+## Web applications endpoints (ASP.NET Core 6.0)
 
 Here are all the endpoints exposed for Web applications.
 
@@ -28,7 +28,7 @@ Here are all the endpoints exposed for Web applications.
 | Application | Assembly | `GET /api/system/application/assembly` | That exposes information on the entry assembly of the application |
 | Application | Environment | `GET /api/system/application/environment` | That exposes information on the environment of the application |
 | Cache | LocalCount | `GET /api/system/cache/local/count` | That returns the count of items in the application local cache |
-| Cache | LocalContains | `GET /api/system/cache/local/contains?key=xxx` | That returns the existance of a list of items in the application local cache |
+| Cache | LocalContains | `GET /api/system/cache/local/contains?key=xxx` | That returns the existence of a list of items in the application local cache |
 | Cache | LocalCompact | `POST /api/system/cache/local/compact?percentage=0.xx` | That compacts the application local cache by the defined percentage |
 | Cache | LocalRemove | `POST /api/system/cache/local/remove?key=xxx` | That removes a list of items from the application local cache |
 | Configuration | Flags | `GET /api/system/configuration/flags` | That returns the state of all feature flags (typically stored in Azure App Configuration) |
@@ -38,7 +38,7 @@ Here are all the endpoints exposed for Web applications.
 
 ---
 
-## Functions endpoints (Azure Functions 3 / .NET 5.0 isolated process)
+## Functions endpoints (Azure Functions 4 / .NET 6.0 isolated process)
 
 Here are all the endpoints exposed for Functions applications.
 
@@ -47,7 +47,7 @@ Here are all the endpoints exposed for Functions applications.
 | Application | Assembly | `GET /api/system/application/assembly` | That exposes information on the entry assembly of the application |
 | Application | Environment | `GET /api/system/application/environment` | That exposes information on the environment of the application |
 | Cache | LocalCount | `GET /api/system/cache/local/count` | That returns the count of items in the application local cache |
-| Cache | LocalContains | `GET /api/system/cache/local/contains?key=xxx` | That returns the existance of a list of items in the application local cache |
+| Cache | LocalContains | `GET /api/system/cache/local/contains?key=xxx` | That returns the existence of a list of items in the application local cache |
 | Cache | LocalCompact | `POST /api/system/cache/local/compact?percentage=0.xx` | That compacts the application local cache by the defined percentage |
 | Cache | LocalRemove | `POST /api/system/cache/local/remove?key=xxx` | That removes a list of items from the application local cache |
 | Configuration | Flags | `GET /api/system/configuration/flags` | That returns the state of all feature flags (typically stored in Azure App Configuration) |
