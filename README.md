@@ -11,7 +11,7 @@
 
 You can find the new releases on the [GitHub releases page](https://github.com/amilochau/core/releases).
 
-The current version of `Milochau.Core.*` packages only work with .NET 6.0. If you want to use these packages with .NET 5.0 or .NET Framework 4.7.2+, you should use [a version before v11, such as the v10.0.1](https://github.com/amilochau/core/tree/v10.0.1).
+| The current version of `Milochau.Core.*` packages work well with .NET 6.0. If you want to use these packages with .NET 5.0, you should use [a version before v11, such as the v10.0.1](https://github.com/amilochau/core/tree/v10.0.1).
 
 ---
 
@@ -21,13 +21,13 @@ The current version of `Milochau.Core.*` packages only work with .NET 6.0. If yo
 
 ---
 
-### Up-to-date web applications (ASP.NET Core 6.0)
+### Web applications (ASP.NET Core 6.0)
 
-*Up-to-date web applications* are new applications that use the most recent versions of Microsoft frameworks. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
+*Web applications* are new applications that use the most recent versions of Microsoft frameworks. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
 
 - `Milochau.Core.AspNetCore.ReferenceProject` is an application written with ASP.NET Core 6.0 framework
 
-Up-to-date web applications must install the `Milochau.Core.AspNetCore` package:
+Web applications must install the `Milochau.Core.AspNetCore` package:
 
 ```ps
 Install-Package Milochau.Core.AspNetCore
