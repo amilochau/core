@@ -28,7 +28,7 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy libraries
-        uses: amilochau/github-actions/release/nuget@v1
+        uses: amilochau/github-actions/release/nuget@amilochau/use-more-scripts
         with:
           projectsToBuild: ${{ env.PROJECTS_BUILD }}
           projectsToPublish: ${{ env.PROJECTS_LIBRARIES }}
