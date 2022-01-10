@@ -21,13 +21,13 @@ You can find the new releases on the [GitHub releases page](https://github.com/a
 
 ---
 
-### Up-to-date web applications (ASP.NET Core 6.0)
+### Web applications (ASP.NET Core 6.0)
 
-*Up-to-date web applications* are new applications that use the most recent versions of Microsoft frameworks. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
+*Web applications* are new applications that use the most recent versions of Microsoft frameworks. One complete sample is proposed to help you interface these applications with Milochau.Core libraries:
 
 - `Milochau.Core.AspNetCore.ReferenceProject` is an application written with ASP.NET Core 6.0 framework
 
-Up-to-date web applications must install the `Milochau.Core.AspNetCore` package:
+Web applications must install the `Milochau.Core.AspNetCore` package:
 
 ```ps
 Install-Package Milochau.Core.AspNetCore
