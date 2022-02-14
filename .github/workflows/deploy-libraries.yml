@@ -15,7 +15,8 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  build:
+  deploy:
+    name: Deploy libraries
     runs-on: ubuntu-latest
     environment: PKG
     steps:
