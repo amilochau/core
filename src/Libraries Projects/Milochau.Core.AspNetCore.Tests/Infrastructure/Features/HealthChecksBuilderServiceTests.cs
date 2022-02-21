@@ -102,37 +102,6 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             Assert.AreEqual(applicationHostEnvironmentCheckName, secondRegistration.Name);
         }
 
-        [TestMethod("AddCoreHealthChecks - Key Vault defined from vault")]
-        public void AddCoreHealthChecks_When_KeyVaultIsDefinedFromVault()
-        {
-            // Given
-            var vault = "https://xxxx.vault.azure.net";
-            coreHostOptions.KeyVault.Vault = vault;
-
-            // When
-            HealthChecksBuilderService.AddCoreHealthChecks(services, coreHostOptions);
-
-            // Then
-            Assert.IsNotNull(services);
-            var serviceProvider = services.BuildServiceProvider();
-            Assert.IsNotNull(serviceProvider.GetService<HealthCheckService>());
-
-            var options = serviceProvider.GetService<IOptions<HealthCheckServiceOptions>>();
-
-            Assert.IsNotNull(options.Value);
-            Assert.IsNotNull(options.Value.Registrations);
-            Assert.AreEqual(3, options.Value.Registrations.Count);
-            var firstRegistration = options.Value.Registrations.ElementAt(0);
-            Assert.IsNotNull(firstRegistration);
-            Assert.AreEqual(endpointCheckName, firstRegistration.Name);
-            var secondRegistration = options.Value.Registrations.ElementAt(1);
-            Assert.IsNotNull(secondRegistration);
-            Assert.AreEqual(applicationHostEnvironmentCheckName, secondRegistration.Name);
-            var thirdRegistration = options.Value.Registrations.ElementAt(2);
-            Assert.IsNotNull(thirdRegistration);
-            Assert.AreEqual(keyVaultServiceName, thirdRegistration.Name);
-        }
-
         [TestMethod("MapCoreHealthChecks - Default health checks")]
         public async Task MapCoreHealthChecks_When_DefaultHealthChecksEndpointCalledAsync()
         {

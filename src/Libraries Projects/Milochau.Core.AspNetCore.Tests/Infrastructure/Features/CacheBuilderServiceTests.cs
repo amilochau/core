@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Milochau.Core.Abstractions.Models;
 using Milochau.Core.AspNetCore.Tests.TestHelpers;
-using Milochau.Core.Infrastructure.Features.Cache;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;

@@ -1,8 +1,6 @@
-﻿using Azure.Identity;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Milochau.Core.Abstractions;
-using System;
 
 namespace Milochau.Core.HealthChecks
 {
@@ -34,13 +32,6 @@ namespace Milochau.Core.HealthChecks
                     ? HealthCheckResult.Degraded("Application Host Environment is partially set. You should add app settings for Organization, Application, Environment, Host and Region.")
                     : HealthCheckResult.Healthy();
             }, new[] { LightTag });
-
-            // Add Azure Key Vault health check
-            if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
-            {
-                var credential = new DefaultAzureCredential(hostOptions.Credential);
-                healthChecksBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential, options => { }, azureKeyVaultName);
-            }
 
             return healthChecksBuilder;
         }

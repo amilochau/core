@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.FeatureManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Milochau.Core.Abstractions.Models;
 using Milochau.Core.Functions.Functions;
-using Milochau.Core.Infrastructure.Features.Configuration;
-using Moq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,7 +12,6 @@ namespace Milochau.Core.Functions.Tests.Functions
     [TestClass]
     public class SystemConfigurationFunctionsTests : BaseFunctionsTests
     {
-        private Mock<IFeatureManager> featureManager;
         private IConfiguration configuration;
 
         private SystemConfigurationFunctions functions;
@@ -24,33 +21,11 @@ namespace Milochau.Core.Functions.Tests.Functions
         [TestInitialize]
         public void Initialize()
         {
-            featureManager = new Mock<IFeatureManager>();
-
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>());
             configuration = configurationBuilder.Build();
 
-            functions = new SystemConfigurationFunctions(featureManager.Object, configuration);
-        }
-
-        [TestMethod("Configuration - Flags")]
-        public async Task Flags_Should_ReturnFlags_When_CalledAsync()
-        {
-            // Given
-            var httpRequestData = CreateHttpRequestData("get", "/api/system/configuration/flags");
-            featureManager.Setup(x => x.GetFeatureNamesAsync()).Returns(GetTestFeaturesAsync());
-            featureManager.Setup(x => x.IsEnabledAsync(featureName)).ReturnsAsync(true);
-
-            // When
-            var httpResponseData = await functions.GetFlagsAsync(httpRequestData);
-
-            // Then
-            Assert.IsNotNull(httpResponseData);
-            var response = GetResponseAsJson<FlagsResponse>(httpResponseData, HttpStatusCode.OK);
-            Assert.IsNotNull(response);
-            Assert.AreEqual(1, response.Features.Count);
-            Assert.IsNotNull(response.Features.First());
-            Assert.IsTrue(response.Features.First().Enabled);
+            functions = new SystemConfigurationFunctions(configuration);
         }
 
         [TestMethod("Configuration - Providers")]

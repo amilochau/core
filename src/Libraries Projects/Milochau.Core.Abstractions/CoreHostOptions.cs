@@ -23,9 +23,6 @@ namespace Milochau.Core.Abstractions
         /// <summary>Application options</summary>
         public virtual ApplicationOptions Application { get; set; } = new ApplicationOptions();
 
-        /// <summary>Azure App configuration options</summary>
-        public virtual AppConfigurationOptions AppConfig { get; set; } = new AppConfigurationOptions();
-
         /// <summary>Azure Key Vault options</summary>
         public virtual KeyVaultOptions KeyVault { get; set; } = new KeyVaultOptions();
 
@@ -57,23 +54,5 @@ namespace Milochau.Core.Abstractions
     {
         /// <summary>Vault URI</summary>
         public string Vault { get; set; }
-    }
-
-    /// <summary>Azure App configuration options</summary>
-    public class AppConfigurationOptions
-    {
-        /// <summary>App Configuration Endpoint</summary>
-        public string Endpoint { get; set; }
-
-        /// <summary>Namespace separator; default is <see cref="CoreHostOptions.DefaultAppConfigNamespaceSeparator"/></summary>
-        public string NamespaceSeparator { get; set; } = CoreHostOptions.DefaultAppConfigNamespaceSeparator;
-
-        /// <summary>Sentinel key; default is <see cref="CoreHostOptions.DefaultSentinelKey"/></summary>
-        /// <remarks>Azure App Configuration will prefix this <see cref="SentinelKey"/> with the <see cref="CoreHostOptions.DefaultAppConfigKey"/>; by example: `Shared/Sentinel:Key`</remarks>
-        public string SentinelKey { get; set; } = CoreHostOptions.DefaultSentinelKey;
-
-        /// <summary>Refresh expiration (minutes); default is <see cref="CoreHostOptions.DefaultAppConfigRefreshExpirationInMinutes"/></summary>
-        /// <remarks>This refresh expiration duration is used for Azure App Configuration settings and feature flags</remarks>
-        public int RefreshExpirationInMinutes { get; set; } = CoreHostOptions.DefaultAppConfigRefreshExpirationInMinutes;
     }
 }

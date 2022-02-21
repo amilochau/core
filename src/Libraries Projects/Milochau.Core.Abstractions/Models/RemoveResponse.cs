@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Milochau.Core.Infrastructure.Features.Cache
+namespace Milochau.Core.Abstractions.Models
 {
     /// <summary>Response for cache remove endpoint</summary>
     public class RemoveResponse

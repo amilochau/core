@@ -1,4 +1,4 @@
-﻿namespace Milochau.Core.Infrastructure.Features.Cache
+﻿namespace Milochau.Core.Abstractions.Models
 {
     /// <summary>Response for cache count endpoint</summary>
     public class CountResponse

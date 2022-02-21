@@ -22,7 +22,6 @@ namespace Milochau.Core.Infrastructure.Hosting
         private const string hostNameKey = "HOST";
         private const string regionNameKey = "REGION";
         private const string keyVaultVaultKey = "KEYVAULT_VAULT";
-        private const string appConfigEndpointKey = "APPCONFIG_ENDPOINT";
 
         /// <summary>Gets a new <see cref="CoreHostOptions"/> and setup fallback values</summary>
         /// <param name="configuration">Configuration</param>
@@ -56,9 +55,6 @@ namespace Milochau.Core.Infrastructure.Hosting
 
             hostOptions.KeyVault.Vault = hostOptions.KeyVault.Vault
                 ?? GetValueFromConfiguration(configuration, keyVaultVaultKey);
-
-            hostOptions.AppConfig.Endpoint = hostOptions.AppConfig.Endpoint
-                ?? GetValueFromConfiguration(configuration, appConfigEndpointKey);
         }
 
         /// <summary>Gets current environment name from environment variables</summary>

@@ -20,7 +20,6 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
 
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "ASPNETCORE_APPCONFIG_ENDPOINT", "https://" }
             });
 
             // When
