@@ -7,8 +7,6 @@ namespace Milochau.Core.HealthChecks
     /// <summary>Health checks registration</summary>
     public static class HealthChecksRegistration
     {
-        private const string azureKeyVaultName = "Key Vault";
-
         /// <summary>Tag for light checks</summary>
         public const string LightTag = "light";
 
