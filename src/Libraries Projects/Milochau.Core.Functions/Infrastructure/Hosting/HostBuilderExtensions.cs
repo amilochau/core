@@ -14,20 +14,16 @@ namespace Milochau.Core.Functions.Infrastructure.Hosting
             where TStartup : CoreFunctionsStartup, new()
         {
             return hostBuilder
+                .ConfigureFunctionsWorkerDefaults()
                 .ConfigureCoreConfiguration()
                 .ConfigureServices((hostContext, services) =>
                 {
                     var startup = CoreFunctionsStartup.Create<TStartup>(hostContext.Configuration);
                     startup.ConfigureServices(services);
-                    services.AddSingleton<CoreFunctionsStartup>(startup);
-                })
-                .ConfigureFunctionsWorkerDefaults((hostBuilderContext, functionsWorkerApplicationBuilder) =>
-                {
-                    var serviceProvider = functionsWorkerApplicationBuilder.Services.BuildServiceProvider();
 
-                    var startup = serviceProvider.GetRequiredService<CoreFunctionsStartup>();
+                    var serviceProvider = services.BuildServiceProvider();
 
-                    startup.Configure(serviceProvider, functionsWorkerApplicationBuilder);
+                    startup.Configure(serviceProvider);
                 });
         }
     }

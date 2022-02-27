@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Functions.Worker;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.Functions.Infrastructure.Features;
 using Milochau.Core.Infrastructure.Hosting;
@@ -36,9 +35,8 @@ namespace Milochau.Core.Functions
         }
 
         /// <summary>Configure application</summary>
-        public virtual void Configure(IServiceProvider serviceProvider, IFunctionsWorkerApplicationBuilder functionsWorkerApplicationBuilder)
+        public virtual void Configure(IServiceProvider serviceProvider)
         {
-            StartupLogging.LogApplicationInformation(serviceProvider);
         }
     }
 }
