@@ -1,8 +1,7 @@
-﻿using Milochau.Core.Abstractions;
-using System;
+﻿using System;
 using System.Globalization;
 
-namespace Milochau.Core.Infrastructure.Features.Application
+namespace Milochau.Core.Abstractions.Models
 {
     /// <summary>Response for application environment endpoint</summary>
     public class EnvironmentResponse

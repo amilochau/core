@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Milochau.Core.Abstractions;
-using Milochau.Core.Infrastructure.Features.Cache;
+using Milochau.Core.Abstractions.Models;
 using System;
 using System.Globalization;
 using System.Linq;

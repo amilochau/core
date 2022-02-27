@@ -35,15 +35,6 @@ namespace Milochau.Core.Infrastructure.Hosting
                 internalConfigurationBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential);
             }
 
-            // Configure Azure App Configuration
-            if (!string.IsNullOrEmpty(hostOptions.AppConfig.Endpoint))
-            {
-                internalConfigurationBuilder.AddAzureAppConfiguration(appConfigOptions =>
-                {
-                    AppConfigurationRegistration.ConfigureAzureAppConfiguration(appConfigOptions, hostOptions);
-                });
-            }
-
             // Add new configuration sources at the beginning of the application configuration builder
             foreach (var configurationSource in internalConfigurationBuilder.Sources)
             {

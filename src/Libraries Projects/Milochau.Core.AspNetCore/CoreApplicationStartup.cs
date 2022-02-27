@@ -29,7 +29,6 @@ namespace Milochau.Core.AspNetCore
 
             services.AddOptions<CoreServicesOptions>().Configure(settings => configuration.Bind(CoreServicesOptions.DefaultConfigurationSection, settings));
 
-            services.AddCoreConfiguration(hostOptions, servicesOptions);
             services.AddCoreTelemetry(hostOptions, servicesOptions);
 
             ConfigureHealthChecks(services);
@@ -49,7 +48,6 @@ namespace Milochau.Core.AspNetCore
             var servicesOptions = app.ApplicationServices.GetService<IOptions<CoreServicesOptions>>().Value;
 
             app.UseCoreApplication(hostOptions, servicesOptions);
-            app.UseCoreConfiguration(hostOptions, servicesOptions);
             app.UseCoreTelemetry(hostOptions, servicesOptions);
         }
     }

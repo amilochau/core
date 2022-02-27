@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.FeatureManagement;
-using Microsoft.FeatureManagement.FeatureFilters;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Infrastructure.Features.Cache;
-using Milochau.Core.Infrastructure.Features.Configuration;
 using Milochau.Core.Infrastructure.Hosting;
 
 namespace Milochau.Core
@@ -41,7 +38,6 @@ namespace Milochau.Core
         public virtual void ConfigureServices(IServiceCollection services)
         {
             RegisterInfrastructure(services);
-            RegisterFeatureManagement(services);
         }
 
         /// <summary>Registers infrastructure dependencies</summary>
@@ -57,18 +53,6 @@ namespace Milochau.Core
                     hostOptions.Application.HostName,
                     hostOptions.Application.RegionName);
             });
-        }
-
-        /// <summary>Registers Feature Management</summary>
-        /// <remarks>Override this method if you want to add more Feature Filters</remarks>
-        protected virtual IFeatureManagementBuilder RegisterFeatureManagement(IServiceCollection services)
-        {
-            return services.AddFeatureManagement()
-                .AddFeatureFilter<PercentageFilter>()
-                .AddFeatureFilter<TimeWindowFilter>()
-                .AddFeatureFilter<ApplicationFilter>()
-                .AddFeatureFilter<EnvironmentFilter>()
-                .AddFeatureFilter<HostFilter>();
         }
     }
 }

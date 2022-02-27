@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Abstractions;
+using Milochau.Core.Abstractions.Models;
 using Milochau.Core.AspNetCore.Infrastructure.Middlewares;
 using Milochau.Core.AspNetCore.Tests.TestHelpers;
-using Milochau.Core.Infrastructure.Features.Application;
 using Moq;
 using System.Threading.Tasks;
 

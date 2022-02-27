@@ -22,14 +22,13 @@ namespace Milochau.Core.AspNetCore.ReferenceProject.Tests
         }
 
         [TestMethod]
-        public void ConfigureServices_When_FeatureFlagsIsEnabled()
+        public void ConfigureServices_When_Called()
         {
             // Given
             var serviceCollection = new ServiceCollection();
 
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "Core:Host:AppConfig:FeatureFlags:Enabled", "true" },
                 { "Core:Services:Telemetry:Enabled", "true" }
             });
             var configuration = configurationBuilder.Build();
@@ -41,9 +40,6 @@ namespace Milochau.Core.AspNetCore.ReferenceProject.Tests
             startup.ConfigureServices(serviceCollection);
 
             // Then
-            // --- Check Feature Flags
-            Assert.IsTrue(serviceCollection.Any(x => x.ServiceType.Name == "IFeatureManager"));
-
             // --- Check Health Checks
             Assert.IsTrue(serviceCollection.Any(x => x.ServiceType.Name == "HealthCheckService"));
 

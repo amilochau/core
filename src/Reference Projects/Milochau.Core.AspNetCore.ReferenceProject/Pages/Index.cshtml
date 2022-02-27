@@ -8,37 +8,6 @@
 
 <h2>Test configuration features</h2>
 
-<h3>Configuration from Azure App Configuration</h3>
-<p>Note: configure Core:AppSettings:Endpoint first, target an Azure App Configuration resource with the following keys</p>
-
-<table>
-    <caption>Configuration values</caption>
-    <thead>
-        <tr>
-            <th scope="col">Key(s) in Azure App Configuration</th>
-            <th scope="col">Key in Application</th>
-            <th scope="col">Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Shared:Test:PublicValueOnlyShared</td>
-            <td>Test:PublicValueOnlyShared</td>
-            <td>@Model.TestOptions.PublicValueOnlyShared</td>
-        </tr>
-        <tr>
-            <td>Core:ReferenceProject:Test:PublicValueOnlyApplication</td>
-            <td>Test:PublicValueOnlyApplication</td>
-            <td>@Model.TestOptions.PublicValueOnlyApplication</td>
-        </tr>
-        <tr>
-            <td>Shared:Test:PublicValueOnlySharedAndApplication and Core:ReferenceProject:Test:PublicValueOnlySharedAndApplication</td>
-            <td>Test:PublicValueOnlySharedAndApplication</td>
-            <td>@Model.TestOptions.PublicValueOnlySharedAndApplication</td>
-        </tr>
-    </tbody>
-</table>
-
 <h3>Configuration from Azure Key Vault</h3>
 <p>Note: configure Key Vault vault first, target an Azure KeyVault resource with the following keys</p>
 
@@ -93,18 +62,6 @@
             <td>@Model.CoreHostOptions.Application.RegionName</td>
         </tr>
         <tr>
-            <th scope="row">Core:AppConfig:Endpoint</th>
-            <td>@Model.CoreHostOptions.AppConfig.Endpoint</td>
-        </tr>
-        <tr>
-            <th scope="row">Core:AppConfig:RefreshExpirationInMinutes</th>
-            <td>@Model.CoreHostOptions.AppConfig.RefreshExpirationInMinutes</td>
-        </tr>
-        <tr>
-            <th scope="row">Core:AppConfig:SentinelKey</th>
-            <td>@Model.CoreHostOptions.AppConfig.SentinelKey</td>
-        </tr>
-        <tr>
             <th scope="row">Core:KeyVault:Vault</th>
             <td>@Model.CoreHostOptions.KeyVault.Vault</td>
         </tr>
@@ -133,10 +90,6 @@
         </tr>
     </tbody>
 </table>
-
-<h3>Feature flags</h3>
-<p>Note: configure Feature Flags from Azure App Configuration</p>
-<p>ReferenceProjectTest activation: @Model.ReferenceProjectTest</p>
 
 <style>
     table td, table th {

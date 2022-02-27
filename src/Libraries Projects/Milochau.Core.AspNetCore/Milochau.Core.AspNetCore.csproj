@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
-    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="4.5.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,4 +16,8 @@
     <ProjectReference Include="..\Milochau.Core\Milochau.Core.csproj" />
   </ItemGroup>
   
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
 </Project>

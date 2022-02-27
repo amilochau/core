@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Microsoft.FeatureManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
@@ -23,7 +22,6 @@ namespace Milochau.Core.Functions.Tests
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "AZURE_FUNCTIONS_APPCONFIG_ENDPOINT", "https://" },
                 { "AZURE_FUNCTIONS_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
             });
 
@@ -41,7 +39,6 @@ namespace Milochau.Core.Functions.Tests
 
             Assert.IsNotNull(serviceProvider.GetService<IOptions<CoreHostOptions>>());
             Assert.IsNotNull(serviceProvider.GetService<IApplicationHostEnvironment>());
-            Assert.IsNotNull(serviceProvider.GetService<IFeatureManager>());
         }
 
         public class Startup : CoreConsoleStartup
