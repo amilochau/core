@@ -22,7 +22,7 @@ namespace Milochau.Core.AspNetCore.ReferenceProject.Tests
         }
 
         [TestMethod]
-        public void ConfigureServices_When_FeatureFlagsIsEnabled()
+        public void ConfigureServices_When_Called()
         {
             // Given
             var serviceCollection = new ServiceCollection();

@@ -11,15 +11,6 @@ namespace Milochau.Core.Abstractions
         /// <summary>Default App Configuration sentinel key</summary>
         public const string DefaultSentinelKey = "Sentinel:Key";
 
-        /// <summary>Default App Configuration duration between refreshes</summary>
-        public const int DefaultAppConfigRefreshExpirationInMinutes = 120;
-
-        /// <summary>Default namespace for shared configuration in App Configuration</summary>
-        public const string DefaultAppConfigKey = "Shared";
-
-        /// <summary>Default separator in App Configuration keys to identity namespace</summary>
-        public const string DefaultAppConfigNamespaceSeparator = "/";
-
         /// <summary>Application options</summary>
         public virtual ApplicationOptions Application { get; set; } = new ApplicationOptions();
 

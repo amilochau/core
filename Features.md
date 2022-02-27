@@ -11,15 +11,12 @@ The table below help you see if a feature is included in a dedicated package. No
 | Feature                                                       | `*.AspNetCore` | `*.Functions` | `*.Console` | Notes |
 | -------                                                       | -------------- | ------------- | ----------- | ----- |
 | **Configuration**
-| Connects to Azure App Configuration                           | X | X | X | Connection can be done with connection string or Managed Identity |
 | Connects to Azure Key Vault                                   | X | X | X | Connection can be done with client secret or Managed Identity |
 | Connects to `appsettings.{host}.json`                         | X | X | X |
 | Connects to `secrets.json`                                    | X | | |
 | Refreshes configuration after X minutes                       | X | X | X |
-| Uses Feature flags & Feature filters                          | X | X | X |
 | Provides configuration providers endpoints                    | X | X | |
 | Provides configuration refresh endpoints                      | | | |
-| Provides Feature flags state endpoints                        | X | X | |
 | **Health checks**
 | Registers health checks                                       | X | X | |
 | Adds default `Endpoint` check                                 | X | X | |
@@ -62,17 +59,7 @@ These configuration keys must be set up:
 
 ## Configuration
 
-`Milochau.Core` references **Azure App Configuration** and **Azure Key Vault**.
-
-### App Configuration
-
-Configuration can be automatically injected from Azure App Configuration on startup. To use Azure App Configuration, please enable it from configuration, at least with an `Endpoint`, or with a `ConnectionString`:
-
-| Key | Description | Example value | Default value |
-| --- | ----------- | ------------- | ------------- |
-| `DOTNET_APPCONFIG_ENDPOINT`, `ASPNETCORE_APPCONFIG_ENDPOINT`, `AZURE_FUNCTIONS_APPCONFIG_ENDPOINT` | Azure App Configuration endpoint | `https://XXXX.azconfig.io` |
-| `Core:Host:AppConfig:SentinelKey` | Sentinel Key for Refresh with Azure App Configuration (the default namespace will be added as a prefix) | `Sentinel:Key` | `Sentinel:Key` |
-| `Core:Host:AppConfig:RefreshExpirationInMinutes` | Expiration Refresh with Azure App Configuration (minutes) | `5` | `30` |
+`Milochau.Core` references **Azure Key Vault**.
 
 ### Key Vault
 
@@ -81,10 +68,6 @@ Configuration can be automatically injected from Azure Key Vault on startup. To 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
 | `DOTNET_KEYVAULT_VAULT`, `ASPNETCORE_KEYVAULT_VAULT`, `AZURE_FUNCTIONS_KEYVAULT_VAULT` | URI of the Azure Key Vault to use | `https://XXXX.vault.azure.net` |
-
-### Feature Flags
-
-Feature Flags allow you to centralize the activation of your features, from Azure App Configuration. Feature Flags is injected by Milochau.Core framework. You can then use Feature Flags as described [here](https://docs.microsoft.com/en-us/azure/azure-app-configuration/use-feature-flags-dotnet-core).
 
 ## Health checks
 
