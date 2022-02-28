@@ -26,7 +26,6 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
         private readonly CoreHostOptions coreHostOptions = new CoreHostOptions();
         private const string endpointCheckName = "Endpoint";
         private const string applicationHostEnvironmentCheckName = "Application Host Environment";
-        private const string keyVaultServiceName = "Key Vault";
 
         [TestInitialize]
         public void Initialize()
