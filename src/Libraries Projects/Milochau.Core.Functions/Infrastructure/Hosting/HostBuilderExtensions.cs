@@ -10,12 +10,12 @@ namespace Milochau.Core.Functions.Infrastructure.Hosting
         /// <summary>Configures core host defaults, setting up <typeparamref name="TStartup"/> class</summary>
         /// <typeparam name="TStartup">Startup class</typeparam>
         /// <param name="hostBuilder">Host builder</param>
-        public static IHostBuilder ConfigureCoreHostBuilder<TStartup>(this IHostBuilder hostBuilder)
+        public static IHostBuilder ConfigureFunctionsCoreHostBuilder<TStartup>(this IHostBuilder hostBuilder)
             where TStartup : CoreFunctionsStartup, new()
         {
             return hostBuilder
                 .ConfigureFunctionsWorkerDefaults()
-                .ConfigureCoreConfiguration()
+                .ConfigureCoreHostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
                     var startup = CoreFunctionsStartup.Create<TStartup>(hostContext.Configuration);

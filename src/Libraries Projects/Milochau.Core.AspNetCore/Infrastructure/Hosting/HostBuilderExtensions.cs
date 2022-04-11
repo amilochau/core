@@ -10,11 +10,15 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
         /// <summary>Configures core host defaults, using <see cref="WebHostBuilderExtensions.ConfigureCoreWebHostBuilder"/> and setting up <typeparamref name="TStartup"/> class</summary>
         /// <typeparam name="TStartup">Startup class</typeparam>
         /// <param name="hostBuilder">Host builder</param>
-        public static IHostBuilder ConfigureCoreHostBuilder<TStartup>(this IHostBuilder hostBuilder)
+        public static IHostBuilder ConfigureWebCoreHostBuilder<TStartup>(this IHostBuilder hostBuilder)
             where TStartup : CoreApplicationStartup
         {
             return hostBuilder
-                .ConfigureCoreConfiguration()
+                .ConfigureCoreHostBuilder()
+                .ConfigureAppConfiguration((webHostBuilderContext, configurationBuilder) =>
+                {
+                    ConfigurationRegistration.AddWebCoreConfiguration(webHostBuilderContext.Configuration, configurationBuilder);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder

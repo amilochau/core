@@ -6,9 +6,9 @@ namespace Milochau.Core.Infrastructure.Hosting
     /// <summary>Extensions for <see cref="IHostBuilder"/></summary>
     public static class HostBuilderExtensions
     {
-        /// <summary>Configures host configuration and app configuration</summary>
+        /// <summary>Configures host configuration</summary>
         /// <param name="hostBuilder">Host builder</param>
-        public static IHostBuilder ConfigureCoreConfiguration(this IHostBuilder hostBuilder)
+        public static IHostBuilder ConfigureCoreHostBuilder(this IHostBuilder hostBuilder)
         {
             return hostBuilder
                 .ConfigureHostConfiguration(configurationBuilder =>
@@ -23,7 +23,7 @@ namespace Milochau.Core.Infrastructure.Hosting
                 })
                 .ConfigureAppConfiguration((webHostBuilderContext, configurationBuilder) =>
                 {
-                    ConfigurationRegistration.AddApplicationConfiguration(webHostBuilderContext.Configuration, configurationBuilder);
+                    ConfigurationRegistration.AddCoreConfiguration(webHostBuilderContext.Configuration, configurationBuilder);
                 });
         }
     }

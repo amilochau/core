@@ -31,7 +31,6 @@ Here are all the endpoints exposed for Web applications.
 | Cache | LocalContains | `GET /api/system/cache/local/contains?key=xxx` | That returns the existence of a list of items in the application local cache |
 | Cache | LocalCompact | `POST /api/system/cache/local/compact?percentage=0.xx` | That compacts the application local cache by the defined percentage |
 | Cache | LocalRemove | `POST /api/system/cache/local/remove?key=xxx` | That removes a list of items from the application local cache |
-| Configuration | Flags | `GET /api/system/configuration/flags` | That returns the state of all feature flags (typically stored in Azure App Configuration) |
 | Configuration | Providers | `GET /api/system/configuration/providers` | That returns the configuration providers |
 | Health checks | Default | `GET /api/health` | That returns the health of the application with all checks defined |
 | Health checks | Light | `GET /api/health/light` | That returns the health of the application with only the `light` checks |
@@ -50,7 +49,6 @@ Here are all the endpoints exposed for Functions applications.
 | Cache | LocalContains | `GET /api/system/cache/local/contains?key=xxx` | That returns the existence of a list of items in the application local cache |
 | Cache | LocalCompact | `POST /api/system/cache/local/compact?percentage=0.xx` | That compacts the application local cache by the defined percentage |
 | Cache | LocalRemove | `POST /api/system/cache/local/remove?key=xxx` | That removes a list of items from the application local cache |
-| Configuration | Flags | `GET /api/system/configuration/flags` | That returns the state of all feature flags (typically stored in Azure App Configuration) |
 | Configuration | Providers | `GET /api/system/configuration/providers` | That returns the configuration providers |
 | Health checks | Default | `GET /api/health` | That returns the health of the application with all checks defined |
 | Health checks | Light | `GET /api/health/light` | That returns the health of the application with only the `light` checks |

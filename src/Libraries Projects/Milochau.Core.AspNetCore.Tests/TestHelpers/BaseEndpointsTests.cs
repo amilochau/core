@@ -19,7 +19,7 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
         public static async Task<HttpClient> CreateHttpClientFromCoreAsync(IConfiguration configuration)
         {
             var host = new HostBuilder()
-                .ConfigureCoreConfiguration()
+                .ConfigureCoreHostBuilder()
                 .ConfigureWebHost(webHostBuilder =>
                 {
                     if (configuration != null)
@@ -57,7 +57,7 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
         public static async Task<HttpClient> CreateHttpClientFromCoreWithAuthenticationAsync()
         {
             var host = new HostBuilder()
-                .ConfigureCoreConfiguration()
+                .ConfigureCoreHostBuilder()
                 .ConfigureWebHost(webHostBuilder =>
                 {
                     webHostBuilder

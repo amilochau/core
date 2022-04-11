@@ -1,6 +1,5 @@
-﻿using Azure.Identity;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 
 namespace Milochau.Core.Infrastructure.Hosting
 {
@@ -8,8 +7,6 @@ namespace Milochau.Core.Infrastructure.Hosting
     /// <remarks>
     /// These configuration providers will be used:
     /// <list type="bullet">
-    ///    <item>Azure App Configuration</item>
-    ///    <item>Azure Key Vault</item>
     ///    <item>JSON file appsettings.{host}.json</item>
     /// </list>
     /// </remarks>
@@ -18,28 +15,17 @@ namespace Milochau.Core.Infrastructure.Hosting
         /// <summary>Add application configuration providers to the configuration builder <paramref name="configurationBuilder"/></summary>
         /// <param name="hostingContextConfiguration">Hosting context configuration</param>
         /// <param name="configurationBuilder">Configuration builder</param>
-        public static void AddApplicationConfiguration(IConfiguration hostingContextConfiguration, IConfigurationBuilder configurationBuilder)
+        public static void AddCoreConfiguration(IConfiguration hostingContextConfiguration, IConfigurationBuilder configurationBuilder)
         {
             var hostOptions = CoreOptionsFactory.GetCoreHostOptions(hostingContextConfiguration);
 
-            // Create specific configuration builder for new configuration sources: the first one will override the next ones
-            var internalConfigurationBuilder = new ConfigurationBuilder();
-
             // Configure appsettings.{host}.json
-            internalConfigurationBuilder.AddJsonFile($"appsettings.{hostOptions.Application.HostName}.json", optional: true, reloadOnChange: false);
-
-            // Configure Azure Key Vault
-            if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
+            configurationBuilder.Sources.Insert(0, new JsonConfigurationSource
             {
-                var credential  = new DefaultAzureCredential(hostOptions.Credential);
-                internalConfigurationBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential);
-            }
-
-            // Add new configuration sources at the beginning of the application configuration builder
-            foreach (var configurationSource in internalConfigurationBuilder.Sources)
-            {
-                configurationBuilder.Sources.Insert(0, configurationSource);
-            }
+                Path = $"appsettings.{hostOptions.Application.HostName}.json",
+                Optional = true,
+                ReloadOnChange = false,
+            });
         }
     }
 }
