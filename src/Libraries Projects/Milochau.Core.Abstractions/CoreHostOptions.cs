@@ -8,9 +8,6 @@ namespace Milochau.Core.Abstractions
         /// <summary>Default section in Configuration to retrieved</summary>
         public const string DefaultConfigurationSection = "Core:Host";
 
-        /// <summary>Default App Configuration sentinel key</summary>
-        public const string DefaultSentinelKey = "Sentinel:Key";
-
         /// <summary>Application options</summary>
         public virtual ApplicationOptions Application { get; set; } = new ApplicationOptions();
 

@@ -11,7 +11,7 @@ The table below help you see if a feature is included in a dedicated package. No
 | Feature                                                       | `*.AspNetCore` | `*.Functions` | `*.Console` | Notes |
 | -------                                                       | -------------- | ------------- | ----------- | ----- |
 | **Configuration**
-| Connects to Azure Key Vault                                   | X | X | X | Connection can be done with client secret or Managed Identity |
+| Connects to Azure Key Vault                                   | X | | |
 | Connects to `appsettings.{host}.json`                         | X | X | X |
 | Connects to `secrets.json`                                    | X | | |
 | Refreshes configuration after X minutes                       | X | X | X |
@@ -21,7 +21,6 @@ The table below help you see if a feature is included in a dedicated package. No
 | Registers health checks                                       | X | X | |
 | Adds default `Endpoint` check                                 | X | X | |
 | Adds Application Host Environment check                       | X | X | |
-| Adds Azure Key Vault check                                    | X | X | |
 | Provides all health checks endpoints                          | X | X | |
 | Provides light health checks endpoints                        | X | X | |
 | **Monitoring**
@@ -49,12 +48,12 @@ You must initialize your application with few settings. These settings are used 
 
 These configuration keys must be set up:
 
-| Key | Description | Example value | Default value |
-| --- | ----------- | ------------- | ------------- |
+| Key | Description | Example values | Default value |
+| --- | ----------- | -------------- | ------------- |
 | `DOTNET_ORGANIZATION`, `ASPNETCORE_ORGANIZATION`, `AZURE_FUNCTIONS_ORGANIZATION` | Defines the organization name |
-| `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION`, `AZURE_FUNCTIONS_APPLICATION` | Defines the application name, used to retrieve proper configuration from Azure App Configuration | `Monitoring:Health`, `Sofia` |
-| `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT`, `AZURE_FUNCTIONS_ENVIRONMENT` | Defines the environment name, used to retrieve proper configuration from Azure App Configuration | `Development`, `Production` | `Development` |
-| `DOTNET_HOST`, `ASPNETCORE_HOST`, `AZURE_FUNCTIONS_HOST` | Defines the host name, used to retrieve proper configuration from Azure App Configuration | `dev2`, `prd` | `local` |
+| `DOTNET_APPLICATION`, `ASPNETCORE_APPLICATION`, `AZURE_FUNCTIONS_APPLICATION` | Defines the application name |
+| `DOTNET_ENVIRONMENT`, `ASPNETCORE_ENVIRONMENT`, `AZURE_FUNCTIONS_ENVIRONMENT` | Defines the environment name | `Development`, `Production` | `Development` |
+| `DOTNET_HOST`, `ASPNETCORE_HOST`, `AZURE_FUNCTIONS_HOST` | Defines the host name | `dev2`, `prd` | `local` |
 | `DOTNET_REGION`, `ASPNETCORE_REGION`, `AZURE_FUNCTIONS_REGION` | Defines the Azure region name | `ew1`, `en1` |
 
 ## Configuration
@@ -106,7 +105,7 @@ You can set up specific fields to help you application connect to Azure services
 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
-| `Core:Host:Credential` | `DefaultAzureCredentialOptions` used to connect to Azure App Configuration, Azure Key Vault | | `new DefaultAzureCredentialOptions()` |
+| `Core:Host:Credential` | `DefaultAzureCredentialOptions` used to connect to Azure services | | `new DefaultAzureCredentialOptions()` |
 
 ## Cache
 
