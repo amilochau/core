@@ -17,7 +17,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
         /// <summary>Add application configuration providers to the configuration builder <paramref name="configurationBuilder"/></summary>
         /// <param name="hostingContextConfiguration">Hosting context configuration</param>
         /// <param name="configurationBuilder">Configuration builder</param>
-        public static void AddWebCoreConfiguration(IConfiguration hostingContextConfiguration, IConfigurationBuilder configurationBuilder)
+        public static void AddCoreConfiguration(IConfiguration hostingContextConfiguration, IConfigurationBuilder configurationBuilder)
         {
             var hostOptions = CoreOptionsFactory.GetCoreHostOptions(hostingContextConfiguration);
 

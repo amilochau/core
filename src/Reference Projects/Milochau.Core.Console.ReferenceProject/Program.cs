@@ -9,7 +9,7 @@ namespace Milochau.Core.Console.ReferenceProject
         public static async Task Main(string[] args)
         {
             await Host.CreateDefaultBuilder(args)
-                .ConfigureConsoleCoreHostBuilder<Startup, EntryPoint>()
+                .ConfigureCoreHostBuilder<Startup, EntryPoint>()
                 .RunConsoleAsync();
         }
     }

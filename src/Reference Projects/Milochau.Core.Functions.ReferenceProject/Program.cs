@@ -12,6 +12,6 @@ namespace Milochau.Core.Functions.ReferenceProject
 
         public static IHostBuilder CreateHostBuilder() =>
             new HostBuilder()
-                .ConfigureFunctionsCoreHostBuilder<Startup>();
+                .ConfigureCoreHostBuilder<Startup>();
     }
 }
