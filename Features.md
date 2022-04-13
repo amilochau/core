@@ -81,11 +81,11 @@ The following endpoints are exposed to get health states:
 
 Telemetry uses Application Insights to collect requests, dependencies, exceptions, performance counters, heartbeats, and logs from your ASP.NET Core application.
 
-To activate telemetry, please enable it from configuration, and set up an instrumentation key.
+To activate telemetry, please enable it from configuration, and set up a connection string as as environment variable.
 
 | Key | Description | Example value | Default value |
 | --- | ----------- | ------------- | ------------- |
-| `ApplicationInsights:InstrumentationKey` (x) | Application Insights instrumentation key | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | `null` (Feature is not set) |
+| `APPLICATIONINSIGHTS_CONNECTION_STRING` (x) | Application Insights connection string | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | `null` (Feature is not set) |
 | `Core:Services:Telemetry:Enabled` | Enable Telemetry with Application Insights | `true` | `false` (Feature is disabled) |
 | `Core:Services:Telemetry:DisableAdaptiveSampling` | Disable Adaptive Sampling | `true` | `false` |
 
