@@ -12,6 +12,6 @@ namespace Milochau.Core.AspNetCore.ReferenceProject
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureCoreHostBuilder<Startup>();
+                .ConfigureWebCoreHostBuilder<Startup>();
     }
 }

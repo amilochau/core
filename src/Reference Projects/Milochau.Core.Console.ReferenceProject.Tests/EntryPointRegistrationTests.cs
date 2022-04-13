@@ -19,7 +19,7 @@ namespace Milochau.Core.Console.ReferenceProject.Tests
             var businessService = new Mock<IBusinessService>();
 
             var hostBuilder = new HostBuilder()
-                .ConfigureCoreHostBuilder<Startup, TestEntryPoint>()
+                .ConfigureConsoleCoreHostBuilder<Startup, TestEntryPoint>()
                 .ConfigureServices(services =>
                 {
                     services.AddSingleton<IBusinessService>(businessService.Object);
@@ -39,7 +39,7 @@ namespace Milochau.Core.Console.ReferenceProject.Tests
             var logger = new Mock<ILogger<EntryPoint>>();
 
             var hostBuilder = new HostBuilder()
-                .ConfigureCoreHostBuilder<Startup, EntryPoint>()
+                .ConfigureConsoleCoreHostBuilder<Startup, EntryPoint>()
                 .ConfigureServices(services =>
                 {
                     services.AddSingleton<ILogger<EntryPoint>>(logger.Object);

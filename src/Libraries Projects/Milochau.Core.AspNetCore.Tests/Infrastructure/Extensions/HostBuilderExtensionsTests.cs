@@ -15,7 +15,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Extensions
             var hostBuilder = new HostBuilder();
 
             // When
-            HostBuilderExtensions.ConfigureCoreHostBuilder<TestStartup>(hostBuilder);
+            HostBuilderExtensions.ConfigureWebCoreHostBuilder<TestStartup>(hostBuilder);
             var host = hostBuilder.Build();
 
             // Then

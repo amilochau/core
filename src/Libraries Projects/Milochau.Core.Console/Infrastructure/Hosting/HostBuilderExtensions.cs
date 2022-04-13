@@ -11,7 +11,7 @@ namespace Milochau.Core.Console.Infrastructure.Hosting
         /// <typeparam name="TStartup">Startup class</typeparam>
         /// <typeparam name="TEntryPoint">Entry point class</typeparam>
         /// <param name="hostBuilder">Host builder</param>
-        public static IHostBuilder ConfigureCoreHostBuilder<TStartup, TEntryPoint>(this IHostBuilder hostBuilder)
+        public static IHostBuilder ConfigureConsoleCoreHostBuilder<TStartup, TEntryPoint>(this IHostBuilder hostBuilder)
             where TStartup : CoreConsoleStartup, new()
             where TEntryPoint : CoreConsoleEntryPoint
         {
