@@ -15,16 +15,26 @@
     <caption>Configuration values</caption>
     <thead>
         <tr>
-            <th scope="col">Key in Azure Key Vault</th>
-            <th scope="col">Key in Application</th>
+            <th scope="col">Key</th>
             <th scope="col">Value</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Test--SecretValue</td>
-            <td>Test:SecretValue</td>
-            <td>@Model.TestOptions.SecretValue</td>
+            <td>A</td>
+            <td>@Model.Configuration["A"]</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>@Model.Configuration["B"]</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>@Model.Configuration["C"]</td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>@Model.Configuration["D"]</td>
         </tr>
     </tbody>
 </table>

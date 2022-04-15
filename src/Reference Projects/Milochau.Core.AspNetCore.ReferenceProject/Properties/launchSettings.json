@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "AspNetCore - Development": {
+    "AspNetCore - Local": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001",
@@ -10,7 +10,10 @@
         "ASPNETCORE_APPLICATION": "core-test-aspnetcore",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOST": "local",
-        "ASPNETCORE_REGION": "ew1"
+        "ASPNETCORE_REGION": "ew1",
+
+        // Next are for tests
+        "D": "launchSettings.json OK"
       }
     }
   }

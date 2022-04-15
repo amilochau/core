@@ -11,7 +11,7 @@ The table below help you see if a feature is included in a dedicated package. No
 | Feature                                                       | `*.AspNetCore` | `*.Functions` | `*.Console` | Notes |
 | -------                                                       | -------------- | ------------- | ----------- | ----- |
 | **Configuration**
-| Connects to Azure Key Vault                                   | X | | |
+| Connects to Azure Key Vault                                   | X | | X |
 | Connects to `appsettings.{host}.json`                         | X | X | X |
 | Connects to `secrets.json`                                    | X | | |
 | Refreshes configuration after X minutes                       | X | X | X |

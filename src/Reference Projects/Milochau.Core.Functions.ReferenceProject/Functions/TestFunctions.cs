@@ -4,6 +4,9 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Milochau.Core.Functions.ReferenceProject
 {
@@ -12,14 +15,17 @@ namespace Milochau.Core.Functions.ReferenceProject
         private readonly CoreHostOptions coreHostOptions;
         private readonly IHostEnvironment hostEnvironment;
         private readonly IApplicationHostEnvironment applicationHostEnvironment;
+        private readonly IConfiguration configuration;
 
         public TestFunctions(IOptions<CoreHostOptions> coreHostOptions,
             IHostEnvironment hostEnvironment,
-            IApplicationHostEnvironment applicationHostEnvironment)
+            IApplicationHostEnvironment applicationHostEnvironment,
+            IConfiguration configuration)
         {
             this.coreHostOptions = coreHostOptions.Value;
             this.hostEnvironment = hostEnvironment;
             this.applicationHostEnvironment = applicationHostEnvironment;
+            this.configuration = configuration;
         }
 
         [Function("CoreHostOptions")]
@@ -43,6 +49,25 @@ namespace Milochau.Core.Functions.ReferenceProject
         {
             var response = request.CreateResponse();
             await response.WriteAsJsonAsync(applicationHostEnvironment);
+            return response;
+        }
+
+        [Function("Configuration")]
+        public async Task<HttpResponseData> GetConfigurationAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "Configuration")] HttpRequestData request)
+        {
+            var response = request.CreateResponse();
+
+            var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues("key")?.Where(x => !string.IsNullOrEmpty(x));
+            var valuesResponse = new Dictionary<string, string>();
+            if (keys != null && keys.Any())
+            {
+                foreach (var key in keys)
+                {
+                    valuesResponse.Add(key, configuration[key]);
+                }
+            }
+
+            await response.WriteAsJsonAsync(valuesResponse);
             return response;
         }
     }

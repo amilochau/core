@@ -17,6 +17,10 @@ namespace Milochau.Core.Console.Infrastructure.Hosting
         {
             return hostBuilder
                 .ConfigureCoreHostBuilder()
+                .ConfigureAppConfiguration((webHostBuilderContext, configurationBuilder) =>
+                {
+                    ConfigurationRegistration.AddConsoleCoreConfiguration(webHostBuilderContext.Configuration, configurationBuilder);
+                })
                 .ConfigureServices((hostContext, services) =>
                 {
                     // Register ConsoleHostedService, to handle console lifecycle

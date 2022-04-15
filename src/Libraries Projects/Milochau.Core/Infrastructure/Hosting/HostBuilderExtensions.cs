@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Hosting;
 
 namespace Milochau.Core.Infrastructure.Hosting
@@ -16,14 +16,10 @@ namespace Milochau.Core.Infrastructure.Hosting
                     var environmentName = CoreOptionsFactory.GetCurrentEnvironmentFromEnvironmentVariables();
                     var hostName = CoreOptionsFactory.GetCurrentHostFromEnvironmentVariables();
 
-                    configurationBuilder
-                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                        .AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: false)
-                        .AddJsonFile($"appsettings.{hostName}.json", optional: true, reloadOnChange: false);
-                })
-                .ConfigureAppConfiguration((webHostBuilderContext, configurationBuilder) =>
-                {
-                    ConfigurationRegistration.AddCoreConfiguration(webHostBuilderContext.Configuration, configurationBuilder);
+                    // Configure appsettings files
+                    configurationBuilder.Sources.Insert(0, new JsonConfigurationSource { Path = $"appsettings.{hostName}.json", Optional = true, ReloadOnChange = false });
+                    configurationBuilder.Sources.Insert(0, new JsonConfigurationSource { Path = $"appsettings.{environmentName}.json", Optional = true, ReloadOnChange = false });
+                    configurationBuilder.Sources.Insert(0, new JsonConfigurationSource { Path = $"appsettings.json", Optional = true, ReloadOnChange = false });
                 });
         }
     }

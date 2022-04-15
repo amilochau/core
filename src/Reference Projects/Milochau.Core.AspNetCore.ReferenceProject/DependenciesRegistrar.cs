@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Milochau.Core.AspNetCore.ReferenceProject.Models;
 
 namespace Milochau.Core.AspNetCore.ReferenceProject
 {
@@ -22,7 +21,7 @@ namespace Milochau.Core.AspNetCore.ReferenceProject
 
         private static void RegisterOptions(IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<TestOptions>(configuration.GetSection("Test"));
+
         }
 
         private static void RegisterDependencies(IServiceCollection services, IConfiguration configuration)

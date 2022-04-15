@@ -1,24 +1,24 @@
 ﻿using Milochau.Core.Abstractions;
-using Milochau.Core.AspNetCore.ReferenceProject.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using Milochau.Core.AspNetCore.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Milochau.Core.AspNetCore.ReferenceProject.Pages
 {
     public class IndexModel : PageModel
     {
-        public IndexModel(IOptionsSnapshot<TestOptions> testOptions,
-            IOptions<CoreHostOptions> coreHostOptions,
-            IOptions<CoreServicesOptions> coreServicesOptions)
+        public IndexModel(IOptions<CoreHostOptions> coreHostOptions,
+            IOptions<CoreServicesOptions> coreServicesOptions,
+            IConfiguration configuration)
         {
-            TestOptions = testOptions.Value;
             CoreHostOptions = coreHostOptions.Value;
             CoreServicesOptions = coreServicesOptions.Value;
+            Configuration = configuration;
         }
 
-        public TestOptions TestOptions { get; }
         public CoreHostOptions CoreHostOptions { get; }
         public CoreServicesOptions CoreServicesOptions { get; }
+        public IConfiguration Configuration { get; }
     }
 }

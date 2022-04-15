@@ -34,6 +34,12 @@ namespace Milochau.Core.Console.ReferenceProject
                 logger.LogWarning("   {0}", provider.ToString());
             }
 
+            logger.LogWarning($"Testing configuration build");
+            logger.LogWarning($"   A: {configuration["A"]}");
+            logger.LogWarning($"   B: {configuration["B"]}");
+            logger.LogWarning($"   C: {configuration["C"]}");
+            logger.LogWarning($"   D: {configuration["D"]}");
+
             return Task.FromResult(0);
         }
     }
