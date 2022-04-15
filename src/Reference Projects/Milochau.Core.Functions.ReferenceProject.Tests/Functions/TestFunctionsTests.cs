@@ -7,6 +7,7 @@ using Moq;
 using System.Threading.Tasks;
 using System.Net;
 using Milochau.Core.Infrastructure.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
 {
@@ -17,6 +18,7 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
         private CoreHostOptions optionsValue;
         private Mock<IHostEnvironment> hostEnvironment;
         private Mock<IApplicationHostEnvironment> applicationHostEnvironment;
+        private Mock<IConfiguration> configuration;
 
         private TestFunctions functions;
 
@@ -34,8 +36,9 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             options.SetupGet(x => x.Value).Returns(optionsValue);
             hostEnvironment = new Mock<IHostEnvironment>();
             applicationHostEnvironment = new Mock<IApplicationHostEnvironment>();
+            configuration = new Mock<IConfiguration>();
 
-            functions = new TestFunctions(options.Object, hostEnvironment.Object, applicationHostEnvironment.Object);
+            functions = new TestFunctions(options.Object, hostEnvironment.Object, applicationHostEnvironment.Object, configuration.Object);
         }
 
         [TestMethod]

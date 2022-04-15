@@ -41,7 +41,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
             {
                 // Last configuration provider is environment variables
                 // Ante-last configuration provider is secrets.json
-                var position = configurationBuilder.Sources.Count - 2;
+                var position = Math.Max(0, configurationBuilder.Sources.Count - 2);
                 configurationBuilder.Sources.Insert(position, configurationSource);
             }
         }

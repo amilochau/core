@@ -40,7 +40,7 @@ namespace Milochau.Core.Console.Infrastructure.Hosting
             foreach (var configurationSource in internalConfigurationBuilder.Sources)
             {
                 // Last configuration provider is environment variables
-                var position = configurationBuilder.Sources.Count - 1;
+                var position = Math.Max(0, configurationBuilder.Sources.Count - 1);
                 configurationBuilder.Sources.Insert(position, configurationSource);
             }
         }

@@ -26,9 +26,8 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             var content = JsonSerializer.Deserialize<ProvidersResponse>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(2, content.Providers.Count());
-            Assert.AreEqual("JsonConfigurationProvider for 'appsettings.local.json' (Optional)", content.Providers.ElementAt(0));
-            Assert.AreEqual("Microsoft.Extensions.Configuration.ChainedConfigurationProvider", content.Providers.ElementAt(1));
+            Assert.AreEqual(1, content.Providers.Count());
+            Assert.AreEqual("Microsoft.Extensions.Configuration.ChainedConfigurationProvider", content.Providers.ElementAt(0));
         }
     }
 }
