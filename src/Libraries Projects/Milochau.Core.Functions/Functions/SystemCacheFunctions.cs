@@ -47,9 +47,8 @@ namespace Milochau.Core.Functions.Functions
             var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(containsKeyQueryKey)?.Where(x => !string.IsNullOrEmpty(x));
             if (keys != null && keys.Any())
             {
-                var filteredKeys = keys.Where(x => !string.IsNullOrEmpty(x)).ToList();
-                containsResponse.Keys = filteredKeys;
-                containsResponse.Contains = filteredKeys.Any(key => applicationMemoryCache.Contains(key));
+                containsResponse.Keys = keys;
+                containsResponse.Contains = keys.Any(key => applicationMemoryCache.Contains(key));
             }
 
             var response = request.CreateResponse();

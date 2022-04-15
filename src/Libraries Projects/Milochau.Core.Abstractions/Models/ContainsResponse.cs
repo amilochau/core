@@ -6,7 +6,7 @@ namespace Milochau.Core.Abstractions.Models
     public class ContainsResponse
     {
         /// <summary>Tested keys</summary>
-        public ICollection<string> Keys { get; set; } = new List<string>();
+        public IEnumerable<string> Keys { get; set; } = new List<string>();
 
         /// <summary>Contains any of the <see cref="Keys"/></summary>
         public bool Contains { get; set; }

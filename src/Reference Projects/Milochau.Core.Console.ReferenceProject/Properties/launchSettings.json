@@ -1,14 +1,17 @@
 {
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "Console - Development": {
+    "Console - Local": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ORGANIZATION": "org",
         "DOTNET_APPLICATION": "core-test-console",
         "DOTNET_ENVIRONMENT": "Development",
         "DOTNET_HOST": "local",
-        "DOTNET_REGION": "ew1"
+        "DOTNET_REGION": "ew1",
+
+        // Next are for tests
+        "D": "launchSettings.json OK"
       }
     }
   }

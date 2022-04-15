@@ -56,7 +56,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var response = GetResponseAsJson<ContainsResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.Keys);
-            Assert.AreEqual(1, response.Keys.Count);
+            Assert.AreEqual(1, response.Keys.Count());
             Assert.AreEqual("test", response.Keys.First());
             Assert.IsFalse(response.Contains);
         }
@@ -75,7 +75,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var response = GetResponseAsJson<ContainsResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.Keys);
-            Assert.AreEqual(0, response.Keys.Count);
+            Assert.AreEqual(0, response.Keys.Count());
             Assert.IsFalse(response.Contains);
         }
 
@@ -93,7 +93,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var response = GetResponseAsJson<ContainsResponse>(httpResponseData, HttpStatusCode.OK);
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.Keys);
-            Assert.AreEqual(0, response.Keys.Count);
+            Assert.AreEqual(0, response.Keys.Count());
             Assert.IsFalse(response.Contains);
         }
 

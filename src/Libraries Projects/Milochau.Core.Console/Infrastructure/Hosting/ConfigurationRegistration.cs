@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Milochau.Core.Infrastructure.Hosting;
 using System;
 
-namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
+namespace Milochau.Core.Console.Infrastructure.Hosting
 {
     /// <summary>Configuration registration</summary>
     /// <remarks>
@@ -18,7 +18,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
         /// <summary>Add application configuration providers to the configuration builder <paramref name="configurationBuilder"/></summary>
         /// <param name="hostingContextConfiguration">Hosting context configuration</param>
         /// <param name="configurationBuilder">Configuration builder</param>
-        public static void AddWebCoreConfiguration(IConfiguration hostingContextConfiguration, IConfigurationBuilder configurationBuilder)
+        public static void AddConsoleCoreConfiguration(IConfiguration hostingContextConfiguration, IConfigurationBuilder configurationBuilder)
         {
             var hostOptions = CoreOptionsFactory.GetCoreHostOptions(hostingContextConfiguration);
 
@@ -40,8 +40,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
             foreach (var configurationSource in internalConfigurationBuilder.Sources)
             {
                 // Last configuration provider is environment variables
-                // Ante-last configuration provider is secrets.json
-                var position = Math.Max(0, configurationBuilder.Sources.Count - 2);
+                var position = Math.Max(0, configurationBuilder.Sources.Count - 1);
                 configurationBuilder.Sources.Insert(position, configurationSource);
             }
         }

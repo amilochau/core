@@ -59,7 +59,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
             var response = BaseMiddlewareTests.GetResponseFromHttpContext<ContainsResponse>(httpContext);
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.Keys);
-            Assert.AreEqual(1, response.Keys.Count);
+            Assert.AreEqual(1, response.Keys.Count());
             Assert.AreEqual("test", response.Keys.First());
             Assert.IsFalse(response.Contains);
         }
@@ -91,7 +91,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
             var response = BaseMiddlewareTests.GetResponseFromHttpContext<ContainsResponse>(httpContext);
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.Keys);
-            Assert.AreEqual(0, response.Keys.Count);
+            Assert.AreEqual(0, response.Keys.Count());
             Assert.IsFalse(response.Contains);
         }
 
