@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Milochau.Core.Functions.Infrastructure.Features;
-using Milochau.Core.Infrastructure.Hosting;
 using System;
 
 namespace Milochau.Core.Functions
