@@ -1,5 +1,4 @@
-﻿using Azure.Identity;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Milochau.Core.Infrastructure.Hosting;
 using System;
 
@@ -28,13 +27,6 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Hosting
             // Configure appsettings.{hostName}.json
             var hostName = hostOptions.Application.HostName;
             internalConfigurationBuilder.AddJsonFile($"appsettings.{hostName}.json", optional: true, reloadOnChange: false);
-
-            // Configure Azure Key Vault
-            if (!string.IsNullOrEmpty(hostOptions.KeyVault.Vault))
-            {
-                var credential  = new DefaultAzureCredential(hostOptions.Credential);
-                internalConfigurationBuilder.AddAzureKeyVault(new Uri(hostOptions.KeyVault.Vault), credential);
-            }
 
             // Add new configuration sources at the beginning of the application configuration builder
             foreach (var configurationSource in internalConfigurationBuilder.Sources)
