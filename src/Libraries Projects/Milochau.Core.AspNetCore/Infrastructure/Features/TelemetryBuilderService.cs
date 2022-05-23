@@ -17,19 +17,16 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         /// <remarks>Telemetry uses Application Insights</remarks>
         public static IServiceCollection AddCoreTelemetry(this IServiceCollection services, CoreHostOptions hostOptions, CoreServicesOptions servicesOptions)
         {
-            if (servicesOptions.Telemetry.Enabled)
+            var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
             {
-                var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
-                {
-                    EnableAdaptiveSampling = !servicesOptions.Telemetry.DisableAdaptiveSampling
-                };
-                services.Configure<TelemetryConfiguration>(configuration =>
-                {
-                    var credential = new DefaultAzureCredential(hostOptions.Credential);
-                    configuration.SetAzureTokenCredential(credential);
-                });
-                services.AddApplicationInsightsTelemetry(aiOptions);
-            }
+                EnableAdaptiveSampling = !servicesOptions.Telemetry.DisableAdaptiveSampling
+            };
+            services.Configure<TelemetryConfiguration>(configuration =>
+            {
+                var credential = new DefaultAzureCredential(hostOptions.Credential);
+                configuration.SetAzureTokenCredential(credential);
+            });
+            services.AddApplicationInsightsTelemetry(aiOptions);
 
             return services;
         }
@@ -40,7 +37,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         /// <param name="servicesOptions">Core services options, see <see cref="CoreServicesOptions"/></param>
         public static IApplicationBuilder UseCoreTelemetry(this IApplicationBuilder app, CoreHostOptions hostOptions, CoreServicesOptions servicesOptions)
         {
-            if (servicesOptions.Telemetry.Enabled && !servicesOptions.Telemetry.DisableAdaptiveSampling)
+            if (!servicesOptions.Telemetry.DisableAdaptiveSampling)
             {
                 var telemetryConfiguration = app.ApplicationServices.GetService<TelemetryConfiguration>();
                 telemetryConfiguration.DefaultTelemetrySink.TelemetryProcessorChainBuilder

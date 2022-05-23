@@ -18,9 +18,6 @@ namespace Milochau.Core.AspNetCore.Models
     /// <summary>Telemetry options</summary>
     public class TelemetryOptions
     {
-        /// <summary>Enable telemetry</summary>
-        public bool Enabled { get; set; }
-
         /// <summary>Disable Adaptive Sampling</summary>
         /// <remarks>See https://docs.microsoft.com/en-us/azure/azure-monitor/app/sampling</remarks>
         public bool DisableAdaptiveSampling { get; set; }
