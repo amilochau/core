@@ -22,11 +22,10 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             services = BaseFeatureBuilderServiceTest.CreateServiceCollection();
         }
 
-        [TestMethod("AddCoreTelemetry - Telemetry enabled")]
-        public void AddCoreTelemetry_When_TelemetryIsEnabled()
+        [TestMethod("AddCoreTelemetry - Called")]
+        public void AddCoreTelemetry_When_Called()
         {
             // Given
-            coreServicesOptions.Telemetry.Enabled = true;
 
             // When
             TelemetryBuilderService.AddCoreTelemetry(services, coreHostOptions, coreServicesOptions);
@@ -35,21 +34,6 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             Assert.IsNotNull(services);
             var serviceProvider = services.BuildServiceProvider();
             Assert.IsNotNull(serviceProvider.GetService<ITelemetryModule>());
-        }
-
-        [TestMethod("AddCoreTelemetry - Telemetry disabled")]
-        public void AddCoreTelemetry_When_TelemetryIsDisabled()
-        {
-            // Given
-            coreServicesOptions.Telemetry.Enabled = false;
-
-            // When
-            TelemetryBuilderService.AddCoreTelemetry(services, coreHostOptions, coreServicesOptions);
-
-            // Then
-            Assert.IsNotNull(services);
-            var serviceProvider = services.BuildServiceProvider();
-            Assert.IsNull(serviceProvider.GetService<ITelemetryModule>());
         }
 
         [TestMethod("UseCoreTelemetry")]
