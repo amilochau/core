@@ -7,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Collections.Generic;
+using Milochau.Core.Abstractions.Exceptions;
+using Milochau.Core.Functions.Helpers;
+using System.Threading;
 
 namespace Milochau.Core.Functions.ReferenceProject
 {
@@ -69,6 +72,26 @@ namespace Milochau.Core.Functions.ReferenceProject
 
             await response.WriteAsJsonAsync(valuesResponse);
             return response;
+        }
+
+        [Function("NotFoundException")]
+        public Task<HttpResponseData> GetNotFoundExceptionAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "NotFoundException")] HttpRequestData request)
+        {
+            throw new NotFoundException();
+        }
+
+        [Function("BadRequest")]
+        public async Task<HttpResponseData> GetNotFoundExceptionAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "NotFoundException")] HttpRequestData request)
+        {
+            var validationResult = await request.ReadAndValidateRequestQueryAsync<>(CancellationToken.None);
+            if (!validationResult.IsValid || validationResult.Data == null)
+            {
+                return await request.WriteResponseAsJsonAsync(validationResult.ProblemDetails, HttpStatusCode.BadRequest, CancellationToken.None);
+            }
+
+            var serviceResponse = await mapsAccessesService.GetDownAsync(validationResult.Data, user, CancellationToken.None);
+            return await request.WriteResponseAsJsonAsync(serviceResponse, HttpStatusCode.OK, CancellationToken.None);
+
         }
     }
 }
