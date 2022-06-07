@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -12,6 +13,9 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
             var services = new ServiceCollection();
             services.AddRouting();
             services.AddLogging();
+#pragma warning disable CS0618 // Le type ou le membre est obsolète
+            services.AddSingleton<IHostingEnvironment, ObsoleteHostingEnvironment>();
+#pragma warning restore CS0618 // Le type ou le membre est obsolète
 
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddInMemoryCollection();

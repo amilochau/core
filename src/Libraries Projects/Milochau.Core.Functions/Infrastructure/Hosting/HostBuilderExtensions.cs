@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Milochau.Core.Functions.Infrastructure.Middelwares;
 using Milochau.Core.Infrastructure.Hosting;
 
 namespace Milochau.Core.Functions.Infrastructure.Hosting
@@ -14,7 +15,10 @@ namespace Milochau.Core.Functions.Infrastructure.Hosting
             where TStartup : CoreFunctionsStartup, new()
         {
             return hostBuilder
-                .ConfigureFunctionsWorkerDefaults()
+                .ConfigureFunctionsWorkerDefaults(workerApplication =>
+                {
+                    workerApplication.UseMiddleware<ExceptionHandlingMiddleware>();
+                })
                 .ConfigureCoreHostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {

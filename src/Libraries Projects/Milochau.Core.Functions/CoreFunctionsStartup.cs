@@ -1,7 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Azure.Core;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Infrastructure.Features;
 using System;
+using System.Text.Json;
 
 namespace Milochau.Core.Functions
 {
@@ -23,6 +28,20 @@ namespace Milochau.Core.Functions
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
+
+            // Add token credential to be shared between connections
+            services.AddSingleton<TokenCredential>(serviceProvider =>
+            {
+                var hostOptions = serviceProvider.GetRequiredService<IOptions<CoreHostOptions>>();
+                return new DefaultAzureCredential(hostOptions.Value.Credential);
+            });
+
+            // Serialize JSON response data with camelCase
+            services.Configure<JsonSerializerOptions>(options =>
+            {
+                options.PropertyNameCaseInsensitive = true;
+                options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
 
             ConfigureHealthChecks(services);
         }
