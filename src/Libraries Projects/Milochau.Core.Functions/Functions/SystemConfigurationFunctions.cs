@@ -20,7 +20,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Get configuration providers</summary>
         [Function("system-configuration-providers")]
-        public async Task<HttpResponseData> GetProvidersAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/configuration/providers")] HttpRequestData request)
+        public async Task<HttpResponseData> GetProvidersAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/configuration/providers")] HttpRequestData request)
         {
             var configurationRoot = configuration as ConfigurationRoot;
             var providersResponse = new ProvidersResponse

@@ -26,7 +26,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Count local cache items</summary>
         [Function("system-cache-local-count")]
-        public async Task<HttpResponseData> GetLocalCountAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/count")] HttpRequestData request)
+        public async Task<HttpResponseData> GetLocalCountAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/cache/local/count")] HttpRequestData request)
         {
             var countResponse = new CountResponse
             {
@@ -40,7 +40,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Test if local cache contains items</summary>
         [Function("system-cache-local-contains")]
-        public async Task<HttpResponseData> GetLocalContainsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "system/cache/local/contains")] HttpRequestData request)
+        public async Task<HttpResponseData> GetLocalContainsAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/cache/local/contains")] HttpRequestData request)
         {
             var containsResponse = new ContainsResponse();
 
@@ -58,7 +58,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Compact local cache</summary>
         [Function("system-cache-local-compact")]
-        public async Task<HttpResponseData> CompactLocalAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/compact")] HttpRequestData request)
+        public async Task<HttpResponseData> CompactLocalAsync([HttpTrigger(AuthorizationLevel.Admin, "post", Route = "system/cache/local/compact")] HttpRequestData request)
         {
             var compactResponse = new CompactResponse();
             var value = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(compactPercentageQueryKey)?.FirstOrDefault();
@@ -77,7 +77,7 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Remove an item from the local cache</summary>
         [Function("system-cache-local-remove")]
-        public async Task<HttpResponseData> RemoveLocalAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "system/cache/local/remove")] HttpRequestData request)
+        public async Task<HttpResponseData> RemoveLocalAsync([HttpTrigger(AuthorizationLevel.Admin, "post", Route = "system/cache/local/remove")] HttpRequestData request)
         {
             var removeResponse = new RemoveResponse();
 
