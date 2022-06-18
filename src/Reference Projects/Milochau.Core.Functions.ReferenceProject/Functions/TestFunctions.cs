@@ -92,7 +92,13 @@ namespace Milochau.Core.Functions.ReferenceProject
             }
 
             return await request.WriteResponseAsJsonAsync(validationResult.Data, HttpStatusCode.OK, CancellationToken.None);
+        }
 
+        [Function("SerializationExample")]
+        public async Task<HttpResponseData> GetSerializationExampleAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "SerializationExample")] HttpRequestData request)
+        {
+            var serializationExample = new SerializationExample();
+            return await request.WriteResponseAsJsonAsync(serializationExample, HttpStatusCode.OK, CancellationToken.None);
         }
     }
 }
