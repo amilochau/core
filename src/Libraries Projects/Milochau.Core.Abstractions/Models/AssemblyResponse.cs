@@ -7,39 +7,40 @@ namespace Milochau.Core.Abstractions.Models
     public class AssemblyResponse
     {
         /// <summary>Company</summary>
-        public string Company { get; set; }
+        public string? Company { get; set; }
 
         /// <summary>Configuration</summary>
-        public string Configuration { get; set; }
+        public string? Configuration { get; set; }
 
         /// <summary>Copyright</summary>
-        public string Copyright { get; set; }
+        public string? Copyright { get; set; }
 
         /// <summary>Description</summary>
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>File Version</summary>
-        public string FileVersion { get; set; }
+        public string? FileVersion { get; set; }
 
         /// <summary>Informational Version</summary>
-        public string InformationalVersion { get; set; }
+        public string? InformationalVersion { get; set; }
 
         /// <summary>Product</summary>
-        public string Product { get; set; }
+        public string? Product { get; set; }
 
 
         /// <summary>Is Local</summary>
-        public bool IsLocal { get; set; }
+        public bool IsLocal { get; set; } = false!;
 
         /// <summary>Build ID</summary>
-        public string BuildId { get; set; }
+        public string BuildId { get; set; } = null!;
 
         /// <summary>Build Source Version</summary>
-        public string BuildSourceVersion { get; set; }
+        public string BuildSourceVersion { get; set; } = null!;
 
         /// <summary>Default constructor</summary>
         public AssemblyResponse()
         {
+
         }
 
         /// <summary>Constructor</summary>
@@ -53,9 +54,9 @@ namespace Milochau.Core.Abstractions.Models
             InformationalVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
             Product = assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
 
-            IsLocal = IsLocalRegex.IsMatch(InformationalVersion);
-            BuildId = BuildRegex.Match(InformationalVersion).Groups[1].Value;
-            BuildSourceVersion = BuildRegex.Match(InformationalVersion).Groups[2].Value;
+            IsLocal = IsLocalRegex.IsMatch(InformationalVersion ?? string.Empty);
+            BuildId = BuildRegex.Match(InformationalVersion ?? string.Empty).Groups[1].Value;
+            BuildSourceVersion = BuildRegex.Match(InformationalVersion ?? string.Empty).Groups[2].Value;
         }
 
         /// <summary>Regular expression to know if the <see cref="InformationalVersion"/> indicates a local build</summary>

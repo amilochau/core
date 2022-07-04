@@ -14,13 +14,13 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
     [TestClass]
     public class TestFunctionsTests : BaseFunctionsTests
     {
-        private Mock<IOptions<CoreHostOptions>> options;
-        private CoreHostOptions optionsValue;
-        private Mock<IHostEnvironment> hostEnvironment;
-        private Mock<IApplicationHostEnvironment> applicationHostEnvironment;
-        private Mock<IConfiguration> configuration;
+        private Mock<IOptions<CoreHostOptions>> options = null!;
+        private CoreHostOptions optionsValue = null!;
+        private Mock<IHostEnvironment> hostEnvironment = null!;
+        private Mock<IApplicationHostEnvironment> applicationHostEnvironment = null!;
+        private Mock<IConfiguration> configuration = null!;
 
-        private TestFunctions functions;
+        private TestFunctions functions = null!;
 
         private const string organizationName = "organizationName";
         private const string applicationName = "applicationName";

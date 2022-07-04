@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Milochau.Core.Abstractions.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,20 +24,24 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Middlewares
         /// <param name="httpContext">HTTP context</param>
         public Task InvokeAsync(HttpContext httpContext)
         {
+            var path = httpContext.Request.Path.Value ?? string.Empty;
+
             return httpContext.Request.Method switch
             {
-                Keys.GetMethod when httpContext.Request.Path.Value.EndsWith("/providers", StringComparison.OrdinalIgnoreCase) => ProvidersAsync(httpContext),
+                Keys.GetMethod when path.EndsWith("/providers", StringComparison.OrdinalIgnoreCase) => ProvidersAsync(httpContext),
                 _ => BaseApplicationMiddleware.WriteErrorAsTextAsync(httpContext, Keys.EndpointRouteNotFoundMessage)
             };
         }
 
         private async Task ProvidersAsync(HttpContext httpContext)
         {
+            var response = new ProvidersResponse();
+
             var configurationRoot = configuration as ConfigurationRoot;
-            var response = new ProvidersResponse
+            if (configurationRoot != null)
             {
-                Providers = configurationRoot.Providers.Select(x => x.ToString())
-            };
+                response.Providers = configurationRoot.Providers.Select(x => x.ToString()).Where(x => !string.IsNullOrWhiteSpace(x));
+            }
 
             await BaseApplicationMiddleware.WriteResponseAsJsonAsync(httpContext, response);
         }

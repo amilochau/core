@@ -81,7 +81,7 @@ namespace Milochau.Core.Infrastructure.Hosting
                 ?? configuration[suffix];
         }
 
-        private static string GetValueFromEnvironment(string suffix)
+        private static string? GetValueFromEnvironment(string suffix)
         {
             return Environment.GetEnvironmentVariable($"{GenericHostConfigurationPrefix}{suffix}")
                 ?? Environment.GetEnvironmentVariable($"{FunctionsHostConfigurationPrefix}{suffix}")

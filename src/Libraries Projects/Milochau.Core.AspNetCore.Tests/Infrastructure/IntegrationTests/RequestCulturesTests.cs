@@ -34,11 +34,11 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType?.ToString());
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             var content = JsonSerializer.Deserialize<EnvironmentResponse>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(defaultCulture, content.CurrentCulture);
+            Assert.AreEqual(defaultCulture, content?.CurrentCulture);
         }
 
         [TestMethod("Culture - Use default culture")]
@@ -62,11 +62,11 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType?.ToString());
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             var content = JsonSerializer.Deserialize<EnvironmentResponse>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(defaultCulture, content.CurrentCulture);
+            Assert.AreEqual(defaultCulture, content?.CurrentCulture);
         }
 
         [TestMethod("Culture - Multiple supported cultures - Query")]
@@ -91,11 +91,11 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType?.ToString());
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             var content = JsonSerializer.Deserialize<EnvironmentResponse>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(secondCulture, content.CurrentCulture);
+            Assert.AreEqual(secondCulture, content?.CurrentCulture);
         }
 
         [TestMethod("Culture - Multiple supported cultures - HTTP header")]
@@ -122,11 +122,11 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType?.ToString());
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             var content = JsonSerializer.Deserialize<EnvironmentResponse>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(secondCulture, content.CurrentCulture);
+            Assert.AreEqual(secondCulture, content?.CurrentCulture);
         }
     }
 }

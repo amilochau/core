@@ -6,7 +6,7 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
     [TestClass]
     public class ApplicationHostEnvironmentTests
     {
-        private ApplicationHostEnvironment MilochauHostingEnvironment;
+        private ApplicationHostEnvironment MilochauHostingEnvironment = null!;
 
         private const string OrganizationName = "organizationName";
         private const string ApplicationName = "applicationName";

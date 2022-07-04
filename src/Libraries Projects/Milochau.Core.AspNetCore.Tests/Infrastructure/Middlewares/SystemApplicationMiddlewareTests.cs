@@ -12,10 +12,10 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
     [TestClass]
     public class SystemApplicationMiddlewareTests
     {
-        private Mock<RequestDelegate> requestDelegate;
-        private Mock<IApplicationHostEnvironment> applicationHostEnvironment;
+        private Mock<RequestDelegate> requestDelegate = null!;
+        private Mock<IApplicationHostEnvironment> applicationHostEnvironment = null!;
 
-        private SystemApplicationMiddleware middleware;
+        private SystemApplicationMiddleware middleware = null!;
 
         private const string organizationName = "organizationName";
         private const string applicationName = "applicationName";

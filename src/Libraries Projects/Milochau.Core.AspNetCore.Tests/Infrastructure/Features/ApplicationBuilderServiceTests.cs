@@ -14,7 +14,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
     [TestClass]
     public class ApplicationBuilderServiceTests
     {
-        private IServiceCollection services;
+        private IServiceCollection services = null!;
 
         private readonly CoreHostOptions coreHostOptions = new CoreHostOptions();
         private readonly CoreServicesOptions coreServicesOptions = new CoreServicesOptions();
@@ -36,14 +36,14 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType?.ToString());
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             var content = JsonSerializer.Deserialize<AssemblyResponse>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual("Microsoft Corporation", content.Company);
-            Assert.AreEqual("© Microsoft Corporation. All rights reserved.", content.Copyright);
-            Assert.AreEqual("Microsoft.TestHost", content.Product);
-            Assert.IsFalse(content.IsLocal);
+            Assert.AreEqual("Microsoft Corporation", content?.Company);
+            Assert.AreEqual("© Microsoft Corporation. All rights reserved.", content?.Copyright);
+            Assert.AreEqual("Microsoft.TestHost", content?.Product);
+            Assert.IsFalse(content?.IsLocal);
         }
 
         [TestMethod("MapCoreApplication - Environment")]
@@ -57,7 +57,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json; charset=utf-8", response.Content.Headers.ContentType?.ToString());
         }
 
         [TestMethod("UseCoreApplication - Request localization enabled")]

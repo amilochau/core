@@ -19,7 +19,7 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
             return httpContext;
         }
 
-        public static TResponse GetResponseFromHttpContext<TResponse>(HttpContext httpContext)
+        public static TResponse? GetResponseFromHttpContext<TResponse>(HttpContext httpContext)
         {
             httpContext.Response.Body.Position = 0;
             using var reader = new StreamReader(httpContext.Response.Body);

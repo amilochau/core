@@ -6,6 +6,6 @@ namespace Milochau.Core.Abstractions.Models
     public class ProvidersResponse
     {
         /// <summary>Providers</summary>
-        public IEnumerable<string> Providers { get; set; }
+        public IEnumerable<string?> Providers { get; set; } = new List<string?>();
     }
 }

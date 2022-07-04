@@ -28,10 +28,13 @@ namespace Milochau.Core.Console.ReferenceProject
             logger.LogWarning(options.Application.ApplicationName);
 
             var configurationRoot = configuration as ConfigurationRoot;
-            logger.LogWarning("Providers: {0}", configurationRoot.Providers.Count());
-            foreach (var provider in configurationRoot.Providers)
+            if (configurationRoot != null)
             {
-                logger.LogWarning("   {0}", provider.ToString());
+                logger.LogWarning("Providers: {0}", configurationRoot.Providers.Count());
+                foreach (var provider in configurationRoot.Providers)
+                {
+                    logger.LogWarning("   {0}", provider.ToString());
+                }
             }
 
             logger.LogWarning($"Testing configuration build");

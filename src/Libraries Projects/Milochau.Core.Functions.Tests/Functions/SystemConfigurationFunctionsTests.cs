@@ -12,9 +12,9 @@ namespace Milochau.Core.Functions.Tests.Functions
     [TestClass]
     public class SystemConfigurationFunctionsTests : BaseFunctionsTests
     {
-        private IConfiguration configuration;
+        private IConfiguration configuration = null!;
 
-        private SystemConfigurationFunctions functions;
+        private SystemConfigurationFunctions functions = null!;
 
         private const string featureName = "featureName";
 

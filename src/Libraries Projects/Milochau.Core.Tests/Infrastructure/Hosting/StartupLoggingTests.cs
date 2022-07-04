@@ -30,7 +30,7 @@ namespace Milochau.Core.Tests.Infrastructure.Hosting
             StartupLogging.LogApplicationInformation(serviceProvider);
 
             // Then
-            logger.Verify(x => x.Log(It.Is<LogLevel>(ll => ll >= LogLevel.Information), It.IsAny<EventId>(), It.IsAny<It.IsAnyType>(), It.IsAny<Exception>(), It.IsAny<Func<It.IsAnyType, Exception, string>>()), Times.Exactly(2));
+            logger.Verify(x => x.Log(It.Is<LogLevel>(ll => ll >= LogLevel.Information), It.IsAny<EventId>(), It.IsAny<It.IsAnyType>(), It.IsAny<Exception>(), It.IsAny<Func<It.IsAnyType, Exception?, string>>()), Times.Exactly(2));
         }
     }
 }

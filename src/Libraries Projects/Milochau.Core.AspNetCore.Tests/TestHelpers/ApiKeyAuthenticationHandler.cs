@@ -51,6 +51,6 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
 
     public class ApiKeyOptions : AuthenticationSchemeOptions
     {
-        public string ApiKey { get; set; }
+        public string ApiKey { get; set; } = null!;
     }
 }

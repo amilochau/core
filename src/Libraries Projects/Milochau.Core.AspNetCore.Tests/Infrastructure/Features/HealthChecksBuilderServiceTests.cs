@@ -20,8 +20,8 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
     [TestClass]
     public class HealthChecksBuilderServiceTests
     {
-        private IServiceCollection services;
-        private IConfiguration configuration;
+        private IServiceCollection services = null!;
+        private IConfiguration configuration = null!;
 
         private readonly CoreHostOptions coreHostOptions = new CoreHostOptions();
         private const string endpointCheckName = "Endpoint";
@@ -60,9 +60,9 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             // Then
             Assert.IsNotNull(services);
             var serviceProvider = services.BuildServiceProvider();
-            Assert.IsNotNull(serviceProvider.GetService<HealthCheckService>());
+            Assert.IsNotNull(serviceProvider.GetRequiredService<HealthCheckService>());
 
-            var options = serviceProvider.GetService<IOptions<HealthCheckServiceOptions>>();
+            var options = serviceProvider.GetRequiredService<IOptions<HealthCheckServiceOptions>>();
 
             Assert.IsNotNull(options.Value);
             Assert.IsNotNull(options.Value.Registrations);
@@ -86,9 +86,9 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             // Then
             Assert.IsNotNull(services);
             var serviceProvider = services.BuildServiceProvider();
-            Assert.IsNotNull(serviceProvider.GetService<HealthCheckService>());
+            Assert.IsNotNull(serviceProvider.GetRequiredService<HealthCheckService>());
 
-            var options = serviceProvider.GetService<IOptions<HealthCheckServiceOptions>>();
+            var options = serviceProvider.GetRequiredService<IOptions<HealthCheckServiceOptions>>();
 
             Assert.IsNotNull(options.Value);
             Assert.IsNotNull(options.Value.Registrations);
@@ -112,15 +112,15 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json", response.Content.Headers.ContentType?.ToString());
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             options.Converters.Add(new TimeSpanConverter());
             options.Converters.Add(new JsonStringEnumConverter());
             var content = JsonSerializer.Deserialize<DetailedHealthReport>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(DetailedHealthStatus.Healthy, content.Status);
-            Assert.AreEqual(2, content.Entries.Count);
-            Assert.AreEqual("Endpoint", content.Entries.First().Key);
+            Assert.AreEqual(DetailedHealthStatus.Healthy, content?.Status);
+            Assert.AreEqual(2, content?.Entries.Count);
+            Assert.AreEqual("Endpoint", content?.Entries.First().Key);
         }
 
         [TestMethod("MapCoreHealthChecks - Light health checks")]
@@ -134,15 +134,15 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
 
             // Then
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("application/json", response.Content.Headers.ContentType.ToString());
+            Assert.AreEqual("application/json", response.Content.Headers.ContentType?.ToString());
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             options.Converters.Add(new TimeSpanConverter());
             options.Converters.Add(new JsonStringEnumConverter());
             var content = JsonSerializer.Deserialize<DetailedHealthReport>(await response.Content.ReadAsStringAsync(), options);
-            Assert.AreEqual(DetailedHealthStatus.Healthy, content.Status);
-            Assert.AreEqual(2, content.Entries.Count);
-            Assert.AreEqual("Endpoint", content.Entries.First().Key);
+            Assert.AreEqual(DetailedHealthStatus.Healthy, content?.Status);
+            Assert.AreEqual(2, content?.Entries.Count);
+            Assert.AreEqual("Endpoint", content?.Entries.First().Key);
         }
     }
 }

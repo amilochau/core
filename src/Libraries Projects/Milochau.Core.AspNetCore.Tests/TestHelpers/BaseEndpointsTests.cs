@@ -16,14 +16,16 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
         public static Task<HttpClient> CreateHttpClientFromCoreAsync()
             => CreateHttpClientFromCoreAsync(null);
 
-        public static async Task<HttpClient> CreateHttpClientFromCoreAsync(IConfiguration configuration)
+        public static async Task<HttpClient> CreateHttpClientFromCoreAsync(IConfiguration? configuration)
         {
             var host = new HostBuilder()
                 .ConfigureCoreHostBuilder()
                 .ConfigureWebHost(webHostBuilder =>
                 {
                     if (configuration != null)
+                    {
                         webHostBuilder = webHostBuilder.UseConfiguration(configuration);
+                    }
 
                     webHostBuilder
                         .ConfigureCoreWebHostBuilder()

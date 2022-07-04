@@ -54,7 +54,7 @@ namespace Milochau.Core.Console.ReferenceProject.Tests
                 It.IsAny<EventId>(),
                 It.IsAny<It.IsAnyType>(),
                 It.IsAny<Exception>(),
-                It.IsAny<Func<It.IsAnyType, Exception, string>>()), Times.AtLeastOnce);
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()), Times.AtLeastOnce);
         }
     }
 }

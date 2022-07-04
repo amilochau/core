@@ -32,7 +32,7 @@ namespace Milochau.Core.Functions.Functions
         [Function("system-application-assembly")]
         public async Task<HttpResponseData> GetAssemblyAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/application/assembly")] HttpRequestData request)
         {
-            var assembly = System.Reflection.Assembly.GetEntryAssembly();
+            var assembly = System.Reflection.Assembly.GetEntryAssembly()!;
             var assemblyResponse = new AssemblyResponse(assembly);
 
             var response = request.CreateResponse();

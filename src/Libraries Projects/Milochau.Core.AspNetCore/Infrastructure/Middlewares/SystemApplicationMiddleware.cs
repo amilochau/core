@@ -23,10 +23,12 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Middlewares
         /// <param name="httpContext">HTTP context</param>
         public Task InvokeAsync(HttpContext httpContext)
         {
+            var path = httpContext.Request.Path.Value ?? string.Empty;
+
             return httpContext.Request.Method switch
             {
-                Keys.GetMethod when httpContext.Request.Path.Value.EndsWith("/assembly", StringComparison.OrdinalIgnoreCase) => AssemblyInformationAsync(httpContext),
-                Keys.GetMethod when httpContext.Request.Path.Value.EndsWith("/environment", StringComparison.OrdinalIgnoreCase) => EnvironmentAsync(httpContext),
+                Keys.GetMethod when path.EndsWith("/assembly", StringComparison.OrdinalIgnoreCase) => AssemblyInformationAsync(httpContext),
+                Keys.GetMethod when path.EndsWith("/environment", StringComparison.OrdinalIgnoreCase) => EnvironmentAsync(httpContext),
                 _ => BaseApplicationMiddleware.WriteErrorAsTextAsync(httpContext, Keys.EndpointRouteNotFoundMessage)
             };
         }
@@ -34,7 +36,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Middlewares
         private static Task AssemblyInformationAsync(HttpContext httpContext)
         {
             var assembly = Assembly.GetEntryAssembly();
-            var response = new AssemblyResponse(assembly);
+            var response = new AssemblyResponse(assembly!);
 
             return BaseApplicationMiddleware.WriteResponseAsJsonAsync(httpContext, response);
         }

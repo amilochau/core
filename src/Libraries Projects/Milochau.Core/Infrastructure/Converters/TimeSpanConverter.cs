@@ -10,7 +10,7 @@ namespace Milochau.Core.Infrastructure.Converters
         /// <summary>Read JSON and convert it to <see cref="TimeSpan"/></summary>
         public override TimeSpan Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return TimeSpan.Parse(reader.GetString());
+            return TimeSpan.Parse(reader.GetString() ?? string.Empty);
         }
 
         /// <summary>Write <see cref="TimeSpan"/> to JSON</summary>
