@@ -3,7 +3,7 @@
     public class SerializationExample
     {
         public string String { get; set; } = "Name";
-        public string NullString { get; set; }
+        public string? NullString { get; set; }
         public string EmptyString { get; set; } = "";
         public SerializationExampleType Type { get; set; } = SerializationExampleType.Default;
         public SerializationExampleType? NullableType { get; set; } = null;

@@ -8,7 +8,7 @@ namespace Milochau.Core.Console.ReferenceProject
         {
             base.ConfigureServices(services);
 
-            DependenciesRegistrar.Register(services, configuration);
+            DependenciesRegistrar.Register(services, Configuration);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Milochau.Core.AspNetCore.Tests
 
             Assert.IsTrue(services.Any(x => x.ServiceType.Name == "HealthCheckService"));
 
-            var options = sp.GetService<IOptions<HealthCheckServiceOptions>>();
+            var options = sp.GetRequiredService<IOptions<HealthCheckServiceOptions>>();
 
             Assert.IsNotNull(options.Value);
             Assert.IsNotNull(options.Value.Registrations);

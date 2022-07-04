@@ -29,12 +29,14 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Middlewares
         /// <param name="httpContext">HTTP context</param>
         public Task InvokeAsync(HttpContext httpContext)
         {
+            var path = httpContext.Request.Path.Value ?? string.Empty;
+
             return httpContext.Request.Method switch
             {
-                Keys.GetMethod when httpContext.Request.Path.Value.EndsWith("/local/count", StringComparison.OrdinalIgnoreCase) => LocalCountAsync(httpContext),
-                Keys.GetMethod when httpContext.Request.Path.Value.EndsWith("/local/contains", StringComparison.OrdinalIgnoreCase) => LocalContainsAsync(httpContext),
-                Keys.PostMethod when httpContext.Request.Path.Value.EndsWith("/local/compact", StringComparison.OrdinalIgnoreCase) => LocalCompactAsync(httpContext),
-                Keys.PostMethod when httpContext.Request.Path.Value.EndsWith("/local/remove", StringComparison.OrdinalIgnoreCase) => LocalRemoveAsync(httpContext),
+                Keys.GetMethod when path.EndsWith("/local/count", StringComparison.OrdinalIgnoreCase) => LocalCountAsync(httpContext),
+                Keys.GetMethod when path.EndsWith("/local/contains", StringComparison.OrdinalIgnoreCase) => LocalContainsAsync(httpContext),
+                Keys.PostMethod when path.EndsWith("/local/compact", StringComparison.OrdinalIgnoreCase) => LocalCompactAsync(httpContext),
+                Keys.PostMethod when path.EndsWith("/local/remove", StringComparison.OrdinalIgnoreCase) => LocalRemoveAsync(httpContext),
                 _ => BaseApplicationMiddleware.WriteErrorAsTextAsync(httpContext, Keys.EndpointRouteNotFoundMessage)
             };
         }

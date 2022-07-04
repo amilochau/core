@@ -30,7 +30,7 @@ namespace Milochau.Core.AspNetCore.Models
         public bool Enabled { get; set; }
 
         /// <summary>Default culture</summary>
-        public string DefaultCulture { get; set; }
+        public string? DefaultCulture { get; set; }
 
         /// <summary>Supported (UI) cultures</summary>
         public string[] SupportedCultures { get; set; } = Array.Empty<string>();

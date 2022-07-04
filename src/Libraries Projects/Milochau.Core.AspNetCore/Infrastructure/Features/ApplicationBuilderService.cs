@@ -19,13 +19,14 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         /// <param name="servicesOptions">Core services options, see <see cref="CoreServicesOptions"/></param>
         public static IApplicationBuilder UseCoreApplication(this IApplicationBuilder app, CoreHostOptions hostOptions, CoreServicesOptions servicesOptions)
         {
-            if (servicesOptions.RequestLocalization.Enabled)
+            if (servicesOptions.RequestLocalization.Enabled &&
+                (!string.IsNullOrWhiteSpace(servicesOptions.RequestLocalization.DefaultCulture) || servicesOptions.RequestLocalization.SupportedCultures.Any()))
             {
                 var requestLocalizationOptions = new Microsoft.AspNetCore.Builder.RequestLocalizationOptions();
 
-                var defaultCulture = !string.IsNullOrEmpty(servicesOptions.RequestLocalization.DefaultCulture)
+                var defaultCulture = !string.IsNullOrWhiteSpace(servicesOptions.RequestLocalization.DefaultCulture)
                     ? servicesOptions.RequestLocalization.DefaultCulture
-                    : servicesOptions.RequestLocalization.SupportedCultures.FirstOrDefault();
+                    : servicesOptions.RequestLocalization.SupportedCultures.First();
 
                 var supportedCultures = servicesOptions.RequestLocalization.SupportedCultures.Union(new[] { defaultCulture }).ToArray();
 

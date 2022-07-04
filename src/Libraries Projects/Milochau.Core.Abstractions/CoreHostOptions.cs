@@ -23,19 +23,19 @@ namespace Milochau.Core.Abstractions
     public class ApplicationOptions
     {
         /// <summary>Organization name</summary>
-        public string OrganizationName { get; set; }
+        public string OrganizationName { get; set; } = null!;
 
         /// <summary>Application name</summary>
-        public string ApplicationName { get; set; }
+        public string ApplicationName { get; set; } = null!;
 
         /// <summary>Environment name</summary>
-        public string EnvironmentName { get; set; }
+        public string EnvironmentName { get; set; } = null!;
 
         /// <summary>Host name</summary>
-        public string HostName { get; set; }
+        public string HostName { get; set; } = null!;
 
         /// <summary>Region name</summary>
-        public string RegionName { get; set; }
+        public string RegionName { get; set; } = null!;
 
         /// <summary>Get the infrastructure convention for a defined type</summary>
         public string GetInfrastructureConvention(InfrastructureConventionType infrastructureConventionType, string suffix = "")
@@ -58,7 +58,7 @@ namespace Milochau.Core.Abstractions
     public class KeyVaultOptions
     {
         /// <summary>Vault URI</summary>
-        public string Vault { get; set; }
+        public string? Vault { get; set; }
     }
 
     /// <summary>Type of infrastructure convention</summary>

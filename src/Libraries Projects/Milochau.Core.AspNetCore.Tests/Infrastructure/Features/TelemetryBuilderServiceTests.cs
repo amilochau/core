@@ -11,7 +11,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
     [TestClass]
     public class TelemetryBuilderServiceTests
     {
-        private IServiceCollection services;
+        private IServiceCollection services = null!;
 
         private readonly CoreHostOptions coreHostOptions = new CoreHostOptions();
         private readonly CoreServicesOptions coreServicesOptions = new CoreServicesOptions();

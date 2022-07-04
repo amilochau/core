@@ -14,10 +14,10 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
     [TestClass]
     public class SystemConfigurationMiddlewareTests
     {
-        private Mock<RequestDelegate> requestDelegate;
-        private IConfiguration configuration;
+        private Mock<RequestDelegate> requestDelegate = null!;
+        private IConfiguration configuration = null!;
 
-        private SystemConfigurationMiddleware middleware;
+        private SystemConfigurationMiddleware middleware = null!;
 
         private const string featureName = "featureName";
 

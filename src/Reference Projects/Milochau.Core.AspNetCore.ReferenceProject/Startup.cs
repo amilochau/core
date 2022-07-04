@@ -28,7 +28,7 @@ namespace Milochau.Core.AspNetCore.ReferenceProject
             services.AddSwaggerGen();
 
             // Register dependencies
-            DependenciesRegistrar.Register(services, configuration);
+            DependenciesRegistrar.Register(services, Configuration);
         }
 
         public override void Configure(IApplicationBuilder app)

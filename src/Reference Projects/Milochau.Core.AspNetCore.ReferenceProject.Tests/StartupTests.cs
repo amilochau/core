@@ -11,7 +11,7 @@ namespace Milochau.Core.AspNetCore.ReferenceProject.Tests
     [TestClass]
     public class StartupTests
     {
-        private Mock<IWebHostEnvironment> env;
+        private Mock<IWebHostEnvironment> env = null!;
 
         private readonly ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
 

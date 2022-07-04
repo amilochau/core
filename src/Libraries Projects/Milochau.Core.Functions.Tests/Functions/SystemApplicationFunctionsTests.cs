@@ -11,9 +11,9 @@ namespace Milochau.Core.Functions.Tests.Functions
     [TestClass]
     public class SystemApplicationFunctionsTests : BaseFunctionsTests
     {
-        private Mock<IApplicationHostEnvironment> applicationHostEnvironment;
+        private Mock<IApplicationHostEnvironment> applicationHostEnvironment = null!;
 
-        private SystemApplicationFunctions functions;
+        private SystemApplicationFunctions functions = null!;
 
         private const string organizationName = "organizationName";
         private const string applicationName = "applicationName";

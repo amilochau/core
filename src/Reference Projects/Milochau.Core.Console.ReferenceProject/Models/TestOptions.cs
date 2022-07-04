@@ -2,10 +2,10 @@
 {
     public class TestOptions
     {
-        public string PublicValueOnlyShared { get; set; }
-        public string PublicValueOnlyApplication { get; set; }
-        public string PublicValueOnlySharedAndApplication { get; set; }
+        public string? PublicValueOnlyShared { get; set; }
+        public string? PublicValueOnlyApplication { get; set; }
+        public string? PublicValueOnlySharedAndApplication { get; set; }
 
-        public string SecretValue { get; set; }
+        public string? SecretValue { get; set; }
     }
 }

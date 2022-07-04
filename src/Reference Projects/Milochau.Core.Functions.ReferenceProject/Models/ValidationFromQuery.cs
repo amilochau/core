@@ -9,7 +9,7 @@ namespace Milochau.Core.Functions.ReferenceProject.Models
     {
         [Required]
         [MinLength(2)]
-        public string Key { get; set; }
+        public string? Key { get; set; }
 
         public bool TryParse(string query)
         {

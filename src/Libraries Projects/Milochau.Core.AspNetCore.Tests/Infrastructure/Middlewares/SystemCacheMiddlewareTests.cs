@@ -13,10 +13,10 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
     [TestClass]
     public class SystemCacheMiddlewareTests
     {
-        private Mock<RequestDelegate> requestDelegate;
-        private Mock<IApplicationMemoryCache> applicationMemoryCache;
+        private Mock<RequestDelegate> requestDelegate = null!;
+        private Mock<IApplicationMemoryCache> applicationMemoryCache = null!;
 
-        private SystemCacheMiddleware middleware;
+        private SystemCacheMiddleware middleware = null!;
 
         [TestInitialize]
         public void Initialize()

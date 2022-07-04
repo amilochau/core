@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
 
     <Company>Milochau</Company>
     <Authors>Antoine Milochau</Authors>

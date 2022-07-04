@@ -77,16 +77,16 @@ namespace Milochau.Core.Functions.Helpers
     public class ProblemDetails
     {
         /// <summary>Problem type</summary>
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>Summary of the problem type</summary>
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>HTTP status code</summary>
         public int? Status { get; set; }
 
         /// <summary>Explanation of the problem</summary>
-        public string Detail { get; set; }
+        public string? Detail { get; set; }
 
         /// <summary>Extension members</summary>
         public IDictionary<string, object> Extensions { get; } = new Dictionary<string, object>(StringComparer.Ordinal);

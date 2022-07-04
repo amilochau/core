@@ -7,19 +7,19 @@ namespace Milochau.Core.Abstractions.Models
     public class EnvironmentResponse
     {
         /// <summary>Organization name</summary>
-        public string OrganizationName { get; set; }
+        public string OrganizationName { get; set; } = null!;
 
         /// <summary>Application name</summary>
-        public string ApplicationName { get; set; }
+        public string ApplicationName { get; set; } = null!;
 
         /// <summary>Environment name</summary>
-        public string EnvironmentName { get; set; }
+        public string EnvironmentName { get; set; } = null!;
 
         /// <summary>Host name</summary>
-        public string HostName { get; set; }
+        public string HostName { get; set; } = null!;
 
         /// <summary>Region name</summary>
-        public string RegionName { get; set; }
+        public string RegionName { get; set; } = null!;
 
 
         /// <summary>Machine name</summary>

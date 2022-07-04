@@ -19,7 +19,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         protected static HttpRequestData CreateHttpRequestData(string method, string path)
             => CreateHttpRequestData(method, path, default);
 
-        protected static HttpRequestData CreateHttpRequestData(string method, string path, string query)
+        protected static HttpRequestData CreateHttpRequestData(string method, string path, string? query)
         {
             var serviceCollection = new ServiceCollection();
 
@@ -69,7 +69,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             return reader.ReadToEnd();
         }
 
-        protected static TResponse GetResponseAsJson<TResponse>(HttpResponseData httpResponseData, HttpStatusCode expectedStatusCode)
+        protected static TResponse? GetResponseAsJson<TResponse>(HttpResponseData httpResponseData, HttpStatusCode expectedStatusCode)
         {
             Assert.AreEqual(expectedStatusCode, httpResponseData.StatusCode);
             Assert.IsNotNull(httpResponseData.Body);

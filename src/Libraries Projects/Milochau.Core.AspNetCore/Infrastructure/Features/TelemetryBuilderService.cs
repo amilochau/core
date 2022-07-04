@@ -39,7 +39,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         {
             if (!servicesOptions.Telemetry.DisableAdaptiveSampling)
             {
-                var telemetryConfiguration = app.ApplicationServices.GetService<TelemetryConfiguration>();
+                var telemetryConfiguration = app.ApplicationServices.GetRequiredService<TelemetryConfiguration>();
                 telemetryConfiguration.DefaultTelemetrySink.TelemetryProcessorChainBuilder
                     .UseAdaptiveSampling(maxTelemetryItemsPerSecond: 5, "Trace;Exception")
                     .Build();

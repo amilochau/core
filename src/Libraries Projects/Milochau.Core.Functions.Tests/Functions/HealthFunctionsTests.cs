@@ -13,9 +13,9 @@ namespace Milochau.Core.Functions.Tests.Functions
     [TestClass]
     public class HealthFunctionsTests : BaseFunctionsTests
     {
-        private Mock<HealthCheckService> healthCheckService;
+        private Mock<HealthCheckService> healthCheckService = null!;
 
-        private HealthFunctions functions;
+        private HealthFunctions functions = null!;
 
         [TestInitialize]
         public void Initialize()

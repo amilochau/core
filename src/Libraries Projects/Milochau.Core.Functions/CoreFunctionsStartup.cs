@@ -50,7 +50,7 @@ namespace Milochau.Core.Functions
         /// <summary>Configure health checks</summary>
         protected virtual IHealthChecksBuilder ConfigureHealthChecks(IServiceCollection services)
         {
-            return services.AddCoreHealthChecks(hostOptions);
+            return services.AddCoreHealthChecks(HostOptions);
         }
 
         /// <summary>Configure application</summary>

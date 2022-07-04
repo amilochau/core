@@ -12,9 +12,9 @@ namespace Milochau.Core.Functions.Tests.Functions
     [TestClass]
     public class SystemCacheFunctionsTests : BaseFunctionsTests
     {
-        private Mock<IApplicationMemoryCache> applicationMemoryCache;
+        private Mock<IApplicationMemoryCache> applicationMemoryCache = null!;
 
-        private SystemCacheFunctions functions;
+        private SystemCacheFunctions functions = null!;
 
         [TestInitialize]
         public void Initialize()

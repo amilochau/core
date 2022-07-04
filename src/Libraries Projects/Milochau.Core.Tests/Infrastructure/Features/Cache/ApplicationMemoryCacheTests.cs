@@ -11,7 +11,7 @@ namespace Milochau.Core.Tests.Infrastructure.Features.Cache
     [TestClass]
     public class ApplicationMemoryCacheTests
     {
-        private ApplicationMemoryCache cache;
+        private ApplicationMemoryCache cache = null!;
 
         [TestInitialize]
         public void Initialize()

@@ -22,12 +22,14 @@ namespace Milochau.Core.Functions.Functions
         [Function("system-configuration-providers")]
         public async Task<HttpResponseData> GetProvidersAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/configuration/providers")] HttpRequestData request)
         {
-            var configurationRoot = configuration as ConfigurationRoot;
-            var providersResponse = new ProvidersResponse
-            {
-                Providers = configurationRoot.Providers.Select(x => x.ToString())
-            };
+            var providersResponse = new ProvidersResponse();
 
+            var configurationRoot = configuration as ConfigurationRoot;
+            if (configurationRoot != null)
+            {
+                providersResponse.Providers = configurationRoot.Providers.Select(x => x.ToString());
+            }
+            
             var response = request.CreateResponse();
             await response.WriteAsJsonAsync(providersResponse);
             return response;
