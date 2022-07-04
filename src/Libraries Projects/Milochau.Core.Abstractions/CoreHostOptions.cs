@@ -43,7 +43,7 @@ namespace Milochau.Core.Abstractions
             switch (infrastructureConventionType)
             {
                 case InfrastructureConventionType.StorageAccountUri:
-                    return $"{OrganizationName}{ApplicationName}{HostName}sto{suffix}.blob.core.windows.net/";
+                    return $"https://{OrganizationName}{ApplicationName}{HostName}sto{suffix}.blob.core.windows.net/";
                 case InfrastructureConventionType.CosmosDbDatabaseName:
                     return $"{OrganizationName}-{ApplicationName}-{HostName}-cosmosdb";
                 case InfrastructureConventionType.CosmosDbAccountEndpoint:
