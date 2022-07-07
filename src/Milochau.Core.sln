@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30104.148
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core", "Libraries Projects\Milochau.Core\Milochau.Core.csproj", "{DE07CC29-D4B4-4DF8-BC65-8F830550190A}"
 EndProject
@@ -48,6 +48,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.HealthChecks", "Libraries Projects\Milochau.Core.HealthChecks\Milochau.Core.HealthChecks.csproj", "{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Functions.ReferenceProject.Tests", "Reference Projects\Milochau.Core.Functions.ReferenceProject.Tests\Milochau.Core.Functions.ReferenceProject.Tests.csproj", "{7BA13942-14C5-4B6E-B15D-983C4F32B878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.Cosmos", "Milochau.Core.Cosmos\Milochau.Core.Cosmos.csproj", "{42331034-09A2-4702-8C7F-FE8EFBDB665B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,10 @@ Global
 		{7BA13942-14C5-4B6E-B15D-983C4F32B878}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BA13942-14C5-4B6E-B15D-983C4F32B878}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BA13942-14C5-4B6E-B15D-983C4F32B878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42331034-09A2-4702-8C7F-FE8EFBDB665B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42331034-09A2-4702-8C7F-FE8EFBDB665B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42331034-09A2-4702-8C7F-FE8EFBDB665B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42331034-09A2-4702-8C7F-FE8EFBDB665B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{786D2050-91EB-447F-A280-C38FF99BB58E} = {1B69D942-A40B-4C24-A502-E0E0197182DE}
 		{DAF2C0F5-CF81-421B-8BA9-4DD0510CB417} = {CB7C2181-2BFA-4105-9CAE-6520D08F9664}
 		{7BA13942-14C5-4B6E-B15D-983C4F32B878} = {1B69D942-A40B-4C24-A502-E0E0197182DE}
+		{42331034-09A2-4702-8C7F-FE8EFBDB665B} = {CB7C2181-2BFA-4105-9CAE-6520D08F9664}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE0AA8A9-B4DC-4C33-A403-D3B1C55B24DA}
