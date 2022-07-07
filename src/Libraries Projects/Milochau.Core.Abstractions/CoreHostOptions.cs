@@ -40,17 +40,13 @@ namespace Milochau.Core.Abstractions
         /// <summary>Get the infrastructure convention for a defined type</summary>
         public string GetInfrastructureConvention(InfrastructureConventionType infrastructureConventionType, string suffix = "")
         {
-            switch (infrastructureConventionType)
+            return infrastructureConventionType switch
             {
-                case InfrastructureConventionType.StorageAccountUri:
-                    return $"https://{OrganizationName}{ApplicationName}{HostName}sto{suffix}.blob.core.windows.net/";
-                case InfrastructureConventionType.CosmosDbDatabaseName:
-                    return $"{OrganizationName}-{ApplicationName}-{HostName}-cosmosdb";
-                case InfrastructureConventionType.CosmosDbAccountEndpoint:
-                    return $"https://{OrganizationName}-{ApplicationName}-{HostName}-cosmos.documents.azure.com:443/";
-                default:
-                    throw new NotSupportedException("Infrastructure convention type not supported!");
-            }
+                InfrastructureConventionType.StorageAccountUri => $"https://{OrganizationName}{ApplicationName}{HostName}sto{suffix}.blob.core.windows.net/",
+                InfrastructureConventionType.CosmosDbDatabaseName => $"{OrganizationName}-{ApplicationName}-{HostName}-cosmosdb",
+                InfrastructureConventionType.CosmosDbAccountEndpoint => $"https://{OrganizationName}-{ApplicationName}-{HostName}-cosmos.documents.azure.com:443/",
+                _ => throw new NotSupportedException("Infrastructure convention type not supported!"),
+            };
         }
     }
     
