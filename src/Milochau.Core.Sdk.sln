@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30104.148
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core", "Libraries Projects\Milochau.Core\Milochau.Core.csproj", "{DE07CC29-D4B4-4DF8-BC65-8F830550190A}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Console", "Libraries Projects\Milochau.Core.Console\Milochau.Core.Console.csproj", "{8EF6B542-02BD-4073-B25B-D55424754C49}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.HealthChecks", "Libraries Projects\Milochau.Core.HealthChecks\Milochau.Core.HealthChecks.csproj", "{C488F372-17E5-48C7-A7B5-22E1A78AF511}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Cosmos", "Libraries Projects\Milochau.Core.Cosmos\Milochau.Core.Cosmos.csproj", "{DE14CF1F-924E-4AF1-9365-250207024BD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C488F372-17E5-48C7-A7B5-22E1A78AF511}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C488F372-17E5-48C7-A7B5-22E1A78AF511}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C488F372-17E5-48C7-A7B5-22E1A78AF511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE14CF1F-924E-4AF1-9365-250207024BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE14CF1F-924E-4AF1-9365-250207024BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE14CF1F-924E-4AF1-9365-250207024BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE14CF1F-924E-4AF1-9365-250207024BD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

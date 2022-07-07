@@ -49,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.HealthChecks"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milochau.Core.Functions.ReferenceProject.Tests", "Reference Projects\Milochau.Core.Functions.ReferenceProject.Tests\Milochau.Core.Functions.ReferenceProject.Tests.csproj", "{7BA13942-14C5-4B6E-B15D-983C4F32B878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.Cosmos", "Milochau.Core.Cosmos\Milochau.Core.Cosmos.csproj", "{42331034-09A2-4702-8C7F-FE8EFBDB665B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milochau.Core.Cosmos", "Libraries Projects\Milochau.Core.Cosmos\Milochau.Core.Cosmos.csproj", "{42331034-09A2-4702-8C7F-FE8EFBDB665B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

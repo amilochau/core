@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libraries Projects\Milochau.Core.Abstractions\Milochau.Core.Abstractions.csproj" />
+    <ProjectReference Include="..\Milochau.Core.Abstractions\Milochau.Core.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
