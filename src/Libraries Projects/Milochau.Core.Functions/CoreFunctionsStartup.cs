@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Infrastructure.Features;
+using Milochau.Core.Functions.Services;
+using Milochau.Core.Functions.Services.Implementations;
 using System;
 using System.Text.Json;
 
@@ -28,6 +30,9 @@ namespace Milochau.Core.Functions
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
+
+            // Register services - specific to Functions apps
+            services.AddSingleton<IClaimsService, ClaimsService>();
 
             // Add token credential to be shared between connections
             services.AddSingleton<TokenCredential>(serviceProvider =>
