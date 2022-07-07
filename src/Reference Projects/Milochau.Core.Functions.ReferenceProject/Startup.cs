@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
 
 namespace Milochau.Core.Functions.ReferenceProject
 {

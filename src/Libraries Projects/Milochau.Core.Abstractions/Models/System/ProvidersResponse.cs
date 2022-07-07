@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Milochau.Core.Abstractions.Models
+namespace Milochau.Core.Abstractions.Models.System
 {
     /// <summary>Response for configuration providers endpoint</summary>
     public class ProvidersResponse

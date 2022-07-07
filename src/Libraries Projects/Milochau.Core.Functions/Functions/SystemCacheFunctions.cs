@@ -1,7 +1,7 @@
 ﻿using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Milochau.Core.Abstractions;
-using Milochau.Core.Abstractions.Models;
+using Milochau.Core.Abstractions.Models.System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;

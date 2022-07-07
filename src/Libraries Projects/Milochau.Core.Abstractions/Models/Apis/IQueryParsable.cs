@@ -1,4 +1,4 @@
-﻿namespace Milochau.Core.Functions.Helpers
+﻿namespace Milochau.Core.Abstractions.Models.Apis
 {
     /// <summary>Parsable from query</summary>
     public interface IQueryParsable

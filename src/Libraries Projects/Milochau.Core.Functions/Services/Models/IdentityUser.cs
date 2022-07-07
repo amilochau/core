@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Milochau.Core.Functions.Services.Models
+﻿namespace Milochau.Core.Functions.Services.Models
 {
     /// <summary>Identity user</summary>
     public struct IdentityUser

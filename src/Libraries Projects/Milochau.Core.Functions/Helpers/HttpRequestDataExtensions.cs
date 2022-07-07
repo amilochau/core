@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Azure.Functions.Worker.Http;
+using Milochau.Core.Abstractions.Models.Apis;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net;

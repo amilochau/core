@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Milochau.Core.Abstractions.Models
+namespace Milochau.Core.Abstractions.Models.System
 {
     /// <summary>Response for application assembly endpoint</summary>
     public class AssemblyResponse

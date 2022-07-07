@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Milochau.Core.Abstractions.Models;
+using Milochau.Core.Abstractions.Models.System;
 using Milochau.Core.AspNetCore.Tests.TestHelpers;
 using System.Collections.Generic;
 using System.Net;
