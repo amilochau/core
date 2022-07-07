@@ -1,4 +1,4 @@
-﻿using Milochau.Core.Functions.Helpers;
+﻿using Milochau.Core.Abstractions.Models.Apis;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;

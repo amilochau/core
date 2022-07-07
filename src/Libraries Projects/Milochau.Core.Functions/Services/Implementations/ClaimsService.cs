@@ -4,11 +4,8 @@ using Milochau.Core.Abstractions;
 using Milochau.Core.Functions.Services.Models;
 using Milochau.Core.Infrastructure.Hosting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Milochau.Core.Functions.Services.Implementations

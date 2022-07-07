@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Milochau.Core.Abstractions;
-using Milochau.Core.Abstractions.Models;
+using Milochau.Core.Abstractions.Models.System;
 using Milochau.Core.Functions.Functions;
 using Moq;
 using System.Net;

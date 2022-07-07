@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Milochau.Core.Abstractions.Models
+namespace Milochau.Core.Abstractions.Models.System
 {
     /// <summary>Response for application environment endpoint</summary>
     public class EnvironmentResponse
