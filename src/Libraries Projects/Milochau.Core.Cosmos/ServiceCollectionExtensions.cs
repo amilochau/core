@@ -15,7 +15,7 @@ namespace Milochau.Core.Cosmos
     public static class ServiceCollectionExtensions
     {
         /// <summary>Add Cosmos DB services</summary>
-        public static IServiceCollection AddCosmosDb(IServiceCollection services, Action<CosmosDbSettings> settings)
+        public static IServiceCollection AddCosmosDb(this IServiceCollection services, Action<CosmosDbSettings> settings)
         {
             var settingsValue = new CosmosDbSettings();
             settings.Invoke(settingsValue);
