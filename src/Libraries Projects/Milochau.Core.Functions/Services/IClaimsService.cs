@@ -7,6 +7,6 @@ namespace Milochau.Core.Functions.Services
     public interface IClaimsService
     {
         /// <summary>Get current user from a HTTP request</summary>
-        IdentityUser GetUser(HttpRequestData request);
+        IdentityUser? GetUser(HttpRequestData request);
     }
 }
