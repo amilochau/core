@@ -25,33 +25,37 @@ namespace Milochau.Core.Functions.Services.Implementations
         }
 
         /// <summary>Get current user from a HTTP request</summary>
-        public IdentityUser GetUser(HttpRequestData request)
+        public IdentityUser? GetUser(HttpRequestData request)
         {
-            var result = new IdentityUser();
-
             var aadIdentity = request.Identities.FirstOrDefault(x => x.AuthenticationType != null && x.AuthenticationType.Equals("aad", StringComparison.OrdinalIgnoreCase));
             if (aadIdentity != null)
             {
-                result.Id = aadIdentity.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-                result.Name = aadIdentity.Claims.First(x => x.Type == "name").Value;
-                result.Email = aadIdentity.Claims.First(x => x.Type == "emails").Value;
+                return new IdentityUser
+                {
+                    Id = aadIdentity.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value,
+                    Name = aadIdentity.Claims.First(x => x.Type == "name").Value,
+                    Email = aadIdentity.Claims.First(x => x.Type == "emails").Value
+                };
             }
             else if (hostEnvironment.HostName.Equals(ApplicationHostEnvironment.LocalHostName, StringComparison.OrdinalIgnoreCase))
             {
                 var queryString = HttpUtility.ParseQueryString(request.Url.Query);
 
-                result.Id = queryString.GetValues("userId")?.FirstOrDefault()
-                    ?? configuration["Identity:UserId"]
-                    ?? throw new ArgumentException("Please use 'userId' query parameter in local.", nameof(request));
-                result.Name = queryString.GetValues("userName")?.FirstOrDefault()
-                    ?? configuration["Identity:UserName"]
-                    ?? throw new ArgumentException("Please use 'userName' query parameter in local.", nameof(request));
-                result.Email = queryString.GetValues("userEmail")?.FirstOrDefault()
-                    ?? configuration["Identity:UserEmail"]
-                    ?? throw new ArgumentException("Please use 'userEmail' query parameter in local.", nameof(request));
+                return new IdentityUser
+                {
+                    Id = queryString.GetValues("userId")?.FirstOrDefault()
+                        ?? configuration["Identity:UserId"]
+                        ?? throw new ArgumentException("Please use 'userId' query parameter in local.", nameof(request)),
+                    Name = queryString.GetValues("userName")?.FirstOrDefault()
+                        ?? configuration["Identity:UserName"]
+                        ?? throw new ArgumentException("Please use 'userName' query parameter in local.", nameof(request)),
+                    Email = queryString.GetValues("userEmail")?.FirstOrDefault()
+                        ?? configuration["Identity:UserEmail"]
+                        ?? throw new ArgumentException("Please use 'userEmail' query parameter in local.", nameof(request))
+                };
             }
 
-            return result;
+            return null;
         }
     }
 }
