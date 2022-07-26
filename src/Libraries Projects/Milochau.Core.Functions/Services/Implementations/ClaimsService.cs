@@ -33,8 +33,8 @@ namespace Milochau.Core.Functions.Services.Implementations
                 return new IdentityUser
                 {
                     Id = aadIdentity.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value,
-                    Name = aadIdentity.Claims.First(x => x.Type == "name").Value,
-                    Email = aadIdentity.Claims.First(x => x.Type == "emails").Value
+                    Name = aadIdentity.Claims.First(x => x.Type == "name").Value.Trim(),
+                    Email = aadIdentity.Claims.First(x => x.Type == "emails").Value.Trim()
                 };
             }
             else if (hostEnvironment.HostName.Equals(ApplicationHostEnvironment.LocalHostName, StringComparison.OrdinalIgnoreCase))
@@ -46,11 +46,11 @@ namespace Milochau.Core.Functions.Services.Implementations
                     Id = queryString.GetValues("userId")?.FirstOrDefault()
                         ?? configuration["Identity:UserId"]
                         ?? throw new ArgumentException("Please use 'userId' query parameter in local.", nameof(request)),
-                    Name = queryString.GetValues("userName")?.FirstOrDefault()
-                        ?? configuration["Identity:UserName"]
+                    Name = queryString.GetValues("userName")?.FirstOrDefault()?.Trim()
+                        ?? configuration["Identity:UserName"].Trim()
                         ?? throw new ArgumentException("Please use 'userName' query parameter in local.", nameof(request)),
-                    Email = queryString.GetValues("userEmail")?.FirstOrDefault()
-                        ?? configuration["Identity:UserEmail"]
+                    Email = queryString.GetValues("userEmail")?.FirstOrDefault()?.Trim()
+                        ?? configuration["Identity:UserEmail"].Trim()
                         ?? throw new ArgumentException("Please use 'userEmail' query parameter in local.", nameof(request))
                 };
             }
