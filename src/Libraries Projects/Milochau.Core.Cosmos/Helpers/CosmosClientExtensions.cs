@@ -60,6 +60,20 @@ namespace Milochau.Core.Cosmos.Helpers
             });
         }
 
+        /// <summary>Get an entity from a query, or returns null</summary>
+        /// <typeparam name="TItem">Type of database entity</typeparam>
+        public async static Task<TItem?> GetItemOrDefaultAsync<TItem>(this IQueryable<TItem> query, ILogger logger, CancellationToken cancellationToken)
+        {
+            using var feedIterator = query.ToFeedIterator();
+
+            // Only read one item, so we don't need to loop with the 'feedIterator.HasMoreResults'
+            var response = await feedIterator.ReadNextAsync(cancellationToken);
+
+            logger.LogResponse(response, "get or default");
+
+            return response.FirstOrDefault();
+        }
+
         /// <summary>Get a single entity from a query</summary>
         /// <typeparam name="TItem">Type of database entity</typeparam>
         /// <exception cref="NotFoundException">Entity has not been found or is not unique</exception>
