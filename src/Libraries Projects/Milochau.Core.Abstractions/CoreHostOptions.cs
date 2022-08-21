@@ -42,7 +42,7 @@ namespace Milochau.Core.Abstractions
         {
             return infrastructureConventionType switch
             {
-                InfrastructureConventionType.StorageAccountUri => $"https://{OrganizationName}{ApplicationName}{HostName}sto{suffix}.blob.core.windows.net/",
+                InfrastructureConventionType.StorageAccountUri => $"https://{OrganizationName}{ApplicationName}{HostName}st{suffix}.blob.core.windows.net/",
                 InfrastructureConventionType.CosmosDbDatabaseName => $"{OrganizationName}-{ApplicationName}-{HostName}-cosmosdb",
                 InfrastructureConventionType.CosmosDbAccountEndpoint => $"https://{OrganizationName}-{ApplicationName}-{HostName}-cosmos.documents.azure.com:443/",
                 _ => throw new NotSupportedException("Infrastructure convention type not supported!"),
