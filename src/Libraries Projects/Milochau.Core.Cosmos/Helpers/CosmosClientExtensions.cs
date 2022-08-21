@@ -77,7 +77,7 @@ namespace Milochau.Core.Cosmos.Helpers
         /// <summary>Get a single entity from a query</summary>
         /// <typeparam name="TItem">Type of database entity</typeparam>
         /// <returns>Null if item is not found or is not unique</returns>
-        public async static Task<TItem?> GetSingleItemAsync<TItem>(this IQueryable<TItem> query, ILogger logger, CancellationToken cancellationToken)
+        public async static Task<TItem?> GetSingleItemOrDefaultAsync<TItem>(this IQueryable<TItem> query, ILogger logger, CancellationToken cancellationToken)
         {
             using var feedIterator = query.ToFeedIterator();
 
@@ -86,12 +86,7 @@ namespace Milochau.Core.Cosmos.Helpers
 
             logger.LogResponse(response, "get single");
 
-            if (response.Count != 1)
-            {
-                return default;
-            }
-
-            return response.First();
+            return response.SingleOrDefault();
         }
 
         /// <summary>List entities from a query</summary>
