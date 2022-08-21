@@ -29,8 +29,8 @@ namespace Milochau.Core.Cosmos.Helpers
 
         /// <summary>Read an entity as a point item</summary>
         /// <typeparam name="TItem">Type of database entity</typeparam>
-        /// <exception cref="NotFoundException">Entity has not been found</exception>
-        public async static Task<TItem> ReadPointItemAsync<TItem>(this CosmosClient cosmosClient, string databaseName, string containerName, string id, string partitionKey, ILogger logger, CancellationToken cancellationToken)
+        /// <returns>Null if item is not found</returns>
+        public async static Task<TItem?> ReadPointItemAsync<TItem>(this CosmosClient cosmosClient, string databaseName, string containerName, string id, string partitionKey, ILogger logger, CancellationToken cancellationToken)
             where TItem : IEntity<string>
         {
             try
@@ -44,7 +44,7 @@ namespace Milochau.Core.Cosmos.Helpers
             }
             catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                throw new NotFoundException(EntityNotFoundExceptionMessage);
+                return default;
             }
         }
 
@@ -60,10 +60,24 @@ namespace Milochau.Core.Cosmos.Helpers
             });
         }
 
+        /// <summary>Get an entity from a query, or returns null</summary>
+        /// <typeparam name="TItem">Type of database entity</typeparam>
+        public async static Task<TItem?> GetItemOrDefaultAsync<TItem>(this IQueryable<TItem> query, ILogger logger, CancellationToken cancellationToken)
+        {
+            using var feedIterator = query.ToFeedIterator();
+
+            // Only read one item, so we don't need to loop with the 'feedIterator.HasMoreResults'
+            var response = await feedIterator.ReadNextAsync(cancellationToken);
+
+            logger.LogResponse(response, "get or default");
+
+            return response.FirstOrDefault();
+        }
+
         /// <summary>Get a single entity from a query</summary>
         /// <typeparam name="TItem">Type of database entity</typeparam>
-        /// <exception cref="NotFoundException">Entity has not been found or is not unique</exception>
-        public async static Task<TItem> GetSingleItemAsync<TItem>(this IQueryable<TItem> query, ILogger logger, CancellationToken cancellationToken)
+        /// <returns>Null if item is not found or is not unique</returns>
+        public async static Task<TItem?> GetSingleItemOrDefaultAsync<TItem>(this IQueryable<TItem> query, ILogger logger, CancellationToken cancellationToken)
         {
             using var feedIterator = query.ToFeedIterator();
 
@@ -72,12 +86,7 @@ namespace Milochau.Core.Cosmos.Helpers
 
             logger.LogResponse(response, "get single");
 
-            if (response.Count != 1)
-            {
-                throw new NotFoundException(EntityNotFoundExceptionMessage);
-            }
-
-            return response.First();
+            return response.SingleOrDefault();
         }
 
         /// <summary>List entities from a query</summary>
