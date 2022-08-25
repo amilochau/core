@@ -41,7 +41,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
             {
                 var telemetryConfiguration = app.ApplicationServices.GetRequiredService<TelemetryConfiguration>();
                 telemetryConfiguration.DefaultTelemetrySink.TelemetryProcessorChainBuilder
-                    .UseAdaptiveSampling(maxTelemetryItemsPerSecond: 5, "Trace;Exception")
+                    .UseAdaptiveSampling(maxTelemetryItemsPerSecond: 5, "Trace")
                     .Build();
             }
 
