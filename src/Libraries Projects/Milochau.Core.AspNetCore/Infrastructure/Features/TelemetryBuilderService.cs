@@ -19,7 +19,8 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Features
         {
             var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
             {
-                EnableAdaptiveSampling = !servicesOptions.Telemetry.DisableAdaptiveSampling
+                EnableAdaptiveSampling = !servicesOptions.Telemetry.DisableAdaptiveSampling,
+                EnablePerformanceCounterCollectionModule = false
             };
             services.Configure<TelemetryConfiguration>(configuration =>
             {
