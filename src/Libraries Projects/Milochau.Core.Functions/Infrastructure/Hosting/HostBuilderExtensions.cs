@@ -1,7 +1,6 @@
 ﻿using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Milochau.Core.Functions.Infrastructure.Middelwares;
 using Milochau.Core.Infrastructure.Hosting;
 using System;
 
@@ -20,7 +19,6 @@ namespace Milochau.Core.Functions.Infrastructure.Hosting
             return hostBuilder
                 .ConfigureFunctionsWorkerDefaults(workerApplication =>
                 {
-                    workerApplication.UseMiddleware<ExceptionHandlingMiddleware>();
                     if (configure != null)
                     {
                         configure.Invoke(workerApplication);
