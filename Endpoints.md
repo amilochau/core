@@ -15,11 +15,11 @@ Endpoints proposed by `Milochau.Core` are groupped by categories.
 | Configuration | `/api/system/configuration` | That exposes information on the configuration providers |
 | Health checks | `/api/health` | That exposes information on the application health |
 
-Note that these default endpoints path prefixes can be configured for ASP.NET Core 6.0 applications, not for Azure Functions. In Azure Functions, these endpoints do not include the `/api` prefix, while this prefix is included by default in the Microsoft template.
+Note that these default endpoints path prefixes can be configured for ASP.NET Core 7.0 applications, not for Azure Functions. In Azure Functions, these endpoints do not include the `/api` prefix, while this prefix is included by default in the Microsoft template.
 
 ---
 
-## Web applications endpoints (ASP.NET Core 6.0)
+## Web applications endpoints (ASP.NET Core 7.0)
 
 Here are all the endpoints exposed for Web applications.
 
@@ -37,7 +37,7 @@ Here are all the endpoints exposed for Web applications.
 
 ---
 
-## Functions endpoints (Azure Functions 4 / .NET 6.0 isolated process)
+## Functions endpoints (Azure Functions 4 / .NET 7.0 isolated process)
 
 Here are all the endpoints exposed for Functions applications.
 
