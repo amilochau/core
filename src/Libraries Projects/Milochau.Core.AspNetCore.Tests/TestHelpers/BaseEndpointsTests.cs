@@ -74,7 +74,7 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
                             services.AddAuthentication("ApiKeyAuthentication")
                                 .AddScheme<ApiKeyOptions, ApiKeyAuthenticationHandler>("ApiKeyAuthentication", options =>
                                 {
-                                    options.ApiKey = context.Configuration["Auth:ApiKey"];
+                                    options.ApiKey = context.Configuration["Auth:ApiKey"]!;
                                 });
                             services.AddAuthorization();
                         })

@@ -27,7 +27,7 @@ namespace Milochau.Core.AspNetCore.ReferenceProject.Tests
             // Given
             var serviceCollection = new ServiceCollection();
 
-            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
             {
                 { "Core:Services:Telemetry:Enabled", "true" }
             });

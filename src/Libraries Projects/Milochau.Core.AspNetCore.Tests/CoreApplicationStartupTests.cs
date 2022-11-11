@@ -22,7 +22,7 @@ namespace Milochau.Core.AspNetCore.Tests
             // Given
             var services = new ServiceCollection();
             var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
             {
                 { "ASPNETCORE_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
             });

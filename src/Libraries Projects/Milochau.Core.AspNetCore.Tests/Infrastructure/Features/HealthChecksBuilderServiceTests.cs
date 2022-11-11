@@ -33,7 +33,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Features
             services = BaseFeatureBuilderServiceTest.CreateServiceCollection();
 
             configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(new Dictionary<string, string>
+                .AddInMemoryCollection(new Dictionary<string, string?>
                 {
                     { "ASPNETCORE_ORGANIZATION", "org" },
                     { "ASPNETCORE_APPLICATION", "app" },

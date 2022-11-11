@@ -63,7 +63,7 @@ namespace Milochau.Core.Functions.ReferenceProject
             var response = request.CreateResponse();
 
             var keys = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues("key")?.Where(x => !string.IsNullOrEmpty(x));
-            var valuesResponse = new Dictionary<string, string>();
+            var valuesResponse = new Dictionary<string, string?>();
             if (keys != null && keys.Any())
             {
                 foreach (var key in keys)
