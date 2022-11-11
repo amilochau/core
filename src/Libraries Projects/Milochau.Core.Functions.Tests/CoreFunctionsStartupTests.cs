@@ -20,7 +20,7 @@ namespace Milochau.Core.Functions.Tests
             var serviceCollection = new ServiceCollection();
 
             var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
             {
                 { "AZURE_FUNCTIONS_KEYVAULT_VAULT", "https://xxx.vault.azure.net" }
             });

@@ -27,7 +27,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.Middlewares
             requestDelegate = new Mock<RequestDelegate>();
 
             var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>());
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>());
             configuration = configurationBuilder.Build();
 
             middleware = new SystemConfigurationMiddleware(requestDelegate.Object, configuration);

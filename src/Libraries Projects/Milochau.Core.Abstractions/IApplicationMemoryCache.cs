@@ -17,7 +17,7 @@ namespace Milochau.Core.Abstractions
         /// <param name="factory">Item factory</param>
         /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <returns>Item from cache or factory</returns>
-        TItem GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration);
+        TItem? GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration);
 
         /// <summary>Get an item from the cache, or create a new one from the defined factory</summary>
         /// <typeparam name="TItem">Type of item stored in cache</typeparam>
@@ -26,7 +26,7 @@ namespace Milochau.Core.Abstractions
         /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <param name="priority">Cache item priority</param>
         /// <returns>Item from cache or factory</returns>
-        TItem GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration, CacheItemPriority priority);
+        TItem? GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration, CacheItemPriority priority);
 
         /// <summary>Get an item from the cache, or create a new one from the defined factory</summary>
         /// <typeparam name="TItem">Type of item stored in cache</typeparam>
@@ -34,7 +34,7 @@ namespace Milochau.Core.Abstractions
         /// <param name="factory">Item factory</param>
         /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <returns>Item from cache or factory</returns>
-        Task<TItem> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration);
+        Task<TItem?> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration);
 
         /// <summary>Get an item from the cache, or create a new one from the defined factory</summary>
         /// <typeparam name="TItem">Type of item stored in cache</typeparam>
@@ -43,7 +43,7 @@ namespace Milochau.Core.Abstractions
         /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <param name="priority">Cache item priority</param>
         /// <returns>Item from cache or factory</returns>
-        Task<TItem> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration, CacheItemPriority priority);
+        Task<TItem?> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration, CacheItemPriority priority);
 
         /// <summary>Get the existance state of an item</summary>
         /// <param name="key">Cache key</param>

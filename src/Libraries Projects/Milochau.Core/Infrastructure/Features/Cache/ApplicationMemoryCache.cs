@@ -22,7 +22,7 @@ namespace Milochau.Core.Infrastructure.Features.Cache
         /// <param name="factory">Item factory</param>
         /// /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <returns></returns>
-        public TItem GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration)
+        public TItem? GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration)
             => GetOrCreate(key, factory, duration, CacheItemPriority.Normal);
 
         /// <summary>Get an item from the memory cache, or create a new one from the defined factory</summary>
@@ -32,7 +32,7 @@ namespace Milochau.Core.Infrastructure.Features.Cache
         /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <param name="priority">Cache item priority</param>
         /// <returns></returns>
-        public TItem GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration, CacheItemPriority priority)
+        public TItem? GetOrCreate<TItem>(string key, Func<TItem> factory, TimeSpan duration, CacheItemPriority priority)
         {
             return this.GetOrCreate(key, cacheEntry =>
             {
@@ -48,7 +48,7 @@ namespace Milochau.Core.Infrastructure.Features.Cache
         /// <param name="factory">Item factory</param>
         /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <returns>Item from cache or factory</returns>
-        public Task<TItem> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration)
+        public Task<TItem?> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration)
             => GetOrCreateAsync(key, factory, duration, CacheItemPriority.Normal);
 
         /// <summary>Get an item from the memory cache, or create a new one from the defined factory</summary>
@@ -58,7 +58,7 @@ namespace Milochau.Core.Infrastructure.Features.Cache
         /// <param name="duration">Cache duration (absolute expiration, relative from now)</param>
         /// <param name="priority">Cache item priority</param>
         /// <returns>Item from cache or factory</returns>
-        public Task<TItem> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration, CacheItemPriority priority)
+        public Task<TItem?> GetOrCreateAsync<TItem>(string key, Func<Task<TItem>> factory, TimeSpan duration, CacheItemPriority priority)
         {
             return this.GetOrCreateAsync(key, async cacheEntry =>
             {

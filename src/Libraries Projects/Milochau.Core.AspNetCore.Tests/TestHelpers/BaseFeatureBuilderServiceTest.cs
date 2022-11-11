@@ -34,7 +34,7 @@ namespace Milochau.Core.AspNetCore.Tests.TestHelpers
         public static IApplicationBuilder CreateApplicationBuilder(IServiceCollection services)
         {
             var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>());
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>());
             var configuration = configurationBuilder.Build();
             services.AddSingleton<IConfiguration>(configuration);
             services.AddOptions();

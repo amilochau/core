@@ -22,7 +22,7 @@ namespace Milochau.Core.Functions.Tests.Functions
         public void Initialize()
         {
             var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string>());
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>());
             configuration = configurationBuilder.Build();
 
             functions = new SystemConfigurationFunctions(configuration);

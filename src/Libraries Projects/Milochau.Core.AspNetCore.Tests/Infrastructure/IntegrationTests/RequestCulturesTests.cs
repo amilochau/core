@@ -21,7 +21,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
         {
             // Given
             var configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(new Dictionary<string, string>
+                .AddInMemoryCollection(new Dictionary<string, string?>
                 {
                     { "Core:Services:RequestLocalization:Enabled", "true" },
                     { "Core:Services:RequestLocalization:DefaultCulture", defaultCulture }
@@ -48,7 +48,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
             var defaultCulture = "fr-FR";
 
             var configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(new Dictionary<string, string>
+                .AddInMemoryCollection(new Dictionary<string, string?>
                 {
                     { "Core:Services:RequestLocalization:Enabled", "true" },
                     { "Core:Services:RequestLocalization:DefaultCulture", defaultCulture },
@@ -77,7 +77,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
             var secondCulture = "en-US";
 
             var configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(new Dictionary<string, string>
+                .AddInMemoryCollection(new Dictionary<string, string?>
                 {
                     { "Core:Services:RequestLocalization:Enabled", "true" },
                     { "Core:Services:RequestLocalization:DefaultCulture", defaultCulture },
@@ -106,7 +106,7 @@ namespace Milochau.Core.AspNetCore.Tests.Infrastructure.IntegrationTests
             var secondCulture = "en-US";
 
             var configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(new Dictionary<string, string>
+                .AddInMemoryCollection(new Dictionary<string, string?>
                 {
                     { "Core:Services:RequestLocalization:Enabled", "true" },
                     { "Core:Services:RequestLocalization:DefaultCulture", defaultCulture },

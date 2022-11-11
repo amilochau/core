@@ -57,7 +57,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Middlewares
                 return BaseApplicationMiddleware.WriteErrorAsTextAsync(httpContext, "Please provide a cache key to test.");
             }
 
-            var filteredKeys = keys.Where(x => !string.IsNullOrEmpty(x)).ToList();
+            var filteredKeys = keys.Where(x => !string.IsNullOrEmpty(x)).Cast<string>().ToList();
             var response = new ContainsResponse
             {
                 Keys = filteredKeys,
@@ -88,7 +88,7 @@ namespace Milochau.Core.AspNetCore.Infrastructure.Middlewares
                 return BaseApplicationMiddleware.WriteErrorAsTextAsync(httpContext, "Please provide a cache key to remove.");
             }
 
-            var filteredKeys = keys.Where(x => !string.IsNullOrEmpty(x)).ToList();
+            var filteredKeys = keys.Where(x => !string.IsNullOrEmpty(x)).Cast<string>().ToList();
             var response = new RemoveResponse { Keys = filteredKeys };
             foreach (var key in filteredKeys)
             {

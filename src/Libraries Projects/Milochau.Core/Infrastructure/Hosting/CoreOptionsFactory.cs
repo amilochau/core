@@ -78,7 +78,8 @@ namespace Milochau.Core.Infrastructure.Hosting
             return configuration[$"{GenericHostConfigurationPrefix}{suffix}"]
                 ?? configuration[$"{FunctionsHostConfigurationPrefix}{suffix}"]
                 ?? configuration[$"{WebHostConfigurationPrefix}{suffix}"]
-                ?? configuration[suffix];
+                ?? configuration[suffix]
+                ?? string.Empty;
         }
 
         private static string? GetValueFromEnvironment(string suffix)

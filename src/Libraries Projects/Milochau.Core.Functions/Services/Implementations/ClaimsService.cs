@@ -47,10 +47,10 @@ namespace Milochau.Core.Functions.Services.Implementations
                         ?? configuration["Identity:UserId"]
                         ?? throw new ArgumentException("Please use 'userId' query parameter in local.", nameof(request)),
                     Name = queryString.GetValues("userName")?.FirstOrDefault()?.Trim()
-                        ?? configuration["Identity:UserName"].Trim()
+                        ?? configuration["Identity:UserName"]?.Trim()
                         ?? throw new ArgumentException("Please use 'userName' query parameter in local.", nameof(request)),
                     Email = queryString.GetValues("userEmail")?.FirstOrDefault()?.Trim()
-                        ?? configuration["Identity:UserEmail"].Trim()
+                        ?? configuration["Identity:UserEmail"]?.Trim()
                         ?? throw new ArgumentException("Please use 'userEmail' query parameter in local.", nameof(request))
                 };
             }
