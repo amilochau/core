@@ -33,7 +33,7 @@ namespace Milochau.Core.Functions.ReferenceProject
             this.configuration = configuration;
         }
 
-        [Function("CoreHostOptions")]
+        [Function("test-corehostoptions")]
         public async Task<HttpResponseData> GetCoreHostOptionsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "CoreHostOptions")] HttpRequestData request)
         {
             var response = request.CreateResponse();
@@ -41,7 +41,7 @@ namespace Milochau.Core.Functions.ReferenceProject
             return response;
         }
 
-        [Function("HostEnvironment")]
+        [Function("test-hostenvironment")]
         public async Task<HttpResponseData> GetHostEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "HostEnvironment")] HttpRequestData request)
         {
             var response = request.CreateResponse();
@@ -49,7 +49,7 @@ namespace Milochau.Core.Functions.ReferenceProject
             return response;
         }
 
-        [Function("ApplicationHostEnvironment")]
+        [Function("test-applicationhostenvironment")]
         public async Task<HttpResponseData> GetApplicationHostEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ApplicationHostEnvironment")] HttpRequestData request)
         {
             var response = request.CreateResponse();
@@ -57,7 +57,7 @@ namespace Milochau.Core.Functions.ReferenceProject
             return response;
         }
 
-        [Function("Configuration")]
+        [Function("test-configuration")]
         public async Task<HttpResponseData> GetConfigurationAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "Configuration")] HttpRequestData request)
         {
             var response = request.CreateResponse();
@@ -76,13 +76,13 @@ namespace Milochau.Core.Functions.ReferenceProject
             return response;
         }
 
-        [Function("NotFoundException")]
+        [Function("test-notfoundexception")]
         public Task<HttpResponseData> GetNotFoundExceptionAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "NotFoundException")] HttpRequestData request)
         {
             throw new NotFoundException();
         }
 
-        [Function("BadRequest")]
+        [Function("test-badrequest")]
         public async Task<HttpResponseData> GetValidationFromQueryAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ValidationFromQuery")] HttpRequestData request)
         {
             var validationResult = await request.ReadAndValidateRequestQueryAsync<ValidationFromQuery>(CancellationToken.None);
@@ -94,7 +94,7 @@ namespace Milochau.Core.Functions.ReferenceProject
             return await request.WriteResponseAsJsonAsync(validationResult.Data, HttpStatusCode.OK, CancellationToken.None);
         }
 
-        [Function("SerializationExample")]
+        [Function("test-serializationexample")]
         public async Task<HttpResponseData> GetSerializationExampleAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "SerializationExample")] HttpRequestData request)
         {
             var serializationExample = new SerializationExample();

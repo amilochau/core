@@ -72,7 +72,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             healthCheckService.Setup(x => x.CheckHealthAsync(It.IsAny<Func<HealthCheckRegistration, bool>>(), It.IsAny<CancellationToken>())).ReturnsAsync(healthReport);
 
             // When
-            var httpResponseData = await functions.GetHealthLightAsync(httpRequestData);
+            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData, "light");
 
             // Then
             Assert.IsNotNull(httpResponseData);

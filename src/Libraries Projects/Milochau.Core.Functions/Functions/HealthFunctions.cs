@@ -22,17 +22,17 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Get default application health</summary>
         [Function("health")]
-        public async Task<HttpResponseData> GetHealthDefaultAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health")] HttpRequestData request)
+        public async Task<HttpResponseData> GetHealthDefaultAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health/{tag?}")] HttpRequestData request, string? tag = null)
         {
-            var healthReport = await healthCheckService.CheckHealthAsync();
-            return await ConvertHealthReportToActionResultAsync(request, healthReport);
-        }
-
-        /// <summary>Get light application health</summary>
-        [Function("health-light")]
-        public async Task<HttpResponseData> GetHealthLightAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health/light")] HttpRequestData request)
-        {
-            var healthReport = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(HealthChecksRegistration.LightTag));
+            HealthReport? healthReport;
+            if (!string.IsNullOrWhiteSpace(tag))
+            {
+                healthReport = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(tag));
+            }
+            else
+            {
+                healthReport = await healthCheckService.CheckHealthAsync();
+            }
             return await ConvertHealthReportToActionResultAsync(request, healthReport);
         }
 
