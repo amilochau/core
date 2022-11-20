@@ -2,6 +2,9 @@
 using Microsoft.Azure.Functions.Worker.Http;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Abstractions.Models.System;
+using Milochau.Core.Functions.Helpers;
+using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions
@@ -17,26 +20,36 @@ namespace Milochau.Core.Functions.Functions
             this.applicationHostEnvironment = applicationHostEnvironment;
         }
 
-        /// <summary>Get application environment</summary>
-        [Function("system-application-environment")]
-        public async Task<HttpResponseData> GetEnvironmentAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/application/environment")] HttpRequestData request)
+        /// <summary>Get application information</summary>
+        [Function("system-application")]
+        public async Task<HttpResponseData> GetInformationAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/application/{type}")] HttpRequestData request, string type)
         {
-            var environmentResponse = new EnvironmentResponse(applicationHostEnvironment);
-
-            var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(environmentResponse);
-            return response;
+            return request.Method switch
+            {
+                Keys.GetMethod when type.Equals("assembly", StringComparison.OrdinalIgnoreCase) => await GetAssemblyAsync(request),
+                Keys.GetMethod when type.Equals("environment", StringComparison.OrdinalIgnoreCase) => await GetEnvironmentAsync(request),
+                _ => request.WriteEmptyResponseAsync(HttpStatusCode.NotFound),
+            };
         }
 
         /// <summary>Get application asembly</summary>
-        [Function("system-application-assembly")]
-        public async Task<HttpResponseData> GetAssemblyAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/application/assembly")] HttpRequestData request)
+        internal static async Task<HttpResponseData> GetAssemblyAsync(HttpRequestData request)
         {
             var assembly = System.Reflection.Assembly.GetEntryAssembly()!;
             var assemblyResponse = new AssemblyResponse(assembly);
 
             var response = request.CreateResponse();
             await response.WriteAsJsonAsync(assemblyResponse);
+            return response;
+        }
+
+        /// <summary>Get application environment</summary>
+        internal async Task<HttpResponseData> GetEnvironmentAsync(HttpRequestData request)
+        {
+            var environmentResponse = new EnvironmentResponse(applicationHostEnvironment);
+
+            var response = request.CreateResponse();
+            await response.WriteAsJsonAsync(environmentResponse);
             return response;
         }
     }

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.Azure.Functions.Worker.Http;
+﻿using Microsoft.Azure.Functions.Worker.Http;
 using Milochau.Core.Abstractions.Models.Apis;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Threading;
@@ -27,7 +27,7 @@ namespace Milochau.Core.Functions.Helpers
 
             if (!validationResult.IsValid)
             {
-                var modelStateDictionary = new ModelStateDictionary();
+                var modelStateDictionary = new Dictionary<string, Collection<string?>>();
                 foreach (var result in validationResults)
                 {
                     if (result.ErrorMessage == null)
@@ -35,10 +35,14 @@ namespace Milochau.Core.Functions.Helpers
 
                     foreach (var memberName in result.MemberNames)
                     {
-                        modelStateDictionary.AddModelError(memberName, result.ErrorMessage);
+                        if (!modelStateDictionary.ContainsKey(memberName))
+                        {
+                            modelStateDictionary.Add(memberName, new Collection<string?>());
+                        }
+                        modelStateDictionary[memberName].Add(result.ErrorMessage);
                     }
                 }
-                validationResult.ProblemDetails = new ValidationProblemDetails(modelStateDictionary);
+                validationResult.ProblemDetails = new ValidationProblemDetails(modelStateDictionary.AsReadOnly());
             }
 
             return validationResult;
@@ -58,7 +62,7 @@ namespace Milochau.Core.Functions.Helpers
 
             if (!validationResult.IsValid)
             {
-                var modelStateDictionary = new ModelStateDictionary();
+                var modelStateDictionary = new Dictionary<string, Collection<string?>>();
                 foreach (var result in validationResults)
                 {
                     if (result.ErrorMessage == null)
@@ -66,10 +70,14 @@ namespace Milochau.Core.Functions.Helpers
 
                     foreach (var memberName in result.MemberNames)
                     {
-                        modelStateDictionary.AddModelError(memberName, result.ErrorMessage);
+                        if (!modelStateDictionary.ContainsKey(memberName))
+                        {
+                            modelStateDictionary.Add(memberName, new Collection<string?>());
+                        }
+                        modelStateDictionary[memberName].Add(result.ErrorMessage);
                     }
                 }
-                validationResult.ProblemDetails = new ValidationProblemDetails(modelStateDictionary);
+                validationResult.ProblemDetails = new ValidationProblemDetails(modelStateDictionary.AsReadOnly());
             }
 
             return Task.FromResult(validationResult);

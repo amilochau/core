@@ -2,8 +2,11 @@
 using Microsoft.Azure.Functions.Worker.Http;
 using Milochau.Core.Abstractions;
 using Milochau.Core.Abstractions.Models.System;
+using Milochau.Core.Functions.Helpers;
+using System;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions
@@ -24,9 +27,22 @@ namespace Milochau.Core.Functions.Functions
             this.applicationMemoryCache = applicationMemoryCache;
         }
 
+        /// <summary>Count local cache information</summary>
+        [Function("system-cache-local")]
+        public async Task<HttpResponseData> GetLocalCacheInformationAsync([HttpTrigger(AuthorizationLevel.Admin, "get, post", Route = "system/cache/local/{type}")] HttpRequestData request, string type)
+        {
+            return request.Method switch
+            {
+                Keys.GetMethod when type.Equals("count", StringComparison.OrdinalIgnoreCase) => await GetLocalCountAsync(request),
+                Keys.GetMethod when type.Equals("contains", StringComparison.OrdinalIgnoreCase) => await GetLocalContainsAsync(request),
+                Keys.PostMethod when type.Equals("compact", StringComparison.OrdinalIgnoreCase) => await CompactLocalAsync(request),
+                Keys.PostMethod when type.Equals("remove", StringComparison.OrdinalIgnoreCase) => await RemoveLocalAsync(request),
+                _ => request.WriteEmptyResponseAsync(HttpStatusCode.NotFound),
+            };
+        }
+
         /// <summary>Count local cache items</summary>
-        [Function("system-cache-local-count")]
-        public async Task<HttpResponseData> GetLocalCountAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/cache/local/count")] HttpRequestData request)
+        internal async Task<HttpResponseData> GetLocalCountAsync(HttpRequestData request)
         {
             var countResponse = new CountResponse
             {
@@ -39,8 +55,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Test if local cache contains items</summary>
-        [Function("system-cache-local-contains")]
-        public async Task<HttpResponseData> GetLocalContainsAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/cache/local/contains")] HttpRequestData request)
+        internal async Task<HttpResponseData> GetLocalContainsAsync(HttpRequestData request)
         {
             var containsResponse = new ContainsResponse();
 
@@ -57,8 +72,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Compact local cache</summary>
-        [Function("system-cache-local-compact")]
-        public async Task<HttpResponseData> CompactLocalAsync([HttpTrigger(AuthorizationLevel.Admin, "post", Route = "system/cache/local/compact")] HttpRequestData request)
+        internal async Task<HttpResponseData> CompactLocalAsync(HttpRequestData request)
         {
             var compactResponse = new CompactResponse();
             var value = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(compactPercentageQueryKey)?.FirstOrDefault();
@@ -76,8 +90,7 @@ namespace Milochau.Core.Functions.Functions
         }
 
         /// <summary>Remove an item from the local cache</summary>
-        [Function("system-cache-local-remove")]
-        public async Task<HttpResponseData> RemoveLocalAsync([HttpTrigger(AuthorizationLevel.Admin, "post", Route = "system/cache/local/remove")] HttpRequestData request)
+        internal async Task<HttpResponseData> RemoveLocalAsync(HttpRequestData request)
         {
             var removeResponse = new RemoveResponse();
 
