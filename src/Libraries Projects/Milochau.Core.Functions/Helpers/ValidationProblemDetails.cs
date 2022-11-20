@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Milochau.Core.Functions.Helpers
 {
@@ -17,17 +17,17 @@ namespace Milochau.Core.Functions.Helpers
         }
 
         /// <summary>Constructor</summary>
-        public ValidationProblemDetails(ModelStateDictionary modelState) : this()
+        public ValidationProblemDetails(ReadOnlyDictionary<string, Collection<string?>> modelState) : this()
         {
             if (modelState == null)
             {
                 throw new ArgumentNullException(nameof(modelState));
             }
 
-            foreach (KeyValuePair<string, ModelStateEntry> item in modelState)
+            foreach (KeyValuePair<string, Collection<string?>> item in modelState)
             {
                 string key = item.Key;
-                ModelErrorCollection errors = item.Value.Errors;
+                Collection<string?> errors = item.Value;
                 if (errors == null || errors.Count <= 0)
                 {
                     continue;
@@ -49,11 +49,11 @@ namespace Milochau.Core.Functions.Helpers
                 Errors.Add(key, array);
 
 
-                static string GetErrorMessage(ModelError error)
+                static string GetErrorMessage(string? error)
                 {
-                    if (!string.IsNullOrEmpty(error.ErrorMessage))
+                    if (!string.IsNullOrWhiteSpace(error))
                     {
-                        return error.ErrorMessage;
+                        return error;
                     }
 
                     return "The input was not valid.";
@@ -87,8 +87,5 @@ namespace Milochau.Core.Functions.Helpers
 
         /// <summary>Explanation of the problem</summary>
         public string? Detail { get; set; }
-
-        /// <summary>Extension members</summary>
-        public IDictionary<string, object> Extensions { get; } = new Dictionary<string, object>(StringComparer.Ordinal);
     }
 }
