@@ -4,6 +4,7 @@ using Milochau.Core.Abstractions.Models.System;
 using Milochau.Core.Functions.Functions;
 using Moq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Tests.Functions
@@ -41,7 +42,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             applicationHostEnvironment.SetupGet(x => x.RegionName).Returns(regionName);
 
             // When
-            var httpResponseData = await functions.GetEnvironmentAsync(httpRequestData);
+            var httpResponseData = await functions.GetEnvironmentAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);

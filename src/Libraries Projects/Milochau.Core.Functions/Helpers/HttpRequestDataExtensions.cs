@@ -93,7 +93,7 @@ namespace Milochau.Core.Functions.Helpers
         }
 
         /// <summary>Write empty response</summary>
-        public static HttpResponseData WriteEmptyResponseAsync(this HttpRequestData request, HttpStatusCode statusCode)
+        public static HttpResponseData WriteEmptyResponse(this HttpRequestData request, HttpStatusCode statusCode)
         {
             var response = request.CreateResponse();
             response.StatusCode = statusCode;

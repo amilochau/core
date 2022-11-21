@@ -5,6 +5,7 @@ using Milochau.Core.HealthChecks;
 using Milochau.Core.HealthChecks.Models;
 using System.Net;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions
@@ -22,21 +23,21 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Get default application health</summary>
         [Function("health")]
-        public async Task<HttpResponseData> GetHealthDefaultAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health/{tag?}")] HttpRequestData request, string? tag = null)
+        public async Task<HttpResponseData> GetHealthDefaultAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health/{tag?}")] HttpRequestData request, CancellationToken cancellationToken, string? tag = null)
         {
             HealthReport? healthReport;
             if (!string.IsNullOrWhiteSpace(tag))
             {
-                healthReport = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(tag));
+                healthReport = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(tag), cancellationToken);
             }
             else
             {
-                healthReport = await healthCheckService.CheckHealthAsync();
+                healthReport = await healthCheckService.CheckHealthAsync(cancellationToken);
             }
-            return await ConvertHealthReportToActionResultAsync(request, healthReport);
+            return await ConvertHealthReportToActionResultAsync(request, healthReport, cancellationToken);
         }
 
-        private static async Task<HttpResponseData> ConvertHealthReportToActionResultAsync(HttpRequestData request, HealthReport healthReport)
+        internal static async Task<HttpResponseData> ConvertHealthReportToActionResultAsync(HttpRequestData request, HealthReport healthReport, CancellationToken cancellationToken)
         {
             var statusCode = healthReport.Status switch
             {

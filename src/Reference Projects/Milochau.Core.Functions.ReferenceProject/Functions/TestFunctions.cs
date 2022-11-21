@@ -34,31 +34,31 @@ namespace Milochau.Core.Functions.ReferenceProject
         }
 
         [Function("test-corehostoptions")]
-        public async Task<HttpResponseData> GetCoreHostOptionsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "CoreHostOptions")] HttpRequestData request)
+        public async Task<HttpResponseData> GetCoreHostOptionsAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "CoreHostOptions")] HttpRequestData request, CancellationToken cancellationToken)
         {
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(coreHostOptions);
+            await response.WriteAsJsonAsync(coreHostOptions, cancellationToken);
             return response;
         }
 
         [Function("test-hostenvironment")]
-        public async Task<HttpResponseData> GetHostEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "HostEnvironment")] HttpRequestData request)
+        public async Task<HttpResponseData> GetHostEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "HostEnvironment")] HttpRequestData request, CancellationToken cancellationToken)
         {
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(hostEnvironment);
+            await response.WriteAsJsonAsync(hostEnvironment, cancellationToken);
             return response;
         }
 
         [Function("test-applicationhostenvironment")]
-        public async Task<HttpResponseData> GetApplicationHostEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ApplicationHostEnvironment")] HttpRequestData request)
+        public async Task<HttpResponseData> GetApplicationHostEnvironmentAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ApplicationHostEnvironment")] HttpRequestData request, CancellationToken cancellationToken)
         {
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(applicationHostEnvironment);
+            await response.WriteAsJsonAsync(applicationHostEnvironment, cancellationToken);
             return response;
         }
 
         [Function("test-configuration")]
-        public async Task<HttpResponseData> GetConfigurationAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "Configuration")] HttpRequestData request)
+        public async Task<HttpResponseData> GetConfigurationAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "Configuration")] HttpRequestData request, CancellationToken cancellationToken)
         {
             var response = request.CreateResponse();
 
@@ -72,7 +72,7 @@ namespace Milochau.Core.Functions.ReferenceProject
                 }
             }
 
-            await response.WriteAsJsonAsync(valuesResponse);
+            await response.WriteAsJsonAsync(valuesResponse, cancellationToken);
             return response;
         }
 
@@ -83,22 +83,22 @@ namespace Milochau.Core.Functions.ReferenceProject
         }
 
         [Function("test-badrequest")]
-        public async Task<HttpResponseData> GetValidationFromQueryAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ValidationFromQuery")] HttpRequestData request)
+        public async Task<HttpResponseData> GetValidationFromQueryAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ValidationFromQuery")] HttpRequestData request, CancellationToken cancellationToken)
         {
-            var validationResult = await request.ReadAndValidateRequestQueryAsync<ValidationFromQuery>(CancellationToken.None);
+            var validationResult = await request.ReadAndValidateRequestQueryAsync<ValidationFromQuery>(cancellationToken);
             if (!validationResult.IsValid || validationResult.Data == null)
             {
-                return await request.WriteResponseAsJsonAsync(validationResult.ProblemDetails, HttpStatusCode.BadRequest, CancellationToken.None);
+                return await request.WriteResponseAsJsonAsync(validationResult.ProblemDetails, HttpStatusCode.BadRequest, cancellationToken);
             }
 
-            return await request.WriteResponseAsJsonAsync(validationResult.Data, HttpStatusCode.OK, CancellationToken.None);
+            return await request.WriteResponseAsJsonAsync(validationResult.Data, HttpStatusCode.OK, cancellationToken);
         }
 
         [Function("test-serializationexample")]
-        public async Task<HttpResponseData> GetSerializationExampleAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "SerializationExample")] HttpRequestData request)
+        public async Task<HttpResponseData> GetSerializationExampleAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "SerializationExample")] HttpRequestData request, CancellationToken cancellationToken)
         {
             var serializationExample = new SerializationExample();
-            return await request.WriteResponseAsJsonAsync(serializationExample, HttpStatusCode.OK, CancellationToken.None);
+            return await request.WriteResponseAsJsonAsync(serializationExample, HttpStatusCode.OK, cancellationToken);
         }
     }
 }

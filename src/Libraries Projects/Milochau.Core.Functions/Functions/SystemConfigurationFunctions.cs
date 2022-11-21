@@ -6,6 +6,7 @@ using Milochau.Core.Functions.Helpers;
 using System;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions
@@ -23,17 +24,17 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Get configuration information</summary>
         [Function("system-configuration")]
-        public async Task<HttpResponseData> GetInformationAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/configuration/{type}")] HttpRequestData request, string type)
+        public async Task<HttpResponseData> GetInformationAsync([HttpTrigger(AuthorizationLevel.Admin, "get", Route = "system/configuration/{type}")] HttpRequestData request, string type, CancellationToken cancellationToken)
         {
             return request.Method switch
             {
-                Keys.GetMethod when type.Equals("providers", StringComparison.OrdinalIgnoreCase) => await GetProvidersAsync(request),
-                _ => request.WriteEmptyResponseAsync(HttpStatusCode.NotFound),
+                Keys.GetMethod when type.Equals("providers", StringComparison.OrdinalIgnoreCase) => await GetProvidersAsync(request, cancellationToken),
+                _ => request.WriteEmptyResponse(HttpStatusCode.NotFound),
             };
         }
 
         /// <summary>Get configuration providers</summary>
-        internal async Task<HttpResponseData> GetProvidersAsync(HttpRequestData request)
+        internal async Task<HttpResponseData> GetProvidersAsync(HttpRequestData request, CancellationToken cancellationToken)
         {
             var providersResponse = new ProvidersResponse();
 
@@ -43,7 +44,7 @@ namespace Milochau.Core.Functions.Functions
             }
 
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(providersResponse);
+            await response.WriteAsJsonAsync(providersResponse, cancellationToken);
             return response;
         }
     }

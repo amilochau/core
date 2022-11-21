@@ -7,6 +7,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Functions
@@ -29,20 +30,20 @@ namespace Milochau.Core.Functions.Functions
 
         /// <summary>Count local cache information</summary>
         [Function("system-cache-local")]
-        public async Task<HttpResponseData> GetLocalCacheInformationAsync([HttpTrigger(AuthorizationLevel.Admin, "get, post", Route = "system/cache/local/{type}")] HttpRequestData request, string type)
+        public async Task<HttpResponseData> GetLocalCacheInformationAsync([HttpTrigger(AuthorizationLevel.Admin, "get, post", Route = "system/cache/local/{type}")] HttpRequestData request, string type, CancellationToken cancellationToken)
         {
             return request.Method switch
             {
-                Keys.GetMethod when type.Equals("count", StringComparison.OrdinalIgnoreCase) => await GetLocalCountAsync(request),
-                Keys.GetMethod when type.Equals("contains", StringComparison.OrdinalIgnoreCase) => await GetLocalContainsAsync(request),
-                Keys.PostMethod when type.Equals("compact", StringComparison.OrdinalIgnoreCase) => await CompactLocalAsync(request),
-                Keys.PostMethod when type.Equals("remove", StringComparison.OrdinalIgnoreCase) => await RemoveLocalAsync(request),
-                _ => request.WriteEmptyResponseAsync(HttpStatusCode.NotFound),
+                Keys.GetMethod when type.Equals("count", StringComparison.OrdinalIgnoreCase) => await GetLocalCountAsync(request, cancellationToken),
+                Keys.GetMethod when type.Equals("contains", StringComparison.OrdinalIgnoreCase) => await GetLocalContainsAsync(request, cancellationToken),
+                Keys.PostMethod when type.Equals("compact", StringComparison.OrdinalIgnoreCase) => await CompactLocalAsync(request, cancellationToken),
+                Keys.PostMethod when type.Equals("remove", StringComparison.OrdinalIgnoreCase) => await RemoveLocalAsync(request, cancellationToken),
+                _ => request.WriteEmptyResponse(HttpStatusCode.NotFound),
             };
         }
 
         /// <summary>Count local cache items</summary>
-        internal async Task<HttpResponseData> GetLocalCountAsync(HttpRequestData request)
+        internal async Task<HttpResponseData> GetLocalCountAsync(HttpRequestData request, CancellationToken cancellationToken)
         {
             var countResponse = new CountResponse
             {
@@ -50,12 +51,12 @@ namespace Milochau.Core.Functions.Functions
             };
 
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(countResponse);
+            await response.WriteAsJsonAsync(countResponse, cancellationToken);
             return response;
         }
 
         /// <summary>Test if local cache contains items</summary>
-        internal async Task<HttpResponseData> GetLocalContainsAsync(HttpRequestData request)
+        internal async Task<HttpResponseData> GetLocalContainsAsync(HttpRequestData request, CancellationToken cancellationToken)
         {
             var containsResponse = new ContainsResponse();
 
@@ -67,12 +68,12 @@ namespace Milochau.Core.Functions.Functions
             }
 
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(containsResponse);
+            await response.WriteAsJsonAsync(containsResponse, cancellationToken);
             return response;
         }
 
         /// <summary>Compact local cache</summary>
-        internal async Task<HttpResponseData> CompactLocalAsync(HttpRequestData request)
+        internal async Task<HttpResponseData> CompactLocalAsync(HttpRequestData request, CancellationToken cancellationToken)
         {
             var compactResponse = new CompactResponse();
             var value = System.Web.HttpUtility.ParseQueryString(request.Url.Query).GetValues(compactPercentageQueryKey)?.FirstOrDefault();
@@ -85,12 +86,12 @@ namespace Milochau.Core.Functions.Functions
             compactResponse.Percentage = percentage;
 
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(compactResponse);
+            await response.WriteAsJsonAsync(compactResponse, cancellationToken);
             return response;
         }
 
         /// <summary>Remove an item from the local cache</summary>
-        internal async Task<HttpResponseData> RemoveLocalAsync(HttpRequestData request)
+        internal async Task<HttpResponseData> RemoveLocalAsync(HttpRequestData request, CancellationToken cancellationToken)
         {
             var removeResponse = new RemoveResponse();
 
@@ -105,7 +106,7 @@ namespace Milochau.Core.Functions.Functions
             }
 
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(removeResponse);
+            await response.WriteAsJsonAsync(removeResponse, cancellationToken);
             return response;
         }
     }

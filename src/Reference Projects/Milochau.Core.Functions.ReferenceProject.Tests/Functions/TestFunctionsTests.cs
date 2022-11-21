@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Net;
 using Milochau.Core.Infrastructure.Hosting;
 using Microsoft.Extensions.Configuration;
+using System.Threading;
 
 namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
 {
@@ -53,7 +54,7 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             optionsValue.Application.RegionName = regionName;
 
             // When
-            var result = await functions.GetCoreHostOptionsAsync(httpRequestData);
+            var result = await functions.GetCoreHostOptionsAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(result);
@@ -69,7 +70,7 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             hostEnvironment.SetupGet(x => x.EnvironmentName).Returns(environmentName);
 
             // When
-            var result = await functions.GetHostEnvironmentAsync(httpRequestData);
+            var result = await functions.GetHostEnvironmentAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(result);
@@ -89,7 +90,7 @@ namespace Milochau.Core.Functions.ReferenceProject.Tests.Functions
             applicationHostEnvironment.SetupGet(x => x.RegionName).Returns(regionName);
 
             // When
-            var result = await functions.GetApplicationHostEnvironmentAsync(httpRequestData);
+            var result = await functions.GetApplicationHostEnvironmentAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(result);
