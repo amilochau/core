@@ -35,7 +35,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             healthCheckService.Setup(x => x.CheckHealthAsync(It.IsAny<Func<HealthCheckRegistration, bool>>(), It.IsAny<CancellationToken>())).ReturnsAsync(healthReport);
 
             // When
-            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData);
+            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -55,7 +55,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             healthCheckService.Setup(x => x.CheckHealthAsync(It.IsAny<Func<HealthCheckRegistration, bool>>(), It.IsAny<CancellationToken>())).ReturnsAsync(healthReport);
 
             // When
-            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData);
+            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -72,7 +72,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             healthCheckService.Setup(x => x.CheckHealthAsync(It.IsAny<Func<HealthCheckRegistration, bool>>(), It.IsAny<CancellationToken>())).ReturnsAsync(healthReport);
 
             // When
-            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData, "light");
+            var httpResponseData = await functions.GetHealthDefaultAsync(httpRequestData, CancellationToken.None, "light");
 
             // Then
             Assert.IsNotNull(httpResponseData);

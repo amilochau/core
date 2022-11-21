@@ -5,6 +5,7 @@ using Milochau.Core.Functions.Functions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Tests.Functions
@@ -35,7 +36,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("get", "/api/system/configuration/providers");
 
             // When
-            var httpResponseData = await functions.GetProvidersAsync(httpRequestData);
+            var httpResponseData = await functions.GetProvidersAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);

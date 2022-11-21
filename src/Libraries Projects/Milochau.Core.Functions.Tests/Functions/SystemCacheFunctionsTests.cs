@@ -5,6 +5,7 @@ using Milochau.Core.Functions.Functions;
 using Moq;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Milochau.Core.Functions.Tests.Functions
@@ -33,7 +34,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             applicationMemoryCache.SetupGet(x => x.Count).Returns(count);
 
             // When
-            var httpResponseData = await functions.GetLocalCountAsync(httpRequestData);
+            var httpResponseData = await functions.GetLocalCountAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -49,7 +50,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/contains", "?key=test");
 
             // When
-            var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData);
+            var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -68,7 +69,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/contains");
 
             // When
-            var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData);
+            var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -86,7 +87,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("get", "/api/system/cache/local/contains", "?key=");
 
             // When
-            var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData);
+            var httpResponseData = await functions.GetLocalContainsAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -104,7 +105,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/compact", "?percentage=0.2");
 
             // When
-            var httpResponseData = await functions.CompactLocalAsync(httpRequestData);
+            var httpResponseData = await functions.CompactLocalAsync(httpRequestData, CancellationToken.None);
 
             // Then
             applicationMemoryCache.Verify(x => x.Compact(0.2), Times.Once);
@@ -121,7 +122,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/compact");
 
             // When
-            var httpResponseData = await functions.CompactLocalAsync(httpRequestData);
+            var httpResponseData = await functions.CompactLocalAsync(httpRequestData, CancellationToken.None);
 
             // Then
             applicationMemoryCache.Verify(x => x.Compact(1), Times.Once);
@@ -138,7 +139,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/remove", "?key=test");
 
             // When
-            var httpResponseData = await functions.RemoveLocalAsync(httpRequestData);
+            var httpResponseData = await functions.RemoveLocalAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -156,7 +157,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/remove");
 
             // When
-            var httpResponseData = await functions.RemoveLocalAsync(httpRequestData);
+            var httpResponseData = await functions.RemoveLocalAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
@@ -173,7 +174,7 @@ namespace Milochau.Core.Functions.Tests.Functions
             var httpRequestData = CreateHttpRequestData("post", "/api/system/cache/local/remove", "?key=");
 
             // When
-            var httpResponseData = await functions.RemoveLocalAsync(httpRequestData);
+            var httpResponseData = await functions.RemoveLocalAsync(httpRequestData, CancellationToken.None);
 
             // Then
             Assert.IsNotNull(httpResponseData);
