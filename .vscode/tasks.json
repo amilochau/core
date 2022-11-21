@@ -71,7 +71,7 @@
 			"type": "func",
 			"dependsOn": "build (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\Reference Projects\\Milochau.Core.Functions.ReferenceProject/bin/Debug/net5.0"
+				"cwd": "${workspaceFolder}/src\\Reference Projects\\Milochau.Core.Functions.ReferenceProject/bin/Debug/net7.0"
 			},
 			"command": "host start",
 			"isBackground": true,
