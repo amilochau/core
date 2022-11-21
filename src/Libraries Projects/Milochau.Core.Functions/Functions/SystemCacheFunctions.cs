@@ -51,7 +51,7 @@ namespace Milochau.Core.Functions.Functions
             };
 
             var response = request.CreateResponse();
-            await response.WriteAsJsonAsync(countResponse, containsKeyQueryKey);
+            await response.WriteAsJsonAsync(countResponse, cancellationToken);
             return response;
         }
 
